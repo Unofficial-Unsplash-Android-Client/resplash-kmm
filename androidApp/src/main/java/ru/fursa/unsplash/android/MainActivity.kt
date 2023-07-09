@@ -75,7 +75,7 @@ class MainActivity : ComponentActivity() {
             LaunchedEffect(key1 = Unit, block = {
                 val client = UnsplashKtorClient()
                 client.getCollections().forEach { it ->
-                    println("!!!! $it")
+
                 }
             })
         }

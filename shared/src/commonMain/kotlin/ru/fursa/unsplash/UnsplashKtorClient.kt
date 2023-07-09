@@ -1,5 +1,7 @@
 package ru.fursa.unsplash
 
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -12,7 +14,11 @@ import kotlinx.serialization.json.Json
 class UnsplashKtorClient {
     private val ktorClient = HttpClient() {
         install(Logging) {
-            logger = Logger.DEFAULT
+            logger = object : Logger {
+                override fun log(message: String) {
+                    Napier.v("Ktor Http Client", null, message)
+                }
+            }
             level = LogLevel.ALL
         }
         install(ContentNegotiation) {
@@ -26,10 +32,10 @@ class UnsplashKtorClient {
         defaultRequest {
             url("https://api.unsplash.com")
         }
-    }
+    }.also { Napier.base(DebugAntilog()) }
 
     suspend fun getCollections(): List<CollectionHttpResponse> {
-        val collections: List<CollectionHttpResponse> = ktorClient.get("/collections/?client_id=CLIENT_KEY").body()
+        val collections: List<CollectionHttpResponse> = ktorClient.get("/collections/?client_id=CLIENT_ID").body()
         return collections
     }
 }

@@ -25,6 +25,7 @@ kotlin {
     sourceSets {
 
         val ktorVersion = "2.3.2"
+        val napierVersion = "2.6.1"
 
         val commonMain by getting {
             dependencies {
@@ -33,6 +34,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.github.aakira:napier:$napierVersion")
 
             }
         }
