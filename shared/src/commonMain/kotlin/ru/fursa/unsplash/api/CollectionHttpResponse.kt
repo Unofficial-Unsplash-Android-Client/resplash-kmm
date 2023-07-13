@@ -1,4 +1,4 @@
-package ru.fursa.unsplash
+package ru.fursa.unsplash.api
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

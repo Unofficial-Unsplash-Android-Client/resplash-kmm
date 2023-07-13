@@ -39,4 +39,10 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.2.1")
     implementation("androidx.compose.material:material:1.2.1")
     implementation("androidx.activity:activity-compose:1.5.1")
+
+    val koinVersion = "3.2.0"
+    //Koin
+    implementation("io.insert-koin:koin-core:$koinVersion")
+    implementation("io.insert-koin:koin-test:$koinVersion")
+    implementation("io.insert-koin:koin-android:$koinVersion")
 }

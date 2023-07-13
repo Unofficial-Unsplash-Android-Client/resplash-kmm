@@ -17,7 +17,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ru.fursa.unsplash.UnsplashKtorClient
+import org.koin.android.ext.android.inject
+import ru.fursa.unsplash.api.UnsplashKtorClient
 
 @Composable
 fun MyApplicationTheme(
@@ -60,6 +61,8 @@ fun MyApplicationTheme(
 
 class MainActivity : ComponentActivity() {
 
+    private val apiClient: UnsplashKtorClient by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -73,10 +76,9 @@ class MainActivity : ComponentActivity() {
             }
 
             LaunchedEffect(key1 = Unit, block = {
-                val client = UnsplashKtorClient()
-                client.getCollections().forEach { it ->
-
-                }
+               apiClient.getCollections(1).forEach {
+                   Log.d("Unsplash", it.toString())
+               }
             })
         }
     }
