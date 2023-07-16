@@ -1,15 +1,17 @@
 package ru.fursa.unsplash.android
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Shapes
+import androidx.compose.material.Surface
+import androidx.compose.material.Typography
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -17,12 +19,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.koin.android.ext.android.inject
-import ru.fursa.unsplash.api.UnsplashKtorClient
+import ru.fursa.unsplash.android.ui.tabs.TabScreen
 
 @Composable
 fun MyApplicationTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = false, //isSystemInDarkTheme()
     content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
@@ -61,25 +62,18 @@ fun MyApplicationTheme(
 
 class MainActivity : ComponentActivity() {
 
-    private val apiClient: UnsplashKtorClient by inject()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.wrapContentSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
+                    TabScreen()
                 }
             }
 
-            LaunchedEffect(key1 = Unit, block = {
-               apiClient.getCollections(1).forEach {
-                   Log.d("Unsplash", it.toString())
-               }
-            })
         }
     }
 }
