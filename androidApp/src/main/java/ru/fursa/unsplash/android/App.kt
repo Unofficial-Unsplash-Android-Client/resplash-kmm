@@ -7,7 +7,6 @@ import org.koin.core.context.GlobalContext.startKoin
 import ru.fursa.unsplash.di.networkModule
 
 class App: Application() {
-
     override fun onCreate() {
         super.onCreate()
         startKoin {

@@ -5,6 +5,7 @@
 
     <application
         android:name=".App"
+        android:label="Unsplash Client"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
