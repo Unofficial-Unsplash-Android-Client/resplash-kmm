@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "ru.fursa.unsplash.android"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "ru.fursa.unsplash.android"
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
     }
@@ -33,16 +33,20 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.compose.ui:ui:1.2.1")
-    implementation("androidx.compose.ui:ui-tooling:1.2.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.2.1")
-    implementation("androidx.compose.foundation:foundation:1.2.1")
-    implementation("androidx.compose.material:material:1.2.1")
-    implementation("androidx.activity:activity-compose:1.5.1")
+    implementation("androidx.compose.ui:ui:1.4.3")
+    implementation("androidx.compose.ui:ui-tooling:1.4.3")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.4.3")
+    implementation("androidx.compose.foundation:foundation:1.4.3")
+    implementation("androidx.compose.material:material:1.4.3")
+    implementation("androidx.activity:activity-compose:1.7.2")
 
     val koinVersion = "3.2.0"
+    val coilVersion = "2.4.0"
     //Koin
     implementation("io.insert-koin:koin-core:$koinVersion")
     implementation("io.insert-koin:koin-test:$koinVersion")
     implementation("io.insert-koin:koin-android:$koinVersion")
+
+    implementation("io.coil-kt:coil-compose:$coilVersion")
+
 }
