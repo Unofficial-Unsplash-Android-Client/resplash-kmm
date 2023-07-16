@@ -32,7 +32,7 @@ kotlin {
             dependencies {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-json:$ktorVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
@@ -51,7 +51,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
 
             }
         }
@@ -80,9 +80,9 @@ kotlin {
 
 android {
     namespace = "ru.fursa.unsplash"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
     }
 }
