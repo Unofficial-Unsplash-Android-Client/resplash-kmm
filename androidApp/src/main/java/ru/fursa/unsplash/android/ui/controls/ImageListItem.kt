@@ -18,7 +18,10 @@ import coil.request.ImageRequest
 
 @Composable
 fun ImageListItem(url: String) {
-    Box(modifier = Modifier.wrapContentSize().padding(6.dp).clip(RoundedCornerShape(6.dp))) {
+    Box(modifier = Modifier
+        .wrapContentSize()
+        .padding(6.dp)
+        .clip(RoundedCornerShape(6.dp))) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(url)
@@ -26,7 +29,8 @@ fun ImageListItem(url: String) {
                 .build(),
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            modifier = Modifier.clip(RoundedCornerShape(6.dp)))
+            modifier = Modifier.clip(RoundedCornerShape(6.dp))
+        )
     }
 }
 
