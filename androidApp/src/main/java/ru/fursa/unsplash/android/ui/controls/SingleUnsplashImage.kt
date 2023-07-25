@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
-@Composable 
+@Composable
 fun SingleUnsplashImage(url: String) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
@@ -38,9 +38,12 @@ fun PreviewUnsplashSingleImage() {
     Column(Modifier.wrapContentSize()) {
         UserProfileBlock(
             avatarUrl = "https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.88847xw:1xh;center,top&resize=1200:*",
-            fullName = "Ilya Fursa")
+            fullName = "Ilya Fursa"
+        )
         Column(
-            modifier = Modifier.fillMaxSize().padding(top = 16.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 16.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

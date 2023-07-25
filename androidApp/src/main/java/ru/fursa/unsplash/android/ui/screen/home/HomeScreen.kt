@@ -1,4 +1,4 @@
-package ru.fursa.unsplash.android.ui.screen.single
+package ru.fursa.unsplash.android.ui.screen.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 @UiComposable
-fun SinglePhotoScreen() {
+fun HomeScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -21,6 +21,6 @@ fun SinglePhotoScreen() {
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Single photo screen")
+        Text(text = "Home screen")
     }
 }
