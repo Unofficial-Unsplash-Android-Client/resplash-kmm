@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.fursa.unsplash.data.api.models.collection.CollectionHttpResponse
+import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.domain.base.UnsplashApiService
 
 class CollectionViewModel(
@@ -25,7 +25,7 @@ class CollectionViewModel(
     sealed class UiState {
         object EmptyState: UiState()
         data class ErrorState(val message: String): UiState()
-        data class SuccessState(val data: List<CollectionHttpResponse>): UiState()
+        data class SuccessState(val data: List<CollectionResponse>): UiState()
     }
 }
 
