@@ -1,10 +1,10 @@
-package ru.fursa.unsplash.api
+package ru.fursa.unsplash.data.api.models.collection
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CollectionHttpResponse(
+data class CollectionResponse(
     @SerialName("id")
     val id: String?,
     @SerialName("title")
