@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
-import ru.fursa.unsplash.api.CollectionHttpResponse
+import ru.fursa.unsplash.data.api.models.collection.CollectionHttpResponse
 
 @Composable
 fun CollectionPhotoScreen(viewModel: CollectionViewModel = koinViewModel()) {
