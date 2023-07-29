@@ -1,0 +1,11 @@
+package ru.fursa.unsplash.engine
+
+import io.ktor.client.engine.HttpClientEngineConfig
+import io.ktor.client.engine.HttpClientEngineFactory
+import io.ktor.client.engine.darwin.Darwin
+
+actual class HttpEngineFactory actual constructor() {
+    actual fun create(): HttpClientEngineFactory<HttpClientEngineConfig> {
+        return Darwin
+    }
+}
