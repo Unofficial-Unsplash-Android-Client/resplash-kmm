@@ -1,4 +1,4 @@
-package ru.fursa.unsplash.api
+package ru.fursa.unsplash.data.api.models.collection
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.SerialName

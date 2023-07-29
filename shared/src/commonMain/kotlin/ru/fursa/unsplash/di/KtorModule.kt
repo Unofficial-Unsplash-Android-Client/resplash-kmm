@@ -6,11 +6,14 @@ import io.ktor.client.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.client.request.header
+import io.ktor.client.request.headers
+import io.ktor.http.parameters
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
-import ru.fursa.unsplash.api.BaseApi
-import ru.fursa.unsplash.engine.HttpEngineFactory
+import ru.fursa.unsplash.base.BaseApi
+import ru.fursa.unsplash.base.engine.HttpEngineFactory
 
 val ktorModule = module {
     single<HttpClient> {
