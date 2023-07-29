@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
-import ru.fursa.unsplash.data.api.models.collection.CollectionHttpResponse
+import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 
 @Composable
 fun CollectionPhotoScreen(viewModel: CollectionViewModel = koinViewModel()) {
@@ -39,7 +39,7 @@ fun CollectionPhotoScreen(viewModel: CollectionViewModel = koinViewModel()) {
 }
 
 @Composable
-fun CreateCollectionsList(collections: List<CollectionHttpResponse>) {
+fun CreateCollectionsList(collections: List<CollectionResponse>) {
     LazyColumn {
         collections.forEach {
             item {
@@ -50,6 +50,6 @@ fun CreateCollectionsList(collections: List<CollectionHttpResponse>) {
 }
 
 @Composable
-fun ListItem(collections: CollectionHttpResponse) {
+fun ListItem(collections: CollectionResponse) {
     Text(text = collections.title.toString())
 }
