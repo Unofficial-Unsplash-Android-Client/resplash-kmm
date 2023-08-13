@@ -54,6 +54,12 @@ dependencies {
     implementation("io.coil-kt:coil-compose:$coilVersion")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation ("androidx.navigation:navigation-compose:2.6.0")
+    implementation ("com.google.accompanist:accompanist-navigation-animation:0.16.0")
+
+    implementation("androidx.paging:paging-compose:3.2.0")
+    implementation("androidx.paging:paging-runtime:3.2.0")
+
 
 
 
