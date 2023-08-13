@@ -14,6 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.fursa.unsplash.android.R
@@ -21,13 +22,10 @@ import ru.fursa.unsplash.android.R
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TabScreen(
-    onTabIndexChanged: @Composable (index: Int) -> Unit
+    tabs: List<String>,
+    backgroundColor: Color,
+    onTabIndexChanged: @Composable (index: Int) -> Unit,
 ) {
-    val tabs = listOf(
-        stringResource(id = R.string.tab_item_single),
-        stringResource(id = R.string.tab_item_collections)
-    )
-
     val scrollableTabIndex = remember { mutableStateOf(0) }
 
     Column(modifier = Modifier.fillMaxWidth()) {
@@ -35,6 +33,7 @@ fun TabScreen(
 
         TabRow(selectedTabIndex = scrollableTabIndex.value,
             modifier = Modifier.height(48.dp),
+            backgroundColor = backgroundColor,
             indicator = { positions ->
                 TabRowDefaults.Indicator(
                     modifier = Modifier.tabIndicatorOffset(positions[scrollableTabIndex.value])

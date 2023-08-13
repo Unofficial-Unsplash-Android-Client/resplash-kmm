@@ -24,7 +24,8 @@ fun UserAvatarItem(modifier: Modifier, url: String) {
             .build(),
         contentDescription = null,
         contentScale = ContentScale.Crop,
-        modifier = modifier.clip(CircleShape).size(50.dp)
+        modifier = modifier
+            .clip(CircleShape)
     )
 }
 

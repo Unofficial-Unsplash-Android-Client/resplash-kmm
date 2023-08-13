@@ -1,13 +1,13 @@
-package ru.fursa.unsplash.android.ui.screen.collections
+package ru.fursa.unsplash.android.ui.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import ru.fursa.unsplash.base.repository.UnsplashRepository
 
-class CollectionViewModel(
+class HomeViewModel(
     private val repository: UnsplashRepository
-) : ViewModel() {
-    val collectionPager = repository.getCollections().cachedIn(viewModelScope)
-}
+): ViewModel() {
 
+    val photosPager = repository.getPhotos().cachedIn(viewModelScope)
+}

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="description">Lorem ipsum dolor sit amet\n</string>
-    <string name="tab_item_single">Single</string>
     <string name="tab_item_collections">Collections</string>
+    <string name="tab_item_home">Home</string>
+    <string name="tab_photos">Photos</string>
+    <string name="tab_likes">Likes</string>
+    <string name="tab_item_profile">Profile</string>
 </resources>
