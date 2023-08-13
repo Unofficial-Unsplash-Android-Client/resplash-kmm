@@ -5,4 +5,5 @@
     <string name="tab_item_home">Home</string>
     <string name="tab_photos">Photos</string>
     <string name="tab_likes">Likes</string>
+    <string name="tab_item_profile">Profile</string>
 </resources>
