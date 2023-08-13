@@ -54,6 +54,8 @@ kotlin {
                 implementation("io.insert-koin:koin-android:$koinVersion")
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
+                implementation("androidx.paging:paging-compose:3.2.0")
+                implementation("androidx.paging:paging-runtime:3.2.0")
 
             }
         }

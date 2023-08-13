@@ -29,6 +29,7 @@ fun UnsplashApplicationTheme(
     } else {
         lightColors(
             primary = Color(0xFF6200EE),
+            background = Color(0xFFFFFFFF),
             primaryVariant = Color(0xFF3700B3),
             secondary = Color(0xFF03DAC5)
         )
