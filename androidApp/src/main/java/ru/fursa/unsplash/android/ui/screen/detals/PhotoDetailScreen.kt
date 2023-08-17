@@ -57,7 +57,7 @@ fun PhotoDetailScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(300.dp),
-                painter = painterResource(id = R.drawable.placeholder), contentDescription = ""
+                painter = painterResource(id = R.drawable.ic_download), contentDescription = ""
             )
             Row(
                 modifier = Modifier
