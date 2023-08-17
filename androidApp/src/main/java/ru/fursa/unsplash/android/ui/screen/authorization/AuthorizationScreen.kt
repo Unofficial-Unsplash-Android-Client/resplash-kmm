@@ -59,7 +59,7 @@ fun AuthorizationScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painterResource(id = R.drawable.logo),
+                painterResource(id = R.drawable.placeholder),
                 modifier = Modifier
                     .width(60.dp)
                     .height(60.dp),

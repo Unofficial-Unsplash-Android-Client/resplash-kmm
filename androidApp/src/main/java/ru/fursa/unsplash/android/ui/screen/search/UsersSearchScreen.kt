@@ -21,7 +21,7 @@ fun UsersSearchScreen(
             Text(text = item.toString())
             UserSearchCard(
                 profileImageUrl = item.profileImage?.small.orEmpty(),
-                username = item.name.orEmpty(),
+                username = "${item.firstName} ${item.lastName}",
                 instagramAccount = "@ig007"
             )
         }
