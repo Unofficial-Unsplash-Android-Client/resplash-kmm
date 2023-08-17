@@ -4,6 +4,7 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
+import ru.fursa.unsplash.android.di.managerModule
 import ru.fursa.unsplash.android.di.viewModelsModule
 import ru.fursa.unsplash.base.di.repositoryModule
 import ru.fursa.unsplash.di.apiServiceModule
@@ -20,7 +21,8 @@ class App: Application() {
                 ktorModule,
                 apiServiceModule,
                 viewModelsModule,
-                repositoryModule
+                repositoryModule,
+                managerModule
             )
         }
     }

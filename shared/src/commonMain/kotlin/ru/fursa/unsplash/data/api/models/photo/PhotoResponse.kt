@@ -14,9 +14,11 @@ data class PhotoResponse(
 
 @Serializable
 data class User(
-    val name: String,
+    val name: String?,
+    val username: String?,
     @SerialName("profile_image")
-    val profileImage: ProfileImage,
+    val profileImage: ProfileImage?,
+
 )
 
 @Serializable

@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,6 +24,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.launch
+import ru.fursa.unsplash.android.base.eventbus.LoadEventBus
 import ru.fursa.unsplash.android.ui.controls.SearchBar
 import ru.fursa.unsplash.android.ui.controls.UserAvatarItem
 import ru.fursa.unsplash.android.ui.screen.collections.CollectionPhotoScreen
@@ -61,6 +64,7 @@ fun InitialScreen(navController: NavController) {
         stringResource(id = R.string.tab_item_collections),
     )
 
+    val scope = rememberCoroutineScope()
 
     Column() {
         Spacer(modifier = Modifier.size(20.dp))
@@ -78,9 +82,17 @@ fun InitialScreen(navController: NavController) {
                     },
                 url = "https://static.hbo.com/content/dam/hbodata/series/game-of-thrones/character/s5/daenarys-1920.jpg?w=60"
             )
-            SearchBar(onSearch = { req ->
-
-            })
+            SearchBar(
+                navController = navController,
+                enabled = false,
+                onSearch = { req -> },
+                onClose = {
+                    scope.launch {
+                        LoadEventBus.send(LoadEventBus.Event.CloseSearch)
+                    }
+                }, onNavigateTo = {
+                    navController.navigate("search")
+                })
         }
         TabScreen(tabs, Color.White) { pageIndex ->
             when (pageIndex) {

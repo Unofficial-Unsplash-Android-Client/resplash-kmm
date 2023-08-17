@@ -2,9 +2,12 @@ package ru.fursa.unsplash.base.repository
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
+import ru.fursa.unsplash.base.Photo
+import ru.fursa.unsplash.base.mappers.toUi
 import ru.fursa.unsplash.base.paging.infinitePager
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
+import ru.fursa.unsplash.data.api.models.search.UserSearchResponse
 import ru.fursa.unsplash.domain.base.UnsplashApiService
 
 class UnsplashPagingRepository(
@@ -16,7 +19,19 @@ class UnsplashPagingRepository(
         apiService.getCollections(index)
     }.flow
 
-    override fun getPhotos(): Flow<PagingData<PhotoResponse>> = infinitePager { index ->
-        apiService.getPhotos(index)
+    override fun getPhotos(): Flow<PagingData<Photo>> = infinitePager { index ->
+        apiService.getPhotos(index).map { response -> response.toUi() }
+    }.flow
+
+    override fun searchPhotos(query: String): Flow<PagingData<PhotoResponse>> = infinitePager { index ->
+        apiService.searchPhotos(query = query, pageIndex = index).results
+    }.flow
+
+    override fun searchCollection(query: String): Flow<PagingData<CollectionResponse>> = infinitePager {index ->
+        apiService.searchCollections(query = query, pageIndex = index).results
+    }.flow
+
+    override fun searchUsers(query: String): Flow<PagingData<UserSearchResponse>> = infinitePager { index ->
+        listOf(apiService.searchUsers(query = query, pageIndex = index))
     }.flow
 }

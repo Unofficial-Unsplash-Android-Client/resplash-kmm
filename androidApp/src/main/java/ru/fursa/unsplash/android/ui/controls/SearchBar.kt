@@ -1,7 +1,7 @@
 package ru.fursa.unsplash.android.ui.controls
 
-import android.util.Log
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -10,11 +10,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,10 +33,18 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun SearchBar(onSearch: (String) -> Unit) {
+fun SearchBar(
+    navController: NavController,
+    enabled: Boolean = false,
+    onSearch: (String) -> Unit,
+    onClose: () -> Unit,
+    onNavigateTo: () -> Unit,
+) {
     var text by remember { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
@@ -42,10 +52,10 @@ fun SearchBar(onSearch: (String) -> Unit) {
     TextField(
         value = text,
         singleLine = true,
-        shape = RoundedCornerShape(size = 20.dp),
         colors = TextFieldDefaults.textFieldColors(
             unfocusedIndicatorColor = Color.Transparent,
-            focusedIndicatorColor = Color.Transparent
+            focusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
         ),
         textStyle = TextStyle(fontSize = 12.sp),
         onValueChange = { text = it },
@@ -55,33 +65,51 @@ fun SearchBar(onSearch: (String) -> Unit) {
                     contentDescription = null,
                     modifier = Modifier.clickable {
                         text = ""
+                        onClose.invoke()
                     })
             }
         },
-        leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null, modifier = Modifier
-            .padding(3.dp)
-            .clip(CircleShape)
-            .clickable {}) },
+        leadingIcon = {
+            Icon(Icons.Filled.Search, contentDescription = null, modifier = Modifier
+                .padding(3.dp)
+                .clip(CircleShape)
+                .clickable {})
+        },
+        shape = RoundedCornerShape(size = 20.dp),
         modifier = Modifier
             .fillMaxWidth()
             .height(48.dp)
-            .padding(start = 16.dp, end = 16.dp),
+            .padding(start = 16.dp, end = 16.dp)
+            .clip(RoundedCornerShape(size = 20.dp))
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple(bounded = true),
+                onClick = {
+                   onNavigateTo()
+                }
+            ),
+        placeholder = { Text("Search...", fontSize = 12.sp) },
+        enabled = enabled,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
         keyboardActions = KeyboardActions(onSearch = {
             onSearch(text)
             keyboardController?.hide()
             focusManager.clearFocus()
-        }, onDone = {
-            Log.d("Search", "Done")
-        })
+        }, onDone = { })
     )
 }
 
 @Composable
 @Preview(showSystemUi = true)
 fun PreviewSearchBar() {
+    val navController = rememberNavController()
     SearchBar(
+        navController = navController,
         onSearch = { text ->
+
+        }, onClose = {
+
+        }, onNavigateTo = {
 
         })
 }
