@@ -9,5 +9,6 @@ class HomeViewModel(
     private val repository: UnsplashRepository
 ): ViewModel() {
 
-    val photosPager = repository.getPhotos().cachedIn(viewModelScope)
+    val screenState = repository.getPhotos()
+        .cachedIn(viewModelScope)
 }

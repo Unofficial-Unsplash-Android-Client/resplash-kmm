@@ -1,13 +1,7 @@
 package ru.fursa.unsplash.android.ui.screen.home
 
-import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.LazyPagingItems
@@ -15,24 +9,15 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.ui.controls.photo.PhotoCard
 import ru.fursa.unsplash.android.ui.screen.routing.NavGraph
-import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
+import ru.fursa.unsplash.base.Photo
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel()
 ) {
     val navController = rememberNavController()
-    val photosPagingItems: LazyPagingItems<PhotoResponse> = viewModel
-        .photosPager
-        .collectAsLazyPagingItems()
-
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceAround,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-    }
+    val photosPagingItems: LazyPagingItems<Photo> = viewModel
+        .screenState.collectAsLazyPagingItems()
 
     NavGraph(navController = navController)
     CreateHomeList(
@@ -42,12 +27,11 @@ fun HomeScreen(
 }
 
 @Composable
-fun CreateHomeList(navController: NavController, photos: LazyPagingItems<PhotoResponse>) {
+fun CreateHomeList(navController: NavController, photos: LazyPagingItems<Photo>) {
     LazyColumn {
-        items(count = photos.itemCount) { index ->
-            Log.d("Unsplash app", "Total photos in page ${photos.itemCount}")
+        items(photos.itemCount) { index ->
             val item = photos[index] ?: return@items
-            ListItem(photos = item, onClick = {
+            ListItem(photo = item, onClick = {
                 navController.navigate("photo_detail")
             })
         }
@@ -55,10 +39,10 @@ fun CreateHomeList(navController: NavController, photos: LazyPagingItems<PhotoRe
 }
 
 @Composable
-fun ListItem(photos: PhotoResponse, onClick: (String) -> Unit) {
-    PhotoCard(photos.urls.regular,
-        photos.user.name,
-        photos.user.profileImage.medium,
-        onAuthorClick = { onClick(photos.user.name) })
+fun ListItem(photo: Photo, onClick: (String) -> Unit) {
+    PhotoCard(photo.photoUrl,
+        photo.username,
+        photo.profileImage,
+        onAuthorClick = { onClick(photo.username) })
 }
 
