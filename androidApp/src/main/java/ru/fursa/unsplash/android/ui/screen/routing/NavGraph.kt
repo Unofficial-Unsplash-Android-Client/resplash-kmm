@@ -11,6 +11,7 @@ import ru.fursa.unsplash.android.ui.screen.home.HomeScreen
 import ru.fursa.unsplash.android.ui.screen.profile.ProfileScreen
 import ru.fursa.unsplash.android.ui.screen.registration.RegistrationScreen
 import ru.fursa.unsplash.android.ui.screen.reset.ResetPasswordScreen
+import ru.fursa.unsplash.android.ui.screen.search.SearchScreen
 
 @Composable
 fun NavGraph(navController: NavHostController) {
@@ -46,6 +47,10 @@ fun NavGraph(navController: NavHostController) {
 
         composable(route = "photo_detail") {
             PhotoDetailScreen(navController = navController)
+        }
+        
+        composable(route = "search") {
+            SearchScreen(navController = navController)
         }
     }
 }

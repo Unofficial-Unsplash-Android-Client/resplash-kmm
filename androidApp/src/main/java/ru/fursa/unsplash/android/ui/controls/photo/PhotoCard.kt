@@ -38,7 +38,7 @@ fun PhotoCard(url: String, username: String, profileImage: String, onAuthorClick
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(url)
-                .crossfade(false)
+                .crossfade(durationMillis = 1000)
                 .build(),
             contentDescription = null,
             contentScale = ContentScale.Crop,

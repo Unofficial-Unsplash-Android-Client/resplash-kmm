@@ -8,6 +8,6 @@ import androidx.compose.ui.Alignment
 @Composable
 fun UserPhotosScreen() {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "User photos screen")
+        Text(text = "ru.fursa.unsplash.data.api.models.search.User photos screen")
     }
 }
