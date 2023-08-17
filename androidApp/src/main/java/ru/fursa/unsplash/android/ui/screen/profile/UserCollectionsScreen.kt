@@ -8,6 +8,6 @@ import androidx.compose.ui.Alignment
 @Composable
 fun UserCollectionsScreen() {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "User collections screen")
+        Text(text = "ru.fursa.unsplash.data.api.models.search.User collections screen")
     }
 }
