@@ -20,7 +20,6 @@ import ru.fursa.unsplash.base.engine.HttpEngineFactory
 internal val ktorModule = module {
     single<HttpClient> {
         HttpClient(HttpEngineFactory().create()) {
-
             install(Logging) {
                 logger = io.ktor.client.plugins.logging.Logger.DEFAULT
                 level = LogLevel.ALL
@@ -39,7 +38,7 @@ internal val ktorModule = module {
             defaultRequest {
                 url(BaseApi.BASE_API_URL)
                 header("Accept-Version", "v1")
-                header("Authorization", "Client-ID ece4fa5efbe76bcec26bf982d7b7ef8b27bd80d832dbe8a40bd954448fc4320a")
+                header("Authorization", "Client-ID ${BaseApi.UNSPLASH_API_TOKEN}")
             }
 
         }.also { Napier.base(DebugAntilog()) }
