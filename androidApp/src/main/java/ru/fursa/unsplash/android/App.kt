@@ -7,8 +7,7 @@ import org.koin.core.context.GlobalContext.startKoin
 import ru.fursa.unsplash.android.di.managerModule
 import ru.fursa.unsplash.android.di.viewModelsModule
 import ru.fursa.unsplash.base.di.repositoryModule
-import ru.fursa.unsplash.di.apiServiceModule
-import ru.fursa.unsplash.di.ktorModule
+import ru.fursa.unsplash.di.networkModules
 
 class App: Application() {
     override fun onCreate() {
@@ -18,12 +17,11 @@ class App: Application() {
             androidLogger()
             androidContext(androidContext = this@App)
             modules(
-                ktorModule,
-                apiServiceModule,
                 viewModelsModule,
                 repositoryModule,
-                managerModule
+                managerModule,
             )
+            modules(networkModules)
         }
     }
 }
