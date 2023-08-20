@@ -5,7 +5,6 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.http.HttpMethod
 import io.ktor.http.appendPathSegments
-import ru.fursa.unsplash.base.BaseApi
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
 import ru.fursa.unsplash.data.api.models.search.SearchCollectionResponse
@@ -18,10 +17,10 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
     override suspend fun getCollections(pageIndex: Int, perPage: Int): List<CollectionResponse> {
         return httpClient.get {
             url {
-                appendPathSegments(BaseApi.COLLECTIONS_REQ)
+                appendPathSegments("/collections")
                 method = HttpMethod.Get
-                parameters.append(BaseApi.PAGE_INDEX_PARAM, pageIndex.toString())
-                parameters.append(BaseApi.PER_PAGE_PARAM, perPage.toString())
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
             }
         }.body()
     }
@@ -29,10 +28,10 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
     override suspend fun getPhotos(pageIndex: Int, perPage: Int): List<PhotoResponse> {
         return httpClient.get {
             url {
-                appendPathSegments(BaseApi.PHOTOS_REQ)
+                appendPathSegments("/photos")
                 method = HttpMethod.Get
-                parameters.append(BaseApi.PAGE_INDEX_PARAM, pageIndex.toString())
-                parameters.append(BaseApi.PER_PAGE_PARAM, perPage.toString())
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
             }
         }.body()
     }
@@ -40,11 +39,11 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
     override suspend fun searchPhotos(query: String, pageIndex: Int, perPage: Int): SearchPhotoResponse {
         return httpClient.get {
             url {
-                appendPathSegments(BaseApi.PHOTOS_SEARCH_REQ)
+                appendPathSegments("/search/photos")
                 method = HttpMethod.Get
-                parameters.append(BaseApi.PAGE_INDEX_PARAM, pageIndex.toString())
-                parameters.append(BaseApi.PER_PAGE_PARAM, perPage.toString())
-                parameters.append(BaseApi.QUERY, query)
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
+                parameters.append("query", query)
             }
         }.body()
     }
@@ -58,9 +57,9 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
             url {
                 appendPathSegments("/search/collections")
                 method = HttpMethod.Get
-                parameters.append(BaseApi.PAGE_INDEX_PARAM, pageIndex.toString())
-                parameters.append(BaseApi.PER_PAGE_PARAM, perPage.toString())
-                parameters.append(BaseApi.QUERY, query)
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
+                parameters.append("query", query)
             }
         }.body()
     }
@@ -73,9 +72,9 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
             url {
                 appendPathSegments("/search/users")
                 method = HttpMethod.Get
-                parameters.append(BaseApi.PAGE_INDEX_PARAM, pageIndex.toString())
-                parameters.append(BaseApi.PER_PAGE_PARAM, perPage.toString())
-                parameters.append(BaseApi.QUERY, query)
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
+                parameters.append("query", query)
             }
         }.body()
     }
