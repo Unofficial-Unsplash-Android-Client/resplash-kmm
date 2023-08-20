@@ -20,7 +20,6 @@ import ru.fursa.unsplash.base.engine.HttpEngineFactory
 internal val ktorModule = module {
     single<HttpClient> {
         HttpClient(HttpEngineFactory().create()) {
-
             install(Logging) {
                 logger = io.ktor.client.plugins.logging.Logger.DEFAULT
                 level = LogLevel.ALL
