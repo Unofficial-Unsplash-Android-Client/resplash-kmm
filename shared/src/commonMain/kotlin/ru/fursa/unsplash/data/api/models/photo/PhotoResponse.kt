@@ -9,16 +9,27 @@ data class PhotoResponse(
     @SerialName("user")
     val user: User,
     @SerialName("urls")
-    val urls: Urls
+    val urls: Urls,
+    val width: Int,
+    val height: Int,
 )
 
 @Serializable
 data class User(
     val name: String?,
     val username: String?,
+    @SerialName("instagram_username")
+    val instagramUsername: String?,
     @SerialName("profile_image")
-    val profileImage: ProfileImage?,
+    val profileImage: ProfileImage,
+    @SerialName("photos")
+    val photos: List<Photo>
 
+)
+
+@Serializable
+data class Photo(
+    val urls: Urls,
 )
 
 @Serializable

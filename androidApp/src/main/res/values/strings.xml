@@ -7,4 +7,14 @@
     <string name="tab_likes">Likes</string>
     <string name="tab_item_profile">Profile</string>
     <string name="tab_item_users">Users</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+
+    <plurals name="photos">
+        <item quantity="one">%1$d фотография</item>
+        <item quantity="many">%1$d фотографий</item>
+        <item quantity="other">%1$d фотографий</item>
+    </plurals>
+
+
 </resources>

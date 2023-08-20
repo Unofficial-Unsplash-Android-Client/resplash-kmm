@@ -3,7 +3,6 @@ package ru.fursa.unsplash.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,14 +10,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -26,12 +23,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import ru.fursa.unsplash.android.base.eventbus.LoadEventBus
-import ru.fursa.unsplash.android.ui.controls.SearchBar
-import ru.fursa.unsplash.android.ui.controls.UserAvatarItem
+import ru.fursa.unsplash.android.ui.kit.compound.SearchBar
+import ru.fursa.unsplash.android.ui.kit.image.DefaultUserAvatar
 import ru.fursa.unsplash.android.ui.screen.collections.CollectionPhotoScreen
 import ru.fursa.unsplash.android.ui.screen.home.HomeScreen
 import ru.fursa.unsplash.android.ui.screen.routing.NavGraph
-import ru.fursa.unsplash.android.ui.tabs.TabScreen
+import ru.fursa.unsplash.android.ui.kit.tabs.TabScreen
 import ru.fursa.unsplash.android.ui.theme.UnsplashApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -73,15 +70,7 @@ fun InitialScreen(navController: NavController) {
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            UserAvatarItem(
-                modifier = Modifier
-                    .size(48.dp)
-                    .clip(CircleShape)
-                    .clickable {
-                        navController.navigate("authorization")
-                    },
-                url = "https://static.hbo.com/content/dam/hbodata/series/game-of-thrones/character/s5/daenarys-1920.jpg?w=60"
-            )
+            DefaultUserAvatar()
             SearchBar(
                 navController = navController,
                 enabled = false,
