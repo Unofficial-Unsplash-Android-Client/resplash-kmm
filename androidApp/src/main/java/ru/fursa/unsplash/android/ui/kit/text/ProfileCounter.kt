@@ -1,4 +1,4 @@
-package ru.fursa.unsplash.android.ui.controls.common
+package ru.fursa.unsplash.android.ui.kit.text
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

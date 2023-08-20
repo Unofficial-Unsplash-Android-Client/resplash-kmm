@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.paging.compose.collectAsLazyPagingItems
 import org.koin.androidx.compose.koinViewModel
-import ru.fursa.unsplash.android.ui.controls.photo.PhotoCard
+import ru.fursa.unsplash.android.ui.kit.compound.PhotoListItem
 
 @Composable
 fun PhotosSearchScreen(
@@ -28,13 +28,14 @@ fun PhotosSearchScreen(
         LazyColumn(content = {
             items(searchResults.itemCount) { index ->
                 val item = searchResults[index] ?: return@items
-                PhotoCard(
+                PhotoListItem(
                     url = item.urls.regular,
                     username = item.user.username.orEmpty(),
-                    profileImage = item.user.profileImage?.small.orEmpty()
-                ) {
-
-                }
+                    avatarUrl = item.user.profileImage?.small.orEmpty(),
+                    width = item.width,
+                    height = item.height,
+                    onUserClick = {}
+                )
             }
         })
     }

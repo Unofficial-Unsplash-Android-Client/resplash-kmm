@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "unsplash-client-kmm"
 include(":androidApp")
 include(":shared")
+//include(":ui-kit")

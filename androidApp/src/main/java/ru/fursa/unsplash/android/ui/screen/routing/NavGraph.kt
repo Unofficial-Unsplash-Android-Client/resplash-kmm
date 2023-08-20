@@ -25,7 +25,7 @@ fun NavGraph(navController: NavHostController) {
             CollectionPhotoScreen()
         }
 
-        composable(route = "profile", ) {
+        composable(route = "profile") {
             ProfileScreen(navController = navController)
         }
 

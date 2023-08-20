@@ -7,7 +7,7 @@ import ru.fursa.unsplash.base.mappers.toUi
 import ru.fursa.unsplash.base.paging.infinitePager
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
-import ru.fursa.unsplash.data.api.models.search.UserSearchResponse
+import ru.fursa.unsplash.data.api.models.photo.User
 import ru.fursa.unsplash.domain.base.UnsplashApiService
 
 class UnsplashPagingRepository(
@@ -31,7 +31,7 @@ class UnsplashPagingRepository(
         apiService.searchCollections(query = query, pageIndex = index).results
     }.flow
 
-    override fun searchUsers(query: String): Flow<PagingData<UserSearchResponse>> = infinitePager { index ->
-        listOf(apiService.searchUsers(query = query, pageIndex = index))
+    override fun searchUsers(query: String): Flow<PagingData<User>> = infinitePager { index ->
+        apiService.searchUsers(query = query, pageIndex = index).results
     }.flow
 }
