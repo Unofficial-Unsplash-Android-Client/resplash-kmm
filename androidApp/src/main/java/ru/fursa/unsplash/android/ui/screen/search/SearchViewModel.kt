@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import ru.fursa.unsplash.base.repository.UnsplashRepository
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
-import ru.fursa.unsplash.data.api.models.search.UserSearchResponse
+import ru.fursa.unsplash.data.api.models.photo.User
 
 class SearchViewModel(
     private val repository: UnsplashRepository
@@ -22,7 +22,7 @@ class SearchViewModel(
     private val _collectionsResults = MutableStateFlow<PagingData<CollectionResponse>>(PagingData.empty())
     val collectionsResults = _collectionsResults
 
-    private val _userResults = MutableStateFlow<PagingData<UserSearchResponse>>(PagingData.empty())
+    private val _userResults = MutableStateFlow<PagingData<User>>(PagingData.empty())
     val userResults = _userResults
 
     fun onStartSearch(query: String) {
