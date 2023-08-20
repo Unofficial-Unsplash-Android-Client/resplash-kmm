@@ -1,4 +1,4 @@
-package ru.fursa.unsplash.android.ui.controls
+package ru.fursa.unsplash.android.ui.kit.compound
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -84,9 +84,7 @@ fun SearchBar(
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(bounded = true),
-                onClick = {
-                   onNavigateTo()
-                }
+                onClick = { onNavigateTo() }
             ),
         placeholder = { Text("Search...", fontSize = 12.sp) },
         enabled = enabled,

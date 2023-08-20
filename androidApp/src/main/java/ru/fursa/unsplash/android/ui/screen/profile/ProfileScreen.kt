@@ -1,11 +1,8 @@
 package ru.fursa.unsplash.android.ui.screen.profile
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
@@ -24,10 +21,11 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import ru.fursa.unsplash.android.R
-import ru.fursa.unsplash.android.ui.controls.UserAvatarItem
-import ru.fursa.unsplash.android.ui.controls.common.ProfileCounter
-import ru.fursa.unsplash.android.ui.controls.common.ProfileDescription
-import ru.fursa.unsplash.android.ui.tabs.TabScreen
+import ru.fursa.unsplash.android.ui.kit.compound.Screen
+import ru.fursa.unsplash.android.ui.kit.image.UserAvatarItem
+import ru.fursa.unsplash.android.ui.kit.tabs.TabScreen
+import ru.fursa.unsplash.android.ui.kit.text.ProfileCounter
+import ru.fursa.unsplash.android.ui.kit.text.ProfileDescription
 
 @Composable
 @UiComposable
@@ -42,11 +40,7 @@ fun ProfileScreen(
 
     Dialog(properties = DialogProperties(usePlatformDefaultWidth = false), onDismissRequest = { }) {
 
-        Column(
-            Modifier
-                .fillMaxSize()
-                .background(Color.White)
-        ) {
+        Screen {
             TopAppBar(
                 modifier = Modifier.wrapContentSize(),
                 backgroundColor = Color.White,
@@ -68,7 +62,7 @@ fun ProfileScreen(
                     modifier = Modifier
                         .size(80.dp)
                         .padding(start = 3.dp),
-                    url = "https://static.hbo.com/content/dam/hbodata/series/game-of-thrones/character/s5/daenarys-1920.jpg?w=60"
+                    avatarUrl = "https://shorturl.at/gjzDI"
                 )
 
                 ProfileCounter(

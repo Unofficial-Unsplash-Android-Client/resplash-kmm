@@ -21,8 +21,8 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.R
-import ru.fursa.unsplash.android.ui.controls.SearchBar
-import ru.fursa.unsplash.android.ui.tabs.TabScreen
+import ru.fursa.unsplash.android.ui.kit.compound.SearchBar
+import ru.fursa.unsplash.android.ui.kit.tabs.TabScreen
 
 @Composable
 fun SearchScreen(
@@ -83,7 +83,7 @@ fun SearchScreen(
             TabScreen(tabs = tabs, backgroundColor = Color.White) { pos ->
                 when (pos) {
                     0 -> PhotosSearchScreen()
-                    1 -> CollectionSearchScreen()
+                    1 -> CollectionSearchScreen(navController = navController)
                     2 -> UsersSearchScreen()
                 }
             }

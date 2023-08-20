@@ -1,4 +1,4 @@
-package ru.fursa.unsplash.android.ui.controls.collection
+package ru.fursa.unsplash.android.ui.kit.compound
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -16,6 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -25,17 +26,19 @@ import coil.request.ImageRequest
 import ru.fursa.unsplash.android.R
 
 @Composable
-fun CollectionCard(url: String, title: String, totalPhotos: Int, onClick: () -> Unit) {
+fun CollectionCardItem(
+    url: String,
+    title: String,
+    totalPhotos: Int = 0,
+    onNavigateClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .wrapContentSize()
             .padding(6.dp)
             .clip(RoundedCornerShape(6.dp))
-            .clickable { onClick() }
+            .clickable { onNavigateClick() }
     ) {
-        Column() {
-
-        }
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(url)
@@ -62,7 +65,8 @@ fun CollectionCard(url: String, title: String, totalPhotos: Int, onClick: () -> 
                 )
             )
             Text(
-                text = "$totalPhotos фото", style = TextStyle(
+                text = pluralStringResource(id = R.plurals.photos, totalPhotos, totalPhotos),
+                style = TextStyle(
                     color = Color.White,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium
@@ -71,3 +75,5 @@ fun CollectionCard(url: String, title: String, totalPhotos: Int, onClick: () -> 
         }
     }
 }
+
+
