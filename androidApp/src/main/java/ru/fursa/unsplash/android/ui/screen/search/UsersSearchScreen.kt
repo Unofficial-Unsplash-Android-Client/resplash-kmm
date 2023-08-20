@@ -21,7 +21,7 @@ fun UsersSearchScreen(
                 profileImageUrl = item.profileImage.medium,
                 username = item.username.toString(),
                 instagramAccount = item.instagramUsername.orEmpty(),
-                photos = item.photos
+                photos = item.photos ?: emptyList()
             )
         }
     })

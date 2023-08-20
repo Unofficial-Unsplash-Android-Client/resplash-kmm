@@ -29,7 +29,7 @@ fun PhotosSearchScreen(
             items(searchResults.itemCount) { index ->
                 val item = searchResults[index] ?: return@items
                 PhotoListItem(
-                    url = item.urls.regular,
+                    url = item.urls.regularUrl,
                     username = item.user.username.orEmpty(),
                     avatarUrl = item.user.profileImage?.small.orEmpty(),
                     width = item.width,

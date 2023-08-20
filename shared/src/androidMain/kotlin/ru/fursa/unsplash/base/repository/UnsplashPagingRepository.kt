@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.Flow
 import ru.fursa.unsplash.base.Photo
 import ru.fursa.unsplash.base.mappers.toUi
 import ru.fursa.unsplash.base.paging.infinitePager
+import ru.fursa.unsplash.data.api.models.base.User
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
-import ru.fursa.unsplash.data.api.models.photo.User
 import ru.fursa.unsplash.domain.base.UnsplashApiService
 
 class UnsplashPagingRepository(

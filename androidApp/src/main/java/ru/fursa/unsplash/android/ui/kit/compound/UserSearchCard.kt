@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import ru.fursa.unsplash.android.ui.kit.image.UserAvatarItem
-import ru.fursa.unsplash.data.api.models.photo.Photo
+import ru.fursa.unsplash.data.api.models.base.Photo
 
 @Composable
 fun UserSearchCard(
@@ -76,7 +76,7 @@ fun UserSearchCard(
                     Spacer(modifier = Modifier.size(8.dp))
                     AsyncImage(
                         model = ImageRequest.Builder(context)
-                            .data(photo.urls.regular)
+                            .data(photo.urls.rawUrl)
                             .crossfade(durationMillis = 1000)
                             .build(),
                         contentDescription = null,

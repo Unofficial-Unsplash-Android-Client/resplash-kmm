@@ -3,9 +3,9 @@ package ru.fursa.unsplash.base.repository
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import ru.fursa.unsplash.base.Photo
+import ru.fursa.unsplash.data.api.models.base.User
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
-import ru.fursa.unsplash.data.api.models.photo.User
 
 interface UnsplashRepository {
     fun getCollections(): Flow<PagingData<CollectionResponse>>

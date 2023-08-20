@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.fursa.unsplash.base.repository.UnsplashRepository
+import ru.fursa.unsplash.data.api.models.base.User
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
-import ru.fursa.unsplash.data.api.models.photo.User
 
 class SearchViewModel(
     private val repository: UnsplashRepository
