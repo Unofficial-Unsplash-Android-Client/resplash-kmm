@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class PhotoResponse(
     val id: String,
     @SerialName("user")
-    val user: User,
+    val user: User?,
     @SerialName("urls")
     val urls: Urls,
     val width: Int,
@@ -23,7 +23,7 @@ data class User(
     @SerialName("profile_image")
     val profileImage: ProfileImage,
     @SerialName("photos")
-    val photos: List<Photo>
+    val photos: List<Photo>?
 
 )
 

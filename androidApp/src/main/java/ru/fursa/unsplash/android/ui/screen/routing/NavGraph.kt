@@ -12,44 +12,45 @@ import ru.fursa.unsplash.android.ui.screen.profile.ProfileScreen
 import ru.fursa.unsplash.android.ui.screen.registration.RegistrationScreen
 import ru.fursa.unsplash.android.ui.screen.reset.ResetPasswordScreen
 import ru.fursa.unsplash.android.ui.screen.search.SearchScreen
+import ru.fursa.unsplash.routing.Routes
 
 @Composable
 fun NavGraph(navController: NavHostController) {
 
-    NavHost(navController = navController, startDestination = "start") {
-        composable("home") {
+    NavHost(navController = navController, startDestination = Routes.Start.name) {
+        composable(Routes.Home.name) {
             HomeScreen()
         }
 
-        composable("collections") {
+        composable(Routes.Collections.name) {
             CollectionPhotoScreen()
         }
 
-        composable(route = "profile") {
+        composable(route = Routes.Profile.name) {
             ProfileScreen(navController = navController)
         }
 
-        composable(route = "start") {
+        composable(route = Routes.Start.name) {
             EmptyScreen()
         }
 
-        composable(route = "authorization") {
+        composable(route = Routes.Authorization.name) {
             AuthorizationScreen(navController = navController)
         }
         
-        composable(route = "registration") {
+        composable(route = Routes.Registration.name) {
             RegistrationScreen(navController = navController)
         }
 
-        composable(route = "reset") {
+        composable(route = Routes.Reset.name) {
             ResetPasswordScreen(navController = navController)
         }
 
-        composable(route = "photo_detail") {
+        composable(route = Routes.PhotoDetail.name) {
             PhotoDetailScreen(navController = navController)
         }
         
-        composable(route = "search") {
+        composable(route = Routes.Search.name) {
             SearchScreen(navController = navController)
         }
     }
