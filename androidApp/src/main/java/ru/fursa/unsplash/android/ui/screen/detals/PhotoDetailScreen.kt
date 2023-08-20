@@ -37,7 +37,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import ru.fursa.unsplash.android.R
-import ru.fursa.unsplash.android.ui.controls.UserAvatarItem
+import ru.fursa.unsplash.android.ui.kit.image.UserAvatarItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -69,7 +69,7 @@ fun PhotoDetailScreen(navController: NavController) {
             ) {
                 UserAvatarItem(
                     modifier = Modifier.size(45.dp),
-                    url = "https://static.hbo.com/content/dam/hbodata/series/game-of-thrones/character/s5/daenarys-1920.jpg?w=60"
+                    avatarUrl = "https://shorturl.at/gjzDI"
                 )
                 Text(
                     text = "Daenerys Targarien", style = TextStyle(
