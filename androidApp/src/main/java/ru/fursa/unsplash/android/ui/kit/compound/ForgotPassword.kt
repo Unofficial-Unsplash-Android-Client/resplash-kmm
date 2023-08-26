@@ -8,12 +8,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import ru.fursa.unsplash.android.R
+import ru.fursa.unsplash.routing.Routes
 
 @Composable
 fun ForgotPassword(navController: NavController) {
@@ -24,9 +27,9 @@ fun ForgotPassword(navController: NavController) {
     ) {
         Text(
             modifier = Modifier.clickable {
-                navController.navigate("reset")
+                navController.navigate(Routes.Reset.name)
             },
-            text = "Forgot your password",
+            text = stringResource(id = R.string.forgot_password),
             textAlign = TextAlign.Left,
             color = Color.Gray,
             fontSize = 14.sp,

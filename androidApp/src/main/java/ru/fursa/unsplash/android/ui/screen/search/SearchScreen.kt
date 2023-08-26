@@ -23,6 +23,7 @@ import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.ui.kit.compound.SearchBar
 import ru.fursa.unsplash.android.ui.kit.tabs.TabScreen
+import ru.fursa.unsplash.routing.Routes
 
 @Composable
 fun SearchScreen(
@@ -73,7 +74,7 @@ fun SearchScreen(
 
                         },
                         onNavigateTo = {
-                            navController.navigate("search")
+                            navController.navigate(Routes.Search.name)
                         }
                     )
                 }
