@@ -9,6 +9,27 @@
     <string name="tab_item_users">Users</string>
     <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="join_unsplash">"Join Unsplash.com"</string>
+    <string name="reset_password">Reset password</string>
+    <string name="forgot_password">Forgot your password</string>
+    <string name="dont_have_account">Don\'t have an account yet?</string>
+    <string name="join">Join</string>
+    <string name="search_hint">Search ...</string>
+    <string name="set_wallpaper">Установить заставкой</string>
+    <string name="resolution">Разрешение</string>
+    <string name="apertura">Апертура</string>
+    <string name="iso">ISO</string>
+    <string name="focus">Фокус</string>
+    <string name="camera">Камера</string>
+    <string name="exposition">Экспозиция</string>
+    <string name="likes">Лайков</string>
+    <string name="downloads">Скачиваний</string>
+    <string name="views">Просмотров</string>
+    <string name="user_name">Daenerys Targarien</string>
+    <string name="photos">Фото</string>
+    <string name="collections">Коллекции</string>
 
     <plurals name="photos">
         <item quantity="one">%1$d фотография</item>

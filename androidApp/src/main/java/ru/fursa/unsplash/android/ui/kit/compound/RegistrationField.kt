@@ -10,11 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import ru.fursa.unsplash.android.R
+import ru.fursa.unsplash.routing.Routes
 
 @Composable
 fun RegistrationField(navController: NavController) {
@@ -22,13 +25,13 @@ fun RegistrationField(navController: NavController) {
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = "Don't have an account yet?")
+        Text(text = stringResource(id = R.string.dont_have_account))
         Spacer(modifier = Modifier.size(8.dp))
         Text(
             modifier = Modifier.clickable {
-                navController.navigate("registration")
+                navController.navigate(Routes.Registration.name)
             },
-            text = "Join",
+            text = stringResource(id = R.string.join),
             fontSize = 14.sp,
             color = Color.Gray,
             style = TextStyle(

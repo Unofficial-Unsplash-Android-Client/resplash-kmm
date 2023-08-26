@@ -66,15 +66,15 @@ fun ProfileScreen(
                 )
 
                 ProfileCounter(
-                    modifier = Modifier.padding(18.dp), counter = "12", subject = "Фотографий"
+                    modifier = Modifier.padding(18.dp), counter = "12", subject = stringResource(id = R.string.photos)
+                )
+                
+                ProfileCounter(
+                    modifier = Modifier.padding(16.dp), counter = "200", subject = stringResource(id = R.string.likes)
                 )
 
                 ProfileCounter(
-                    modifier = Modifier.padding(16.dp), counter = "200", subject = "Лайков"
-                )
-
-                ProfileCounter(
-                    modifier = Modifier.padding(16.dp), counter = "3", subject = "Коллекции"
+                    modifier = Modifier.padding(16.dp), counter = "3", subject = stringResource(id = R.string.collections)
                 )
             }
 
