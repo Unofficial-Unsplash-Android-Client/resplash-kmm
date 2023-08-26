@@ -10,4 +10,5 @@ sealed class Routes(val name: String) {
     object Reset: Routes(name = "reset")
     object PhotoDetail: Routes(name = "photo_detail")
     object Search: Routes(name = "search")
+    object Error: Routes(name = "error")
 }

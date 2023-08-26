@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import ru.fursa.unsplash.android.base.screen.EmptyScreen
+import ru.fursa.unsplash.android.base.screen.ErrorScreen
 import ru.fursa.unsplash.android.ui.screen.authorization.AuthorizationScreen
 import ru.fursa.unsplash.android.ui.screen.collections.CollectionPhotoScreen
 import ru.fursa.unsplash.android.ui.screen.detals.PhotoDetailScreen
@@ -32,6 +34,10 @@ fun NavGraph(navController: NavHostController) {
 
         composable(route = Routes.Start.name) {
             EmptyScreen()
+        }
+
+        composable(route = Routes.Error.name) {
+            ErrorScreen()
         }
 
         composable(route = Routes.Authorization.name) {
