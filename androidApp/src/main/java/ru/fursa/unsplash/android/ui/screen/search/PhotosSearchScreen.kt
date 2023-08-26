@@ -24,14 +24,13 @@ fun PhotosSearchScreen(
             .background(Color.White)
     ) {
 
-
         LazyColumn(content = {
             items(searchResults.itemCount) { index ->
                 val item = searchResults[index] ?: return@items
                 PhotoListItem(
-                    url = item.urls.regularUrl,
-                    username = item.user.username.orEmpty(),
-                    avatarUrl = item.user.profileImage?.small.orEmpty(),
+                    url = item.photoUrl,
+                    username = item.username,
+                    avatarUrl = item.profileImage,
                     width = item.width,
                     height = item.height,
                     onUserClick = {}

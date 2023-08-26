@@ -9,11 +9,13 @@ import ru.fursa.unsplash.data.api.models.base.User
 data class PhotoResponse(
     val id: String,
     @SerialName("user")
-    val user: User,
+    val user: User?,
     @SerialName("urls")
     val urls: Urls,
-    val width: Int,
-    val height: Int,
+    @SerialName("width")
+    val width: Int?,
+    @SerialName("height")
+    val height: Int?,
 )
 
 

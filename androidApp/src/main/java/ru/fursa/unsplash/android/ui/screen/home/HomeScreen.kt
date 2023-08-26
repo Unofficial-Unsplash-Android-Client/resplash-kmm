@@ -7,14 +7,14 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.ui.kit.list.BuildHomeList
 import ru.fursa.unsplash.android.ui.screen.routing.NavGraph
-import ru.fursa.unsplash.base.Photo
+import ru.fursa.unsplash.data.ui.models.PhotoModel
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel()
 ) {
     val navController = rememberNavController()
-    val photosPagingItems: LazyPagingItems<Photo> = viewModel.screenState.collectAsLazyPagingItems()
+    val photosPagingItems: LazyPagingItems<PhotoModel> = viewModel.screenState.collectAsLazyPagingItems()
 
     NavGraph(navController = navController)
     BuildHomeList(
