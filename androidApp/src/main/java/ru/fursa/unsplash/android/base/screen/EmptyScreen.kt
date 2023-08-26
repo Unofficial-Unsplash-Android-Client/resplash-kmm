@@ -1,4 +1,4 @@
-package ru.fursa.unsplash.android.ui.screen.routing
+package ru.fursa.unsplash.android.base.screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,7 +7,5 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun EmptyScreen() {
-    Box(modifier = Modifier.fillMaxSize()) {
-
-    }
+    Box(modifier = Modifier.fillMaxSize())
 }
