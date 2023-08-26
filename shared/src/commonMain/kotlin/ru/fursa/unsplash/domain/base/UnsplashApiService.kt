@@ -1,5 +1,6 @@
 package ru.fursa.unsplash.domain.base
 
+import ru.fursa.unsplash.data.api.models.base.User
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
 import ru.fursa.unsplash.data.api.models.search.SearchCollectionResponse
@@ -12,4 +13,5 @@ interface UnsplashApiService {
     suspend fun searchPhotos(query: String, pageIndex: Int = 1, perPage: Int = 5): SearchPhotoResponse
     suspend fun searchCollections(query: String, pageIndex: Int = 1, perPage: Int = 5): SearchCollectionResponse
     suspend fun searchUsers(query: String, pageIndex: Int = 1, perPage: Int = 5): UserSearchResponse
+    suspend fun getUser(username: String): User
 }

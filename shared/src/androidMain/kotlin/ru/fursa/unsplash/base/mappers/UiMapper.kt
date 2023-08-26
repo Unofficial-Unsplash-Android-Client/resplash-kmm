@@ -1,5 +1,6 @@
 package ru.fursa.unsplash.base.mappers
 
+import ru.fursa.unsplash.base.repository.CurrentUser
 import ru.fursa.unsplash.data.api.models.base.User
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
@@ -14,6 +15,7 @@ fun PhotoResponse.toUiPhoto(): PhotoModel {
     return PhotoModel(
         photoUrl = this.urls.rawUrl,
         username = this.user?.name.orEmpty(),
+        fullName = this.user?.username.orEmpty(),
         profileImage = this.user?.profileImage?.medium.orEmpty(),
         width = this.width ?: DEFAULT_WIDTH,
         height = this.height ?: DEFAULT_HEIGHT
@@ -26,11 +28,8 @@ fun List<PhotoResponse>.toUiPhotos(): List<PhotoModel> {
         val photoModel = PhotoModel(
             photoUrl = response.urls.rawUrl,
             profileImage = response.user?.profileImage?.medium.orEmpty(),
-            username = when {
-                response.user?.name != null -> response.user.name
-                response.user?.username != null -> response.user.username
-                else -> ""
-            },
+            username = response.user?.name.orEmpty(),
+            fullName = response.user?.username.orEmpty(),
             width = response.width ?: DEFAULT_WIDTH,
             height = response.height ?: DEFAULT_HEIGHT
         )
@@ -58,7 +57,7 @@ fun List<User>.toUiUsers(): List<UserModel> {
     this.forEach { response ->
         val userModel = UserModel(
             username = response.username.orEmpty(),
-            profileImageUrl = response.profileImage.medium,
+            profileImageUrl = response.profileImage?.medium.orEmpty(),
             instagramUsername = response.instagramUsername.orEmpty(),
             photos = response.photoResponses?.map { it.urls.rawUrl }?.toList() ?: emptyList()
         )
@@ -66,4 +65,17 @@ fun List<User>.toUiUsers(): List<UserModel> {
     }
 
     return usersList
+}
+
+fun User.toCurrentUser(): CurrentUser {
+    return CurrentUser(
+        username = this.username.orEmpty(),
+        fullName = this.name.orEmpty(),
+        location = this.location.orEmpty(),
+        bio = this.bio.orEmpty(),
+        totalLikes = this.totalLikes ?: 0,
+        totalPhotos = this.totalPhotos ?: 0,
+        totalCollections = this.totalCollections ?: 0,
+        userAvatarUrl = this.profileImage?.medium.orEmpty()
+    )
 }

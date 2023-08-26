@@ -26,8 +26,9 @@ fun PhotoListItem(
     width: Int = 300,
     height: Int = 300,
     username: String,
+    fullName: String,
     avatarUrl: String,
-    onUserClick: () -> Unit
+    onUserClick: (String) -> Unit
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         val context = LocalContext.current
@@ -44,7 +45,8 @@ fun PhotoListItem(
         UserHeaderItem(
             username = username,
             avatarUrl = avatarUrl,
-            onUserClick = { onUserClick }
+            fullName = fullName,
+            onUserClick = { username ->  onUserClick(username) }
         )
 
         AsyncImage(

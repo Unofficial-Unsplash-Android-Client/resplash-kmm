@@ -2,8 +2,10 @@ package ru.fursa.unsplash.android.ui.screen.routing
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import ru.fursa.unsplash.android.base.screen.EmptyScreen
 import ru.fursa.unsplash.android.base.screen.ErrorScreen
 import ru.fursa.unsplash.android.ui.screen.authorization.AuthorizationScreen
@@ -28,8 +30,13 @@ fun NavGraph(navController: NavHostController) {
             CollectionPhotoScreen()
         }
 
-        composable(route = Routes.Profile.name) {
-            ProfileScreen(navController = navController)
+        composable(
+            route = "${Routes.Profile.name}/{username}",
+            arguments = listOf(navArgument("username") { type = NavType.StringType })) {
+            ProfileScreen(
+                username = it.arguments?.getString("username").orEmpty(),
+                navController = navController
+            )
         }
 
         composable(route = Routes.Start.name) {
@@ -43,7 +50,7 @@ fun NavGraph(navController: NavHostController) {
         composable(route = Routes.Authorization.name) {
             AuthorizationScreen(navController = navController)
         }
-        
+
         composable(route = Routes.Registration.name) {
             RegistrationScreen(navController = navController)
         }
@@ -55,7 +62,7 @@ fun NavGraph(navController: NavHostController) {
         composable(route = Routes.PhotoDetail.name) {
             PhotoDetailScreen(navController = navController)
         }
-        
+
         composable(route = Routes.Search.name) {
             SearchScreen(navController = navController)
         }
