@@ -5,12 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
 import ru.fursa.unsplash.android.ui.kit.compound.PhotoListItem
-import ru.fursa.unsplash.base.Photo
+import ru.fursa.unsplash.data.ui.models.PhotoModel
 
 @Composable
 fun BuildHomeList(
     navController: NavController,
-    photos: LazyPagingItems<Photo>
+    photos: LazyPagingItems<PhotoModel>
 ) {
     LazyColumn {
         items(photos.itemCount) { index ->

@@ -16,9 +16,9 @@ fun UsersSearchScreen(
         items(users.itemCount) { index ->
             val item = users[index] ?: return@items
             UserSearchCard(
-                profileImageUrl = item.profileImage.medium,
-                username = item.username.toString(),
-                instagramAccount = item.instagramUsername.orEmpty(),
+                profileImageUrl = item.profileImageUrl,
+                username = item.username,
+                instagramAccount = item.instagramUsername,
                 photos = item.photos ?: emptyList()
             )
         }
