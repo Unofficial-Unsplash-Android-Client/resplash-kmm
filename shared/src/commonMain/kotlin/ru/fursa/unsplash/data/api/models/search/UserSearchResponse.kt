@@ -1,7 +1,7 @@
 package ru.fursa.unsplash.data.api.models.search
 
 import kotlinx.serialization.Serializable
-import ru.fursa.unsplash.data.api.models.photo.User
+import ru.fursa.unsplash.data.api.models.base.User
 
 @Serializable
 data class UserSearchResponse(

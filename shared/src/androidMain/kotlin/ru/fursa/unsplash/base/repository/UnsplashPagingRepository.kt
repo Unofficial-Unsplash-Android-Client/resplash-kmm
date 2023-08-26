@@ -2,12 +2,14 @@ package ru.fursa.unsplash.base.repository
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
-import ru.fursa.unsplash.base.Photo
-import ru.fursa.unsplash.base.mappers.toUi
+import ru.fursa.unsplash.base.mappers.toUiCollections
+import ru.fursa.unsplash.base.mappers.toUiPhoto
+import ru.fursa.unsplash.base.mappers.toUiPhotos
+import ru.fursa.unsplash.base.mappers.toUiUsers
 import ru.fursa.unsplash.base.paging.infinitePager
-import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
-import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
-import ru.fursa.unsplash.data.api.models.photo.User
+import ru.fursa.unsplash.data.ui.models.CollectionModel
+import ru.fursa.unsplash.data.ui.models.PhotoModel
+import ru.fursa.unsplash.data.ui.models.UserModel
 import ru.fursa.unsplash.domain.base.UnsplashApiService
 
 class UnsplashPagingRepository(
@@ -15,23 +17,23 @@ class UnsplashPagingRepository(
 ): UnsplashRepository {
 
 
-    override fun getCollections(): Flow<PagingData<CollectionResponse>> = infinitePager { index ->
-        apiService.getCollections(index)
+    override fun getCollections(): Flow<PagingData<CollectionModel>> = infinitePager { index ->
+        apiService.getCollections(index).toUiCollections()
     }.flow
 
-    override fun getPhotos(): Flow<PagingData<Photo>> = infinitePager { index ->
-        apiService.getPhotos(index).map { response -> response.toUi() }
+    override fun getPhotos(): Flow<PagingData<PhotoModel>> = infinitePager { index ->
+        apiService.getPhotos(index).map { response -> response.toUiPhoto() }
     }.flow
 
-    override fun searchPhotos(query: String): Flow<PagingData<PhotoResponse>> = infinitePager { index ->
-        apiService.searchPhotos(query = query, pageIndex = index).results
+    override fun searchPhotos(query: String): Flow<PagingData<PhotoModel>> = infinitePager { index ->
+        apiService.searchPhotos(query = query, pageIndex = index).results.toUiPhotos()
     }.flow
 
-    override fun searchCollection(query: String): Flow<PagingData<CollectionResponse>> = infinitePager {index ->
-        apiService.searchCollections(query = query, pageIndex = index).results
+    override fun searchCollection(query: String): Flow<PagingData<CollectionModel>> = infinitePager { index ->
+        apiService.searchCollections(query = query, pageIndex = index).results.toUiCollections()
     }.flow
 
-    override fun searchUsers(query: String): Flow<PagingData<User>> = infinitePager { index ->
-        apiService.searchUsers(query = query, pageIndex = index).results
+    override fun searchUsers(query: String): Flow<PagingData<UserModel>> = infinitePager { index ->
+        apiService.searchUsers(query = query, pageIndex = index).results.toUiUsers()
     }.flow
 }

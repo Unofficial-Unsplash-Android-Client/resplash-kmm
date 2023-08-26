@@ -13,7 +13,6 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
-import ru.fursa.unsplash.base.BaseApi
 import ru.fursa.unsplash.base.engine.HttpEngineFactory
 
 @OptIn(ExperimentalSerializationApi::class)
@@ -37,7 +36,7 @@ internal val ktorModule = module {
             }
 
             defaultRequest {
-                url(BaseApi.BASE_API_URL)
+                url("https://api.unsplash.com")
                 header("Accept-Version", "v1")
                 header("Authorization", "Client-ID ")
             }

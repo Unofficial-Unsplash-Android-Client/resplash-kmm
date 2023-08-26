@@ -8,27 +8,27 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.fursa.unsplash.base.repository.UnsplashRepository
-import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
-import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
-import ru.fursa.unsplash.data.api.models.photo.User
+import ru.fursa.unsplash.data.ui.models.CollectionModel
+import ru.fursa.unsplash.data.ui.models.PhotoModel
+import ru.fursa.unsplash.data.ui.models.UserModel
 
 class SearchViewModel(
     private val repository: UnsplashRepository
 ) : ViewModel() {
 
-    private val _photoResults = MutableStateFlow<PagingData<PhotoResponse>>(PagingData.empty())
-    val photoResults = _photoResults
+    private val _photoModelResults = MutableStateFlow<PagingData<PhotoModel>>(PagingData.empty())
+    val photoResults = _photoModelResults
 
-    private val _collectionsResults = MutableStateFlow<PagingData<CollectionResponse>>(PagingData.empty())
+    private val _collectionsResults = MutableStateFlow<PagingData<CollectionModel>>(PagingData.empty())
     val collectionsResults = _collectionsResults
 
-    private val _userResults = MutableStateFlow<PagingData<User>>(PagingData.empty())
-    val userResults = _userResults
+    private val _userModelResults = MutableStateFlow<PagingData<UserModel>>(PagingData.empty())
+    val userResults = _userModelResults
 
     fun onStartSearch(query: String) {
         viewModelScope.launch {
             repository.searchPhotos(query).cachedIn(viewModelScope).collectLatest { results ->
-                _photoResults.value = results
+                _photoModelResults.value = results
             }
         }
 
@@ -40,7 +40,7 @@ class SearchViewModel(
 
         viewModelScope.launch {
             repository.searchUsers(query).cachedIn(viewModelScope).collectLatest { results ->
-                _userResults.value = results
+                _userModelResults.value = results
             }
         }
     }

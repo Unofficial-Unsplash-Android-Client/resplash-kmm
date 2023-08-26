@@ -6,8 +6,8 @@ import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
 
 @Serializable
 data class SearchPhotoResponse(
-    val results: List<PhotoResponse>,
     val total: Int,
     @SerialName("total_pages")
-    val totalPages: Int
+    val totalPages: Int,
+    val results: List<PhotoResponse>,
 )
