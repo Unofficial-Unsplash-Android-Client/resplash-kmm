@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -72,7 +73,7 @@ fun PhotoDetailScreen(navController: NavController) {
                     avatarUrl = "https://shorturl.at/gjzDI"
                 )
                 Text(
-                    text = "Daenerys Targarien", style = TextStyle(
+                    text = stringResource(id = R.string.user_name), style = TextStyle(
                         fontWeight = FontWeight.Bold, fontSize = 16.sp
                     )
                 )
@@ -112,21 +113,21 @@ fun PhotoDetailScreen(navController: NavController) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = "Просмотров", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(id = R.string.views), fontWeight = FontWeight.Medium)
                     Text(text = "20k")
                 }
 
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = "Скачиваний", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(id = R.string.downloads), fontWeight = FontWeight.Medium)
                     Text(text = "2k")
                 }
 
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = "Лайков", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(id = R.string.likes), fontWeight = FontWeight.Medium)
                     Text(text = "15k")
                 }
             }
@@ -151,30 +152,30 @@ fun PhotoDetailScreen(navController: NavController) {
                 Column(
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = "Камера", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(id = R.string.camera), fontWeight = FontWeight.Medium)
                     Text(text = "Canon EOS 500D")
                     Spacer(modifier = Modifier.size(8.dp))
-                    Text(text = "Экспозиция", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(id = R.string.exposition), fontWeight = FontWeight.Medium)
                     Text(text = "1/400s")
                 }
 
                 Column(
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = "Фокус", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(id = R.string.focus), fontWeight = FontWeight.Medium)
                     Text(text = "70.0mm")
                     Spacer(modifier = Modifier.size(8.dp))
-                    Text(text = "ISO", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(id = R.string.iso), fontWeight = FontWeight.Medium)
                     Text(text = "200")
                 }
 
                 Column(
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = "Апертура", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(id = R.string.apertura), fontWeight = FontWeight.Medium)
                     Text(text = "f/3.2")
                     Spacer(modifier = Modifier.size(8.dp))
-                    Text(text = "Разрешение", fontWeight = FontWeight.Medium)
+                    Text(text = stringResource(id = R.string.resolution), fontWeight = FontWeight.Medium)
                     Text(text = "2000х3000")
                 }
             }
@@ -212,7 +213,7 @@ fun PhotoDetailScreen(navController: NavController) {
                 ExtendedFloatingActionButton(
                     modifier = Modifier.padding(16.dp),
                     backgroundColor = Color.Black,
-                    text = { Text(text = "Установить заставкой", color = Color.White) },
+                    text = { Text(text = stringResource(id = R.string.set_wallpaper), color = Color.White) },
                     onClick = { /*TODO*/ })
             }
         }

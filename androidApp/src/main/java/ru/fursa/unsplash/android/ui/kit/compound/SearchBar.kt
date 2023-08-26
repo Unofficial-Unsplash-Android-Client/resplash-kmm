@@ -28,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import ru.fursa.unsplash.android.R
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -86,7 +88,7 @@ fun SearchBar(
                 indication = rememberRipple(bounded = true),
                 onClick = { onNavigateTo() }
             ),
-        placeholder = { Text("Search...", fontSize = 12.sp) },
+        placeholder = { Text(text = stringResource(id = R.string.search_hint), fontSize = 12.sp) },
         enabled = enabled,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
         keyboardActions = KeyboardActions(onSearch = {

@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.ui.kit.button.ActionButton
+import ru.fursa.unsplash.android.ui.kit.compound.Screen
 import ru.fursa.unsplash.android.ui.kit.text.EmailTextField
 import ru.fursa.unsplash.android.ui.kit.text.PasswordTextField
-import ru.fursa.unsplash.android.ui.kit.compound.Screen
 
 @Composable
 fun RegistrationScreen(
@@ -38,7 +38,7 @@ fun RegistrationScreen(
     var password: String by remember { mutableStateOf("") }
 
     Screen {
-        Text(text = "Join Unsplash.com", style = TextStyle(
+        Text(text = stringResource(id = R.string.join_unsplash), style = TextStyle(
             fontWeight = FontWeight.Bold
         ))
         Spacer(modifier = Modifier.size(20.dp))
@@ -46,7 +46,7 @@ fun RegistrationScreen(
             modifier = Modifier
                 .width(390.dp)
                 .wrapContentHeight(),
-            label = { Text(text = "First name", fontSize = 13.sp) },
+            label = { Text(text = stringResource(id = R.string.first_name), fontSize = 13.sp) },
             value = firstName,
             onValueChange = { newValue ->
                 firstName = newValue
@@ -62,7 +62,7 @@ fun RegistrationScreen(
             modifier = Modifier
                 .width(390.dp)
                 .wrapContentHeight(),
-            label = { Text(text = "Last name", fontSize = 13.sp) },
+            label = { Text(text = stringResource(id = R.string.last_name), fontSize = 13.sp) },
             value = lastName,
             onValueChange = { newValue ->
                 lastName = newValue
