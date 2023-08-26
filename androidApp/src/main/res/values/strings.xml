@@ -30,6 +30,11 @@
     <string name="user_name">Daenerys Targarien</string>
     <string name="photos">Фото</string>
     <string name="collections">Коллекции</string>
+    <string name="tab_collection">Коллекции</string>
+
+    <string name="user_tab_photo">Фото</string>
+    <string name="user_tab_likes">Лайки</string>
+    <string name="user_tab_collection">Коллекции</string>
 
     <plurals name="photos">
         <item quantity="one">%1$d фотография</item>

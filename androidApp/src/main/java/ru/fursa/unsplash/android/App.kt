@@ -7,6 +7,7 @@ import org.koin.core.context.GlobalContext.startKoin
 import ru.fursa.unsplash.android.di.managerModule
 import ru.fursa.unsplash.android.di.viewModelsModule
 import ru.fursa.unsplash.base.di.repositoryModule
+import ru.fursa.unsplash.base.di.resourceModule
 import ru.fursa.unsplash.di.networkModules
 
 class App: Application() {
@@ -20,6 +21,7 @@ class App: Application() {
                 viewModelsModule,
                 repositoryModule,
                 managerModule,
+                resourceModule
             )
             modules(networkModules)
         }

@@ -5,5 +5,11 @@ import ru.fursa.unsplash.base.repository.UnsplashPagingRepository
 import ru.fursa.unsplash.base.repository.UnsplashRepository
 
 val repositoryModule = module {
-    single<UnsplashRepository> { UnsplashPagingRepository(get(), get()) }
+    single<UnsplashRepository> {
+        UnsplashPagingRepository(
+            apiService = get(),
+            dispatcher = get(),
+            resourceProvider = get()
+        )
+    }
 }

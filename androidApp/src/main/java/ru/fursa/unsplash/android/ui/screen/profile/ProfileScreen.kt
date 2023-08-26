@@ -3,10 +3,12 @@ package ru.fursa.unsplash.android.ui.screen.profile
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -26,7 +28,6 @@ import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.ui.kit.compound.Screen
 import ru.fursa.unsplash.android.ui.kit.image.UserAvatarItem
-import ru.fursa.unsplash.android.ui.kit.tabs.TabScreen
 import ru.fursa.unsplash.android.ui.kit.text.ProfileCounter
 import ru.fursa.unsplash.android.ui.kit.text.ProfileDescription
 import ru.fursa.unsplash.base.repository.CurrentUser
@@ -39,7 +40,7 @@ fun ProfileScreen(
     viewModel: ProfileViewModel = koinViewModel()
 ) {
 
-    LaunchedEffect(key1 = Unit) {
+    LaunchedEffect(key1 = username) {
         viewModel.getUserProfile(username)
     }
 
@@ -56,11 +57,8 @@ fun ProfileScreen(
         )
     )
 
-    val tabs = listOf(
-        stringResource(id = R.string.tab_photos),
-        stringResource(id = R.string.tab_likes),
-        stringResource(id = R.string.tab_item_collections)
-    )
+    val tabs = viewModel.tabs.collectAsState().value.map { it }
+
     Dialog(properties = DialogProperties(usePlatformDefaultWidth = false), onDismissRequest = { }) {
 
         Screen {
@@ -75,6 +73,8 @@ fun ProfileScreen(
                     modifier = Modifier.clickable { navController.navigateUp() },
                     tint = Color.Black
                 )
+                Spacer(modifier = Modifier.size(30.dp))
+                Text(text = currentUser.value.username)
             }
 
             Row(
@@ -109,19 +109,24 @@ fun ProfileScreen(
             }
 
             ProfileDescription(
-                modifier = Modifier.padding(top = 8.dp, start = 16.dp, bottom = 8.dp),
+                modifier = Modifier.padding(
+                    top = 8.dp,
+                    start = 16.dp,
+                    bottom = 8.dp
+                ),
                 fullName = currentUser.value.fullName,
                 location = currentUser.value.location,
                 bio = currentUser.value.bio
             )
 
-            TabScreen(tabs = tabs, Color.White) { tabIndex ->
-                when (tabIndex) {
-                    0 -> UserPhotosScreen()
-                    1 -> UserCollectionsScreen()
-                    2 -> UserLikesScreen()
+            /*TabScreen(tabs = tabs.map { it.name }, backgroundColor = Color.White) { index ->
+                when (tabs[index].type) {
+                    TabType.PHOTO -> UserPhotosScreen()
+                    TabType.LIKE -> UserLikesScreen()
+                    TabType.COLLECTION -> UserCollectionsScreen()
                 }
-            }
+            }*/
+
         }
 
 
