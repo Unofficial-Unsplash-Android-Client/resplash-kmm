@@ -7,13 +7,16 @@ import ru.fursa.unsplash.data.ui.models.CollectionModel
 import ru.fursa.unsplash.data.ui.models.PhotoModel
 import ru.fursa.unsplash.data.ui.models.UserModel
 
+private const val DEFAULT_WIDTH = 300
+private const val DEFAULT_HEIGHT = 200
+
 fun PhotoResponse.toUiPhoto(): PhotoModel {
     return PhotoModel(
         photoUrl = this.urls.rawUrl,
         username = this.user?.name.orEmpty(),
         profileImage = this.user?.profileImage?.medium.orEmpty(),
-        width = this.width ?: 300,
-        height = this.height ?: 200
+        width = this.width ?: DEFAULT_WIDTH,
+        height = this.height ?: DEFAULT_HEIGHT
     )
 }
 
@@ -28,8 +31,8 @@ fun List<PhotoResponse>.toUiPhotos(): List<PhotoModel> {
                 response.user?.username != null -> response.user.username
                 else -> ""
             },
-            width = response.width ?: 300,
-            height = response.height ?: 200
+            width = response.width ?: DEFAULT_WIDTH,
+            height = response.height ?: DEFAULT_HEIGHT
         )
         photosList.add(photoModel)
     }
