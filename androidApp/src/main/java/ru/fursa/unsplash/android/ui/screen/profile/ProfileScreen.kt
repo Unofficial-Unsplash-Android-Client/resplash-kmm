@@ -28,6 +28,7 @@ import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.ui.kit.compound.Screen
 import ru.fursa.unsplash.android.ui.kit.image.UserAvatarItem
+import ru.fursa.unsplash.android.ui.kit.tabs.TabScreen
 import ru.fursa.unsplash.android.ui.kit.text.ProfileCounter
 import ru.fursa.unsplash.android.ui.kit.text.ProfileDescription
 import ru.fursa.unsplash.base.repository.CurrentUser
@@ -57,7 +58,11 @@ fun ProfileScreen(
         )
     )
 
-    val tabs = viewModel.tabs.collectAsState().value.map { it }
+    val tabs = listOf(
+        stringResource(id = R.string.user_tab_photo),
+        stringResource(id = R.string.user_tab_likes),
+        stringResource(id = R.string.user_tab_collection)
+    )
 
     Dialog(properties = DialogProperties(usePlatformDefaultWidth = false), onDismissRequest = { }) {
 
@@ -119,13 +124,13 @@ fun ProfileScreen(
                 bio = currentUser.value.bio
             )
 
-            /*TabScreen(tabs = tabs.map { it.name }, backgroundColor = Color.White) { index ->
-                when (tabs[index].type) {
-                    TabType.PHOTO -> UserPhotosScreen()
-                    TabType.LIKE -> UserLikesScreen()
-                    TabType.COLLECTION -> UserCollectionsScreen()
+            TabScreen(tabs = tabs, backgroundColor = Color.White) { pos ->
+                when (pos) {
+                    0 -> UserPhotosScreen(username = username)
+                    1 -> UserLikesScreen(username = username)
+                    2 -> UserCollectionsScreen(username = username)
                 }
-            }*/
+            }
 
         }
 

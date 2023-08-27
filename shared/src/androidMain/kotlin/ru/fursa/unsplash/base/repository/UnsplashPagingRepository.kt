@@ -67,6 +67,18 @@ class UnsplashPagingRepository(
         apiService.searchUsers(query = query, pageIndex = index).results.toUiUsers()
     }.flow
 
+    override suspend fun getUserPhotos(username: String): Flow<PagingData<PhotoModel>> = infinitePager { index ->
+        apiService.getUserPhotos(username = username, pageIndex = index).map { response -> response.toUiPhoto() }
+    }.flow
+
+    override suspend fun getUserLikes(username: String): Flow<PagingData<PhotoModel>> = infinitePager { index ->
+        apiService.getUserLikes(username = username, pageIndex = index).map { response -> response.toUiPhoto() }
+    }.flow
+
+    override suspend fun getUserCollections(username: String): Flow<PagingData<CollectionModel>> = infinitePager { index ->
+        apiService.getUserCollections(username = username, pageIndex = index).toUiCollections()
+    }.flow
+
     override suspend fun getUser(username: String) = withContext(dispatcher) {
         val user = apiService.getUser(username).toCurrentUser()
         val tabs = mutableListOf<Tab>()

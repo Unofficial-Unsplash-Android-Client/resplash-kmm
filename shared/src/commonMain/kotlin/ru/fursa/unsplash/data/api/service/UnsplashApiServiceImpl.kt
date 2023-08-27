@@ -88,4 +88,40 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
             }
         }.body()
     }
+
+    override suspend fun getUserPhotos(
+        username: String,
+        pageIndex: Int,
+        perPage: Int
+    ): List<PhotoResponse> {
+        return httpClient.get {
+            url {
+                appendPathSegments("/users/$username/photos")
+            }
+        }.body()
+    }
+
+    override suspend fun getUserLikes(
+        username: String,
+        pageIndex: Int,
+        perPage: Int
+    ): List<PhotoResponse> {
+        return httpClient.get {
+            url {
+                appendPathSegments("/users/$username/likes")
+            }
+        }.body()
+    }
+
+    override suspend fun getUserCollections(
+        username: String,
+        pageIndex: Int,
+        perPage: Int
+    ): List<CollectionResponse> {
+        return httpClient.get {
+            url {
+                appendPathSegments("/users/$username/collections")
+            }
+        }.body()
+    }
 }

@@ -32,9 +32,9 @@
     <string name="collections">Коллекции</string>
     <string name="tab_collection">Коллекции</string>
 
-    <string name="user_tab_photo">Фото</string>
-    <string name="user_tab_likes">Лайки</string>
-    <string name="user_tab_collection">Коллекции</string>
+    <string name="user_tab_photo">Photo</string>
+    <string name="user_tab_likes">Likes</string>
+    <string name="user_tab_collection">Collections</string>
 
     <plurals name="photos">
         <item quantity="one">%1$d фотография</item>
