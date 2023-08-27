@@ -31,6 +31,7 @@ fun PhotosSearchScreen(
                     url = item.photoUrl,
                     username = item.username,
                     avatarUrl = item.profileImage,
+                    fullName = item.fullName,
                     width = item.width,
                     height = item.height,
                     onUserClick = {}

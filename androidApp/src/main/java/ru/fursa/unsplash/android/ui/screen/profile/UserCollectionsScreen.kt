@@ -1,13 +1,23 @@
 package ru.fursa.unsplash.android.ui.screen.profile
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.LaunchedEffect
+import androidx.navigation.compose.rememberNavController
+import androidx.paging.compose.collectAsLazyPagingItems
+import org.koin.androidx.compose.koinViewModel
+import ru.fursa.unsplash.android.ui.kit.compound.Screen
+import ru.fursa.unsplash.android.ui.kit.list.BuildCollectionList
 
 @Composable
-fun UserCollectionsScreen() {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "ru.fursa.unsplash.data.api.models.search.User collections screen")
+fun UserCollectionsScreen(username: String, viewModel: ProfileViewModel = koinViewModel()) {
+    Screen {
+        val collections = viewModel.userCollections.collectAsLazyPagingItems()
+        val navController = rememberNavController()
+
+        BuildCollectionList(collections = collections, navController = navController)
+
+        LaunchedEffect(key1 = username, block = {
+            viewModel.getUserCollections(username)
+        })
     }
 }
