@@ -5,6 +5,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.http.HttpMethod
 import io.ktor.http.appendPathSegments
+import ru.fursa.unsplash.data.api.models.base.User
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
 import ru.fursa.unsplash.data.api.models.search.SearchCollectionResponse
@@ -75,6 +76,60 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
                 parameters.append("page", pageIndex.toString())
                 parameters.append("per_page", perPage.toString())
                 parameters.append("query", query)
+            }
+        }.body()
+    }
+
+    override suspend fun getUser(username: String): User {
+        return httpClient.get {
+            url {
+                appendPathSegments("/users/$username")
+                method = HttpMethod.Get
+            }
+        }.body()
+    }
+
+    override suspend fun getUserPhotos(
+        username: String,
+        pageIndex: Int,
+        perPage: Int
+    ): List<PhotoResponse> {
+        return httpClient.get {
+            url {
+                appendPathSegments("/users/$username/photos")
+                method = HttpMethod.Get
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
+            }
+        }.body()
+    }
+
+    override suspend fun getUserLikes(
+        username: String,
+        pageIndex: Int,
+        perPage: Int
+    ): List<PhotoResponse> {
+        return httpClient.get {
+            url {
+                appendPathSegments("/users/$username/likes")
+                method = HttpMethod.Get
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
+            }
+        }.body()
+    }
+
+    override suspend fun getUserCollections(
+        username: String,
+        pageIndex: Int,
+        perPage: Int
+    ): List<CollectionResponse> {
+        return httpClient.get {
+            url {
+                appendPathSegments("/users/$username/collections")
+                method = HttpMethod.Get
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
             }
         }.body()
     }

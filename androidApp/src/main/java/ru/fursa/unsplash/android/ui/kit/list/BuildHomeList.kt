@@ -2,15 +2,14 @@ package ru.fursa.unsplash.android.ui.kit.list
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
 import ru.fursa.unsplash.android.ui.kit.compound.PhotoListItem
 import ru.fursa.unsplash.data.ui.models.PhotoModel
 
 @Composable
 fun BuildHomeList(
-    navController: NavController,
-    photos: LazyPagingItems<PhotoModel>
+    photos: LazyPagingItems<PhotoModel>,
+    onNavigateClick: (String) -> Unit,
 ) {
     LazyColumn {
         items(photos.itemCount) { index ->
@@ -18,8 +17,11 @@ fun BuildHomeList(
             PhotoListItem(
                 url = item.photoUrl,
                 username = item.username,
+                fullName = item.fullName,
                 avatarUrl = item.profileImage,
-                onUserClick = { navController.navigate("profile") }
+                onUserClick = { username ->
+                    onNavigateClick.invoke(username)
+                }
             )
         }
     }

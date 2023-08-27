@@ -15,12 +15,13 @@ import ru.fursa.unsplash.android.ui.kit.image.UserAvatarItem
 fun UserHeaderItem(
     username: String,
     avatarUrl: String,
-    onUserClick: () -> Unit,
+    fullName: String,
+    onUserClick: (String) -> Unit,
 ) {
     Row(
         modifier = Modifier
             .padding(bottom = 6.dp)
-            .clickable { onUserClick.invoke() },
+            .clickable { onUserClick.invoke(fullName) },
         verticalAlignment = Alignment.CenterVertically
     ) {
         UserAvatarItem(modifier = Modifier.size(40.dp), avatarUrl = avatarUrl)

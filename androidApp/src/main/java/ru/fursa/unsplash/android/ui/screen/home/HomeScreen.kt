@@ -8,6 +8,7 @@ import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.ui.kit.list.BuildHomeList
 import ru.fursa.unsplash.android.ui.screen.routing.NavGraph
 import ru.fursa.unsplash.data.ui.models.PhotoModel
+import ru.fursa.unsplash.routing.Routes
 
 @Composable
 fun HomeScreen(
@@ -18,9 +19,10 @@ fun HomeScreen(
 
     NavGraph(navController = navController)
     BuildHomeList(
-        navController = navController,
         photos = photosPagingItems
-    )
+    ) { username ->
+        navController.navigate("${Routes.Profile.name}/${username}")
+    }
 }
 
 

@@ -6,7 +6,6 @@ import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
 import ru.fursa.unsplash.android.ui.kit.compound.CollectionCardItem
 import ru.fursa.unsplash.data.ui.models.CollectionModel
-import ru.fursa.unsplash.routing.Routes
 
 @Composable
 fun BuildCollectionList(
@@ -20,7 +19,9 @@ fun BuildCollectionList(
                 item.coverPhotoUrl,
                 item.title,
                 item.totalPhotos,
-                onNavigateClick = { navController.navigate(Routes.Profile.name) }
+                onNavigateClick = {
+
+                }
             )
         }
     }

@@ -38,7 +38,7 @@ internal val ktorModule = module {
             defaultRequest {
                 url("https://api.unsplash.com")
                 header("Accept-Version", "v1")
-                header("Authorization", "Client-ID yn4-9xYvTGxA1OxiEaynhhBR0VR9WaZp2Q2HCJE3WsA")
+                header("Authorization", "Client-ID ")
             }
 
         }.also { Napier.base(DebugAntilog()) }
