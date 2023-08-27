@@ -8,7 +8,7 @@ val repositoryModule = module {
     single<UnsplashRepository> {
         UnsplashPagingRepository(
             apiService = get(),
-            dispatcher = get(),
+            ioDispatcher = get(),
             resourceProvider = get()
         )
     }

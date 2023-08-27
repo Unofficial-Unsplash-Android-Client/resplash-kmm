@@ -6,12 +6,10 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.fursa.unsplash.base.repository.CurrentUser
-import ru.fursa.unsplash.base.repository.Tab
 import ru.fursa.unsplash.base.repository.UnsplashRepository
 import ru.fursa.unsplash.data.ui.models.CollectionModel
 import ru.fursa.unsplash.data.ui.models.PhotoModel
@@ -21,7 +19,6 @@ class ProfileViewModel(
 ) : ViewModel() {
 
     val currentUser: SharedFlow<CurrentUser> = repository.userFlow
-    val tabs: StateFlow<List<Tab>> = repository.tabFlow
 
     private val _userPhotos = MutableStateFlow<PagingData<PhotoModel>>(PagingData.empty())
     val userPhotos = _userPhotos.asStateFlow()
@@ -40,25 +37,31 @@ class ProfileViewModel(
 
     fun getUserPhotos(username: String) {
         viewModelScope.launch {
-            repository.getUserPhotos(username).cachedIn(viewModelScope).collectLatest { results ->
-                _userPhotos.value = results
-            }
+            repository.getUserPhotos(username)
+                .cachedIn(viewModelScope)
+                .collectLatest { results ->
+                    _userPhotos.value = results
+                }
         }
     }
 
     fun getUserLikedPhotos(username: String) {
         viewModelScope.launch {
-            repository.getUserLikes(username).cachedIn(viewModelScope).collectLatest { results ->
-                _userLikedPhotos.value = results
-            }
+            repository.getUserLikes(username)
+                .cachedIn(viewModelScope)
+                .collectLatest { results ->
+                    _userLikedPhotos.value = results
+                }
         }
     }
 
     fun getUserCollections(username: String) {
         viewModelScope.launch {
-            repository.getUserCollections(username).cachedIn(viewModelScope).collectLatest { results ->
-                _userCollections.value = results
-            }
+            repository.getUserCollections(username)
+                .cachedIn(viewModelScope)
+                .collectLatest { results ->
+                    _userCollections.value = results
+                }
         }
     }
 

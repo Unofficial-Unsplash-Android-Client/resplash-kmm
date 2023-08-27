@@ -3,13 +3,6 @@ package ru.fursa.unsplash.base.paging
 import androidx.paging.Pager
 
 
-fun <V : Any> infinitePager(
-    block: suspend (Int) -> List<V>
-): Pager<Int, V> = Pager(
-    config = defaultPagingConfig,
-    pagingSourceFactory = { InfinitePagedSource(block) }
-)
-
 class InfinitePagedSource<Item: Any>(
     private val block: suspend (Int) -> List<Item>
 ): PagedSource<Item>() {
@@ -29,3 +22,10 @@ class InfinitePagedSource<Item: Any>(
     }
 
 }
+
+fun <V : Any> infinitePager(
+    block: suspend (Int) -> List<V>
+): Pager<Int, V> = Pager(
+    config = defaultPagingConfig,
+    pagingSourceFactory = { InfinitePagedSource(block) }
+)

@@ -16,5 +16,5 @@ interface UnsplashApiService {
     suspend fun getUser(username: String): User
     suspend fun getUserPhotos(username: String, pageIndex: Int = 1, perPage: Int = 5): List<PhotoResponse>
     suspend fun getUserLikes(username: String, pageIndex: Int = 1, perPage: Int = 5): List<PhotoResponse>
-    suspend fun getUserCollections(username: String, pageIndex: Int = 1, perPage: Int = 5): List<CollectionResponse>
+    suspend fun getUserCollections(username: String, pageIndex: Int = 1, perPage: Int = 30): List<CollectionResponse>
 }

@@ -1,4 +1,4 @@
-package ru.fursa.unsplash.base.utils
+package ru.fursa.unsplash.utils
 
 import androidx.annotation.StringRes
 

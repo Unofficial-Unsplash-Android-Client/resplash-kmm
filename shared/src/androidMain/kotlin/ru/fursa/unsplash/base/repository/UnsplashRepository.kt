@@ -9,7 +9,7 @@ import ru.fursa.unsplash.data.ui.models.UserModel
 
 interface UnsplashRepository {
     val userFlow: StateFlow<CurrentUser>
-    val tabFlow: StateFlow<List<Tab>>
+    val totalPhotos: Int
 
     fun getCollections(): Flow<PagingData<CollectionModel>>
     fun getPhotos(): Flow<PagingData<PhotoModel>>
