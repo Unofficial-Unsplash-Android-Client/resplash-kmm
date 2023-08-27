@@ -10,7 +10,7 @@ fun <V : Any> finitePager(
 )
 
 class FinitePagedSource<V : Any>(
-    private var totalPages: Int = 100,
+    private var totalPages: Int,
     private val block: suspend (Int) -> List<V>,
 ) : PagedSource<V>() {
 

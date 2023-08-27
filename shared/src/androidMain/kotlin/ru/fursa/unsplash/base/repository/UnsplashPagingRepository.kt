@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.withContext
 import ru.fursa.unsplash.base.mappers.toCurrentUser
 import ru.fursa.unsplash.base.mappers.toUiCollections
@@ -33,8 +32,6 @@ class UnsplashPagingRepository(
     override val userFlow: StateFlow<CurrentUser>
         get() = _userFlow.asStateFlow()
 
-    override val totalPhotos: Int
-        get() = _userFlow.value.totalPhotos
 
     override fun getCollections(): Flow<PagingData<CollectionModel>> = infinitePager { index ->
         apiService.getCollections(index).toUiCollections()
@@ -60,17 +57,22 @@ class UnsplashPagingRepository(
 
     override suspend fun getUserPhotos(
         username: String,
-    ): Flow<PagingData<PhotoModel>> = emptyFlow()
+    ): Flow<PagingData<PhotoModel>> = finitePager { index ->
+        apiService.getUserPhotos(username = username, pageIndex = index).toUiPhotos()
+    }.flow
 
     override suspend fun getUserLikes(
         username: String,
-    ): Flow<PagingData<PhotoModel>> = emptyFlow()
+    ): Flow<PagingData<PhotoModel>> = finitePager { index ->
+        apiService.getUserLikes(username = username, pageIndex = index).toUiPhotos()
+    }.flow
 
     override suspend fun getUserCollections(
         username: String,
-    ): Flow<PagingData<CollectionModel>> = finitePager { index ->
-        apiService.getUserCollections(username = username, pageIndex = index).toUiCollections()
-    }.flow
+    ): Flow<PagingData<CollectionModel>> =
+        finitePager { index ->
+            apiService.getUserCollections(username = username, pageIndex = index).toUiCollections()
+        }.flow
 
     override suspend fun getUser(username: String) = withContext(ioDispatcher) {
         val user = apiService.getUser(username).toCurrentUser()

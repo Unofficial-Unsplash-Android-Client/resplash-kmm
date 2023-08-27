@@ -97,6 +97,9 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
         return httpClient.get {
             url {
                 appendPathSegments("/users/$username/photos")
+                method = HttpMethod.Get
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
             }
         }.body()
     }
@@ -109,6 +112,9 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
         return httpClient.get {
             url {
                 appendPathSegments("/users/$username/likes")
+                method = HttpMethod.Get
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
             }
         }.body()
     }

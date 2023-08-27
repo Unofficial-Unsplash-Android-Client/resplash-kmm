@@ -8,7 +8,10 @@ import ru.fursa.unsplash.android.ui.kit.compound.Screen
 import ru.fursa.unsplash.android.ui.kit.list.BuildHomeList
 
 @Composable
-fun UserPhotosScreen(username: String, viewModel: ProfileViewModel = koinViewModel()) {
+fun UserPhotosScreen(
+    username: String,
+    viewModel: ProfileViewModel = koinViewModel()
+) {
     Screen {
         val photos = viewModel.userPhotos.collectAsLazyPagingItems()
 
@@ -17,5 +20,6 @@ fun UserPhotosScreen(username: String, viewModel: ProfileViewModel = koinViewMod
         LaunchedEffect(key1 = username) {
             viewModel.getUserPhotos(username)
         }
+
     }
 }

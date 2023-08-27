@@ -45,18 +45,7 @@ fun ProfileScreen(
         viewModel.getUserProfile(username)
     }
 
-    val currentUser = viewModel.currentUser.collectAsState(
-        initial = CurrentUser(
-            username = "",
-            location = "",
-            bio = "",
-            totalLikes = 0,
-            totalPhotos = 0,
-            totalCollections = 0,
-            fullName = "",
-            userAvatarUrl = ""
-        )
-    )
+    val currentUser = viewModel.currentUser.collectAsState(initial = CurrentUser())
 
     val tabs = listOf(
         stringResource(id = R.string.user_tab_photo),
