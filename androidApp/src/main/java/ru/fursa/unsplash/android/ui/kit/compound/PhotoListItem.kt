@@ -16,9 +16,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import kotlin.math.min
 import ru.fursa.unsplash.android.base.screen.toPx
 import ru.fursa.unsplash.android.ui.kit.text.UserHeaderItem
-import kotlin.math.min
 
 @Composable
 fun PhotoListItem(

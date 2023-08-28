@@ -1,3 +1,5 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -30,6 +32,15 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+}
+
+ktlint {
+    android.set(true)
+    reporters {
+        reporter(reporterType = ReporterType.PLAIN)
+        reporter(reporterType = ReporterType.CHECKSTYLE)
+        reporter(reporterType = ReporterType.SARIF)
     }
 }
 
