@@ -39,6 +39,7 @@ tasks.getByPath("preBuild").dependsOn("ktlintFormat")
 
 ktlint {
     android.set(true)
+    additionalEditorconfigFile.set(file(".editorconfig"))
     reporters {
         reporter(reporterType = ReporterType.PLAIN)
         reporter(reporterType = ReporterType.CHECKSTYLE)
