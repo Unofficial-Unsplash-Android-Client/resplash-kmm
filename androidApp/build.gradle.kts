@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("plugin.serialization") version("1.5.20")
-
+    id("org.jlleitschuh.gradle.ktlint") version ("11.0.0")
 }
 
 android {
@@ -35,7 +35,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-   // implementation(project(":ui-kit"))
+    // implementation(project(":ui-kit"))
 
     implementation("androidx.compose.ui:ui:1.4.3")
     implementation("androidx.compose.ui:ui-tooling:1.4.3")
@@ -46,23 +46,18 @@ dependencies {
 
     val koinVersion = "3.2.0"
     val coilVersion = "2.4.0"
-    //Koin
+    // Koin
     implementation("io.insert-koin:koin-core:$koinVersion")
     implementation("io.insert-koin:koin-test:$koinVersion")
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
 
-
     implementation("io.coil-kt:coil-compose:$coilVersion")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-    implementation ("androidx.navigation:navigation-compose:2.6.0")
-    implementation ("com.google.accompanist:accompanist-navigation-animation:0.16.0")
+    implementation("androidx.navigation:navigation-compose:2.6.0")
+    implementation("com.google.accompanist:accompanist-navigation-animation:0.16.0")
 
     implementation("androidx.paging:paging-compose:3.2.0")
     implementation("androidx.paging:paging-runtime:3.2.0")
-
-
-
-
 }

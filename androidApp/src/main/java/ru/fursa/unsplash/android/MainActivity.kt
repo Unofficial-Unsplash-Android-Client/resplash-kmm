@@ -49,10 +49,8 @@ class MainActivity : ComponentActivity() {
                     NavGraph(navController = navController)
                 }
             }
-
         }
     }
-
 }
 
 @Composable
@@ -81,8 +79,9 @@ fun InitialScreen(navController: NavController) {
                         LoadEventBus.send(LoadEventBus.Event.CloseSearch)
                     }
                 }, onNavigateTo = {
-                    navController.navigate(Routes.Search.name)
-                })
+                navController.navigate(Routes.Search.name)
+            }
+            )
         }
         TabScreen(tabs, Color.White) { pageIndex ->
             when (pageIndex) {
@@ -90,8 +89,5 @@ fun InitialScreen(navController: NavController) {
                 1 -> CollectionPhotoScreen()
             }
         }
-
     }
-
 }
-

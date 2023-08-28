@@ -15,11 +15,15 @@ fun ActionButton(
     title: String,
     onClick: () -> Unit,
 ) {
-    OutlinedButton(modifier = Modifier
-        .width(200.dp)
-        .height(45.dp), colors = ButtonDefaults.buttonColors(
-        backgroundColor = Color.Black
-    ), onClick = { onClick() }) {
+    OutlinedButton(
+        modifier = Modifier
+            .width(200.dp)
+            .height(45.dp),
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color.Black
+        ),
+        onClick = { onClick() }
+    ) {
         Text(text = title, color = Color.White)
     }
 }

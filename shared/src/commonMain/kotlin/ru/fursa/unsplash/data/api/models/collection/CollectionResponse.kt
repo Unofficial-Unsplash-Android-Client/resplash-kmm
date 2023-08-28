@@ -17,6 +17,3 @@ data class CollectionResponse(
     @SerialName("total_photos")
     val totalPhotos: Int,
 )
-
-
-

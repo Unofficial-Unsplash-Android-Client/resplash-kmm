@@ -13,7 +13,7 @@ import ru.fursa.unsplash.data.api.models.search.SearchPhotoResponse
 import ru.fursa.unsplash.data.api.models.search.UserSearchResponse
 import ru.fursa.unsplash.domain.base.UnsplashApiService
 
-internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpClient): UnsplashApiService {
+internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpClient) : UnsplashApiService {
 
     override suspend fun getCollections(pageIndex: Int, perPage: Int): List<CollectionResponse> {
         return httpClient.get {

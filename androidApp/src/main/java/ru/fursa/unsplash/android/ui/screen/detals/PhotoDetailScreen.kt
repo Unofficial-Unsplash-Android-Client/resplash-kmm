@@ -45,7 +45,8 @@ import ru.fursa.unsplash.android.ui.kit.image.UserAvatarItem
 fun PhotoDetailScreen(navController: NavController) {
     Dialog(
         properties = DialogProperties(usePlatformDefaultWidth = false),
-        onDismissRequest = { navController.navigateUp() }) {
+        onDismissRequest = { navController.navigateUp() }
+    ) {
         val scrollState = rememberScrollState()
 
         Column(
@@ -73,7 +74,8 @@ fun PhotoDetailScreen(navController: NavController) {
                     avatarUrl = "https://shorturl.at/gjzDI"
                 )
                 Text(
-                    text = stringResource(id = R.string.user_name), style = TextStyle(
+                    text = stringResource(id = R.string.user_name),
+                    style = TextStyle(
                         fontWeight = FontWeight.Bold, fontSize = 16.sp
                     )
                 )
@@ -90,7 +92,6 @@ fun PhotoDetailScreen(navController: NavController) {
                         contentDescription = ""
                     )
                 }
-
             }
 
             Divider(
@@ -207,14 +208,16 @@ fun PhotoDetailScreen(navController: NavController) {
                             Text(text = "exploring")
                         }
                     }
-                })
+                }
+            )
 
             Box(contentAlignment = Alignment.BottomStart) {
                 ExtendedFloatingActionButton(
                     modifier = Modifier.padding(16.dp),
                     backgroundColor = Color.Black,
                     text = { Text(text = stringResource(id = R.string.set_wallpaper), color = Color.White) },
-                    onClick = { /*TODO*/ })
+                    onClick = { /*TODO*/ }
+                )
             }
         }
     }

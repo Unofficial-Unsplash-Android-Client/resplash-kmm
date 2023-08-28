@@ -25,5 +25,4 @@ fun TabItem(
     }, text = {
         Text(text = tabTitle)
     })
-
 }

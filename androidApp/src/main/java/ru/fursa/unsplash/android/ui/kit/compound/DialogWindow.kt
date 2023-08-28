@@ -8,10 +8,11 @@ import androidx.compose.ui.window.DialogProperties
 fun DialogWindow(
     content: @Composable () -> Unit,
     onDismiss: () -> Unit,
-    ) {
+) {
     Dialog(
         properties = DialogProperties(usePlatformDefaultWidth = false),
-        onDismissRequest = { onDismiss() }) {
+        onDismissRequest = { onDismiss() }
+    ) {
         content.invoke()
     }
 }

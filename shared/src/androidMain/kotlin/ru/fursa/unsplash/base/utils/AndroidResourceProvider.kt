@@ -6,7 +6,7 @@ import ru.fursa.unsplash.utils.ResourceProvider
 
 class AndroidResourceProvider(
     private val context: Context
-): ResourceProvider {
+) : ResourceProvider {
     override fun getString(@StringRes stringId: Int): String {
         return context.getString(stringId)
     }

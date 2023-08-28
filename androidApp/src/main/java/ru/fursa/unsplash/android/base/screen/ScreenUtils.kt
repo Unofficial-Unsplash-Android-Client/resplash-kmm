@@ -13,7 +13,3 @@ fun Float.toPx(): Float {
 fun Float.toDp(metrics: DisplayMetrics): Dp {
     return (this / (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)).dp
 }
-
-
-
-

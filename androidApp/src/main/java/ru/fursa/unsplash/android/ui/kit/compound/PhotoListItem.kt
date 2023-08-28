@@ -41,12 +41,12 @@ fun PhotoListItem(
         val resultHeight = (height * scale) / 2
 
         Spacer(modifier = Modifier.size(16.dp))
-        
+
         UserHeaderItem(
             username = username,
             avatarUrl = avatarUrl,
             fullName = fullName,
-            onUserClick = { username ->  onUserClick(username) }
+            onUserClick = { username -> onUserClick(username) }
         )
 
         AsyncImage(
