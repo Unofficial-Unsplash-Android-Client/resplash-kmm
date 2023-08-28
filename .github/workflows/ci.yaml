@@ -41,3 +41,9 @@ jobs:
 
         - name: Build Android APK file
           run: ./gradlew androidApp:assembleDebug
+
+        - name: Save APK file
+          uses: actions/upload-artifact@v2
+          with:
+            name: resplash-debug.apk
+            path: androidApp/build/outputs/apk/debug/app-debug.apk
