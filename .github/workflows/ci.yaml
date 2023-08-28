@@ -53,7 +53,8 @@ jobs:
           name: app-debug.apk
           path: androidApp/build/outputs/apk/debug/
 
-  PushAPKtoTelegram:
+  pushAPKtoTelegram:
+   runs-on: ubuntu-latest
     - name: Generate changelog
       id: changelog
       run: |
