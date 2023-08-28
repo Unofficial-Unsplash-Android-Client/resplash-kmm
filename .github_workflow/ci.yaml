@@ -7,13 +7,19 @@ on:
       - develop
       - 'feature/**'
       - 'fix/**'
+    pull_request:
+      branches:
+        - master
+        - develop
+        - 'feature/**'
+        - 'fix/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: KtLint check code format
+      - name: Checkout source code
         uses: actions/checkout@v2
 
       - name: Set up JDK
