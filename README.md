@@ -19,6 +19,15 @@ ReSplash is a simple Android and IOS client for Unsplash.com.
  - Kotlin Coroutines
  - Kotlin Multiplatform Mobile
 
+## CI/CD
+- Ktlint
+
+
+ ### To format code before commit use: 
+```
+ ./gradlew ktlintFormat
+```
+
 <div>
   <img src="https://media.licdn.com/dms/image/C5612AQH-rB_omxafiw/article-cover_image-shrink_720_1280/0/1643210129680?e=2147483647&v=beta&t=6HvNmY1udxoEQMKax6A0DxIIrWPbQrJdyDsQAaQYk5k" widht=150 height=100/>
   <img src="https://anahisalgado.com/wp-content/uploads/2022/05/jetpack-compose-anncode-anahi-salgado.png" widht=150 height=100/>
