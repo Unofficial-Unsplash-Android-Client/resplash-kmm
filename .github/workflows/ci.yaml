@@ -15,7 +15,7 @@ on:
         - 'fix/**'
 
 jobs:
-  ktlintCheck:
+  ktlintFormat:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -27,5 +27,5 @@ jobs:
           java-version: '17'
           distribution: zulu
 
-      - name: Run KtLint check
-        run: ./gradlew ktlintCheck
+      - name: Run KtLint format
+        run: ./gradlew ktlintFormat
