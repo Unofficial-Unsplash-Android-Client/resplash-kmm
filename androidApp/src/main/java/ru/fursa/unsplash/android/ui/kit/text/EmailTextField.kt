@@ -17,7 +17,6 @@ fun EmailTextField(
     emailAddress: String,
     onEmailChanged: (String) -> Unit
 ) {
-    onEmailChanged: (String) -> Unit) {
     TextField(
         modifier = Modifier
             .width(390.dp)
