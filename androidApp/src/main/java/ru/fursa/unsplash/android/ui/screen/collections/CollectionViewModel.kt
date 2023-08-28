@@ -18,7 +18,7 @@ class CollectionViewModel(
     init {
         viewModelScope.launch {
             searchEventBus.event.collectLatest { event ->
-                when(event) {
+                when (event) {
                     is LoadEventBus.Event.Search -> {
                         Log.d("Unsplash", "Collections search -> ${event.query}")
                     }
@@ -29,4 +29,3 @@ class CollectionViewModel(
         }
     }
 }
-

@@ -42,5 +42,6 @@ fun ResetPasswordScreen(navController: NavController) {
 
                 ActionButton(title = stringResource(id = R.string.reset_password)) { }
             }
-        })
+        }
+    )
 }

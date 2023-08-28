@@ -10,7 +10,7 @@ import ru.fursa.unsplash.base.di.repositoryModule
 import ru.fursa.unsplash.base.di.resourceModule
 import ru.fursa.unsplash.di.networkModules
 
-class App: Application() {
+class App : Application() {
     override fun onCreate() {
         super.onCreate()
 

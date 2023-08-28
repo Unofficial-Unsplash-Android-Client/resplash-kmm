@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     kotlin("plugin.serialization") version("1.5.20")
+    id("org.jlleitschuh.gradle.ktlint") version ("11.0.0")
 }
 
 kotlin {
@@ -21,7 +22,7 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
 
         val ktorVersion = "2.3.2"
@@ -38,7 +39,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.github.aakira:napier:$napierVersion")
 
-                //Koin
+                // Koin
                 implementation("io.insert-koin:koin-core:$koinVersion")
                 implementation("io.insert-koin:koin-android:$koinVersion")
             }
@@ -56,7 +57,6 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
                 implementation("androidx.paging:paging-compose:3.2.0")
                 implementation("androidx.paging:paging-runtime:3.2.0")
-
             }
         }
         val androidTest by getting

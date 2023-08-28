@@ -20,7 +20,6 @@ fun BuildCollectionList(
                 item.title,
                 item.totalPhotos,
                 onNavigateClick = {
-
                 }
             )
         }

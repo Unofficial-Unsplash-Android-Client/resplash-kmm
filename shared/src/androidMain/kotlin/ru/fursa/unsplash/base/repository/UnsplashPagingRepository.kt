@@ -32,7 +32,6 @@ class UnsplashPagingRepository(
     override val userFlow: StateFlow<CurrentUser>
         get() = _userFlow.asStateFlow()
 
-
     override fun getCollections(): Flow<PagingData<CollectionModel>> = infinitePager { index ->
         apiService.getCollections(index).toUiCollections()
     }.flow

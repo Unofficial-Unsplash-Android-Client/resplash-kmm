@@ -58,7 +58,8 @@ fun CollectionCardItem(
                 .padding(16.dp)
         ) {
             Text(
-                text = title, style = TextStyle(
+                text = title,
+                style = TextStyle(
                     color = Color.White,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.ExtraBold
@@ -75,5 +76,3 @@ fun CollectionCardItem(
         }
     }
 }
-
-

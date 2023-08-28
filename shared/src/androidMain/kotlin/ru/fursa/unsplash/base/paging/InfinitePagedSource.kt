@@ -2,10 +2,9 @@ package ru.fursa.unsplash.base.paging
 
 import androidx.paging.Pager
 
-
-class InfinitePagedSource<Item: Any>(
+class InfinitePagedSource<Item : Any>(
     private val block: suspend (Int) -> List<Item>
-): PagedSource<Item>() {
+) : PagedSource<Item>() {
 
     override fun getNextKey(currentPage: Int): Int? {
         return currentPage + 1
@@ -20,7 +19,6 @@ class InfinitePagedSource<Item: Any>(
             LoadResult.Error(e)
         }
     }
-
 }
 
 fun <V : Any> infinitePager(

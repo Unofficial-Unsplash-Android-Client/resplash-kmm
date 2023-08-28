@@ -17,5 +17,3 @@ data class PhotoResponse(
     @SerialName("height")
     val height: Int?,
 )
-
-

@@ -38,9 +38,12 @@ fun RegistrationScreen(
     var password: String by remember { mutableStateOf("") }
 
     Screen {
-        Text(text = stringResource(id = R.string.join_unsplash), style = TextStyle(
-            fontWeight = FontWeight.Bold
-        ))
+        Text(
+            text = stringResource(id = R.string.join_unsplash),
+            style = TextStyle(
+                fontWeight = FontWeight.Bold
+            )
+        )
         Spacer(modifier = Modifier.size(20.dp))
         TextField(
             modifier = Modifier

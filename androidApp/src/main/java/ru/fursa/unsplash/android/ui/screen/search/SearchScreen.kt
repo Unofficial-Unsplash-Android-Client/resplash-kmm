@@ -40,7 +40,8 @@ fun SearchScreen(
         properties = DialogProperties(usePlatformDefaultWidth = false),
         onDismissRequest = {
             navController.navigateUp()
-        }) {
+        }
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -71,15 +72,12 @@ fun SearchScreen(
                             viewModel.onStartSearch(query)
                         },
                         onClose = {
-
                         },
                         onNavigateTo = {
                             navController.navigate(Routes.Search.name)
                         }
                     )
                 }
-
-
             }
             TabScreen(tabs = tabs, backgroundColor = Color.White) { pos ->
                 when (pos) {

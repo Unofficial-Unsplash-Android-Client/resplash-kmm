@@ -15,9 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import ru.fursa.unsplash.android.R
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -31,14 +29,16 @@ fun TabScreen(
     Column(modifier = Modifier.fillMaxWidth()) {
         val pagerState = rememberPagerState(initialPage = 0)
 
-        TabRow(selectedTabIndex = scrollableTabIndex.value,
+        TabRow(
+            selectedTabIndex = scrollableTabIndex.value,
             modifier = Modifier.height(48.dp),
             backgroundColor = backgroundColor,
             indicator = { positions ->
                 TabRowDefaults.Indicator(
                     modifier = Modifier.tabIndicatorOffset(positions[scrollableTabIndex.value])
                 )
-            }) {
+            }
+        ) {
 
             tabs.forEachIndexed { index, title ->
                 TabItem(
@@ -48,7 +48,6 @@ fun TabScreen(
                     pagerState = pagerState
                 )
             }
-
         }
 
         HorizontalPager(
@@ -58,6 +57,5 @@ fun TabScreen(
         LaunchedEffect(key1 = pagerState.currentPage) {
             scrollableTabIndex.value = pagerState.currentPage
         }
-
     }
 }

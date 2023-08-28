@@ -54,5 +54,6 @@ fun AuthorizationScreen(navController: NavController) {
                 Spacer(modifier = Modifier.size(30.dp))
                 RegistrationField(navController = navController)
             }
-        })
+        }
+    )
 }
