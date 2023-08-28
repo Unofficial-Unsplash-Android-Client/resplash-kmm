@@ -54,6 +54,7 @@ jobs:
           path: androidApp/build/outputs/apk/debug/
 
   pushAPKtoTelegram:
+    needs: buildApkFile
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
