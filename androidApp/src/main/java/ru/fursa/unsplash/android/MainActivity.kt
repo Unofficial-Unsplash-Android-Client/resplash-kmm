@@ -38,9 +38,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             UnsplashApplicationTheme {
-
                 val navController = rememberNavController()
-
                 Surface(
                     modifier = Modifier.wrapContentSize(),
                     color = MaterialTheme.colors.background

@@ -35,6 +35,8 @@ android {
     }
 }
 
+tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+
 ktlint {
     android.set(true)
     reporters {
