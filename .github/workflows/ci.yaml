@@ -15,22 +15,29 @@ on:
         - 'fix/**'
 
 jobs:
-  ktlintFormat:
+  setupJDK:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
-
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: zulu
 
+  ktlintFormat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
       - name: Run KtLint format
         run: ./gradlew ktlintFormat
 
   buildApkFile:
-      run: |
-        ./gradlew \
-          :androidApp:assembleDebug
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout source code
+          uses: actions/checkout@v3
+
+        - name: Build Android APK file
+          run: ./gradlew androidApp:assembleDebug
