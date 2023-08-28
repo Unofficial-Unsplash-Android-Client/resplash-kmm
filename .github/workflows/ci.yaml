@@ -62,7 +62,7 @@ jobs:
           echo "Last changes:" > changelog.txt
           git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit >> changelog.txt
       - name: Send APK and Changelog to Telegram
-        uses: appleboy/telegram-action@v2
+        uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
