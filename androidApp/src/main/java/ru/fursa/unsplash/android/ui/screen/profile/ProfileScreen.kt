@@ -28,9 +28,9 @@ import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.ui.kit.compound.Screen
 import ru.fursa.unsplash.android.ui.kit.image.UserAvatarItem
-import ru.fursa.unsplash.android.ui.kit.tabs.TabScreen
 import ru.fursa.unsplash.android.ui.kit.text.ProfileCounter
 import ru.fursa.unsplash.android.ui.kit.text.ProfileDescription
+import ru.fursa.unsplash.android.ui.tabs.TabScreen
 import ru.fursa.unsplash.base.repository.CurrentUser
 
 @Composable

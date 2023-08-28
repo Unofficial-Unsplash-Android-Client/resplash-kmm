@@ -25,10 +25,10 @@ import kotlinx.coroutines.launch
 import ru.fursa.unsplash.android.base.eventbus.LoadEventBus
 import ru.fursa.unsplash.android.ui.kit.compound.SearchBar
 import ru.fursa.unsplash.android.ui.kit.image.DefaultUserAvatar
-import ru.fursa.unsplash.android.ui.kit.tabs.TabScreen
 import ru.fursa.unsplash.android.ui.screen.collections.CollectionPhotoScreen
 import ru.fursa.unsplash.android.ui.screen.home.HomeScreen
 import ru.fursa.unsplash.android.ui.screen.routing.NavGraph
+import ru.fursa.unsplash.android.ui.tabs.TabScreen
 import ru.fursa.unsplash.android.ui.theme.UnsplashApplicationTheme
 import ru.fursa.unsplash.routing.Routes
 

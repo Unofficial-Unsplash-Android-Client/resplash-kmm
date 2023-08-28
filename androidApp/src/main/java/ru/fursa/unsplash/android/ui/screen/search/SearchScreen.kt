@@ -22,7 +22,7 @@ import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.ui.kit.compound.SearchBar
-import ru.fursa.unsplash.android.ui.kit.tabs.TabScreen
+import ru.fursa.unsplash.android.ui.tabs.TabScreen
 import ru.fursa.unsplash.routing.Routes
 
 @Composable

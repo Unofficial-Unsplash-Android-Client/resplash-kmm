@@ -29,3 +29,9 @@ jobs:
 
       - name: Run KtLint format
         run: ./gradlew ktlintFormat
+
+  buildApkFile:
+    - name: Build debug apk
+      run: |
+        ./gradlew \
+          :androidApp:assembleDebug

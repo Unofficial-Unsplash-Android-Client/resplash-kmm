@@ -86,4 +86,3 @@ fun UserSearchCard(
         )
     }
 }
-
