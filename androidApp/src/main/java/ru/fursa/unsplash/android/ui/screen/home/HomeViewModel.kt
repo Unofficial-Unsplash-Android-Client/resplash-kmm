@@ -7,7 +7,7 @@ import ru.fursa.unsplash.base.repository.UnsplashRepository
 
 class HomeViewModel(
     private val repository: UnsplashRepository
-): ViewModel() {
+) : ViewModel() {
 
     val screenState = repository.getPhotos()
         .cachedIn(viewModelScope)

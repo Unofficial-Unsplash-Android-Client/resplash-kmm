@@ -38,9 +38,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             UnsplashApplicationTheme {
-
                 val navController = rememberNavController()
-
                 Surface(
                     modifier = Modifier.wrapContentSize(),
                     color = MaterialTheme.colors.background
@@ -49,10 +47,8 @@ class MainActivity : ComponentActivity() {
                     NavGraph(navController = navController)
                 }
             }
-
         }
     }
-
 }
 
 @Composable
@@ -81,8 +77,9 @@ fun InitialScreen(navController: NavController) {
                         LoadEventBus.send(LoadEventBus.Event.CloseSearch)
                     }
                 }, onNavigateTo = {
-                    navController.navigate(Routes.Search.name)
-                })
+                navController.navigate(Routes.Search.name)
+            }
+            )
         }
         TabScreen(tabs, Color.White) { pageIndex ->
             when (pageIndex) {
@@ -90,8 +87,5 @@ fun InitialScreen(navController: NavController) {
                 1 -> CollectionPhotoScreen()
             }
         }
-
     }
-
 }
-

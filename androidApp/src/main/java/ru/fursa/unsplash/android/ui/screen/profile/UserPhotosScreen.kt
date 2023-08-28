@@ -20,6 +20,5 @@ fun UserPhotosScreen(
         LaunchedEffect(key1 = username) {
             viewModel.getUserPhotos(username)
         }
-
     }
 }

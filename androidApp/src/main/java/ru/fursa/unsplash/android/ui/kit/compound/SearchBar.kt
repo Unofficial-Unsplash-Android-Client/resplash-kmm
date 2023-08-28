@@ -63,19 +63,24 @@ fun SearchBar(
         onValueChange = { text = it },
         trailingIcon = {
             if (text.isNotEmpty()) {
-                Icon(Icons.Rounded.Close,
+                Icon(
+                    Icons.Rounded.Close,
                     contentDescription = null,
                     modifier = Modifier.clickable {
                         text = ""
                         onClose.invoke()
-                    })
+                    }
+                )
             }
         },
         leadingIcon = {
-            Icon(Icons.Filled.Search, contentDescription = null, modifier = Modifier
-                .padding(3.dp)
-                .clip(CircleShape)
-                .clickable {})
+            Icon(
+                Icons.Filled.Search, contentDescription = null,
+                modifier = Modifier
+                    .padding(3.dp)
+                    .clip(CircleShape)
+                    .clickable {}
+            )
         },
         shape = RoundedCornerShape(size = 20.dp),
         modifier = Modifier
@@ -106,10 +111,8 @@ fun PreviewSearchBar() {
     SearchBar(
         navController = navController,
         onSearch = { text ->
-
         }, onClose = {
-
-        }, onNavigateTo = {
-
-        })
+    }, onNavigateTo = {
+    }
+    )
 }

@@ -32,6 +32,4 @@ fun CollectionPhotoScreen(
         )
         NavGraph(navController = navController)
     }
-
 }
-

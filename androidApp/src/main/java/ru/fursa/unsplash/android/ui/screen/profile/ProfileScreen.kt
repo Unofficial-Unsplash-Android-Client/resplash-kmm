@@ -120,9 +120,6 @@ fun ProfileScreen(
                     2 -> UserCollectionsScreen(username = username)
                 }
             }
-
         }
-
-
     }
 }

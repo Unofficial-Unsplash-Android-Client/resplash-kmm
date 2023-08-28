@@ -52,7 +52,8 @@ fun UserSearchCard(
             Spacer(modifier = Modifier.size(16.dp))
             Column(verticalArrangement = Arrangement.Center) {
                 Text(
-                    text = username, style = TextStyle(
+                    text = username,
+                    style = TextStyle(
                         fontWeight = FontWeight.Bold
                     )
                 )
@@ -62,9 +63,7 @@ fun UserSearchCard(
                         else -> "@$instagramAccount"
                     }
                 )
-
             }
-
         }
 
         LazyRow(

@@ -11,10 +11,9 @@ object LoadEventBus {
         _event.emit(event)
     }
 
-
     sealed class Event {
         data class Search(val query: String) : Event()
-        object CloseSearch: Event()
-        object LoadData: Event()
+        object CloseSearch : Event()
+        object LoadData : Event()
     }
 }

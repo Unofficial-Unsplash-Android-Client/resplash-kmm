@@ -21,7 +21,6 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import ru.fursa.unsplash.android.R
 
-
 @Composable
 fun UserAvatarItem(
     modifier: Modifier = Modifier,

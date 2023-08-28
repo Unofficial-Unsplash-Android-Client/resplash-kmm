@@ -21,10 +21,6 @@ fun HomeScreen(
     BuildHomeList(
         photos = photosPagingItems
     ) { username ->
-        navController.navigate("${Routes.Profile.name}/${username}")
+        navController.navigate("${Routes.Profile.name}/$username")
     }
 }
-
-
-
-

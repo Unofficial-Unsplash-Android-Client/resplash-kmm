@@ -26,7 +26,8 @@ fun ProfileDescription(
 ) {
     Column(modifier = modifier) {
         Text(
-            text = fullName, style = TextStyle(
+            text = fullName,
+            style = TextStyle(
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp
             )
@@ -36,7 +37,8 @@ fun ProfileDescription(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = location, style = TextStyle(
+                text = location,
+                style = TextStyle(
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Normal,
                     color = Color.Gray
@@ -45,7 +47,8 @@ fun ProfileDescription(
         }
         Text(
             modifier = Modifier.padding(top = 8.dp),
-            text = bio, style = TextStyle(
+            text = bio,
+            style = TextStyle(
                 fontSize = 12.sp
             )
         )
@@ -59,6 +62,7 @@ fun PreviewProfileDescription() {
         ProfileDescription(
             fullName = "Ilya Fursa",
             location = "Russia, Samara",
-            bio = "Android Developer")
+            bio = "Android Developer"
+        )
     }
 }

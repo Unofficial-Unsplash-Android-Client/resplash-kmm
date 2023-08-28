@@ -32,7 +32,8 @@ fun NavGraph(navController: NavHostController) {
 
         composable(
             route = "${Routes.Profile.name}/{username}",
-            arguments = listOf(navArgument("username") { type = NavType.StringType })) {
+            arguments = listOf(navArgument("username") { type = NavType.StringType })
+        ) {
             ProfileScreen(
                 username = it.arguments?.getString("username").orEmpty(),
                 navController = navController

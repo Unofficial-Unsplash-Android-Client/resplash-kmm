@@ -24,13 +24,15 @@ fun ProfileCounter(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = counter, style = TextStyle(
+            text = counter,
+            style = TextStyle(
                 fontWeight = FontWeight.Bold,
                 fontSize = 14.sp
             )
         )
         Text(
-            text = subject, style = TextStyle(
+            text = subject,
+            style = TextStyle(
                 fontWeight = FontWeight.Normal,
                 fontSize = 12.sp
             )
