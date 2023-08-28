@@ -1,4 +1,7 @@
+
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+import java.io.ByteArrayOutputStream
+
 
 plugins {
     id("com.android.application")
@@ -46,6 +49,37 @@ ktlint {
         reporter(reporterType = ReporterType.SARIF)
     }
 }
+
+tasks.register("printBranchChangelog", DefaultTask::class.java) {
+
+    doLast {
+
+        val branchName = ByteArrayOutputStream().use { outputStream ->
+            project.exec {
+                commandLine = listOf("git", "rev-parse", "--abbrev-ref", "HEAD")
+                standardOutput = outputStream
+            }
+            outputStream.toString().trim()
+        }
+
+        println("Branch name -> $branchName")
+        println("------------------------------")
+
+        val commits = ByteArrayOutputStream().use { outputStream ->
+            project.exec {
+                commandLine = listOf("git", "log", "--pretty=format:[+] %an %h %s", "-n", "5", "--abbrev-commit")
+                standardOutput = outputStream
+            }
+            outputStream.toString().trim()
+        }
+        println(commits)
+    }
+}
+
+
+
+
+
 
 dependencies {
     implementation(project(":shared"))
