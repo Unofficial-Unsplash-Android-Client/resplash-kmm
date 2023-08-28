@@ -1,0 +1,25 @@
+name: ReSplash-CI
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - 'feature/**'
+      - 'fix/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: KtLint check code format
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Run KtLint check
+        run: ./gradlew ktlintCheck
