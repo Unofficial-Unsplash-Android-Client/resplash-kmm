@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="description">Lorem ipsum dolor sit amet\n</string>
-    <string name="tab_item_single">Single</string>
     <string name="tab_item_collections">Collections</string>
+    <string name="tab_item_home">Home</string>
+    <string name="tab_photos">Photos</string>
+    <string name="tab_likes">Likes</string>
+    <string name="tab_item_profile">Profile</string>
+    <string name="tab_item_users">Users</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="join_unsplash">"Join Unsplash.com"</string>
+    <string name="reset_password">Reset password</string>
+    <string name="forgot_password">Forgot your password</string>
+    <string name="dont_have_account">Don\'t have an account yet?</string>
+    <string name="join">Join</string>
+    <string name="search_hint">Search ...</string>
+    <string name="set_wallpaper">Установить заставкой</string>
+    <string name="resolution">Разрешение</string>
+    <string name="apertura">Апертура</string>
+    <string name="iso">ISO</string>
+    <string name="focus">Фокус</string>
+    <string name="camera">Камера</string>
+    <string name="exposition">Экспозиция</string>
+    <string name="likes">Лайков</string>
+    <string name="downloads">Скачиваний</string>
+    <string name="views">Просмотров</string>
+    <string name="user_name">Daenerys Targarien</string>
+    <string name="photos">Фото</string>
+    <string name="collections">Коллекции</string>
+    <string name="tab_collection">Коллекции</string>
+
+    <string name="user_tab_photo">Photo</string>
+    <string name="user_tab_likes">Likes</string>
+    <string name="user_tab_collection">Collections</string>
+
+    <plurals name="photos">
+        <item quantity="one">%1$d фотография</item>
+        <item quantity="many">%1$d фотографий</item>
+        <item quantity="other">%1$d фотографий</item>
+    </plurals>
+
+
 </resources>
