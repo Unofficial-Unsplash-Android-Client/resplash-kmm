@@ -73,5 +73,5 @@ jobs:
           document: app/build/outputs/apk/debug/app-debug.apk
           caption: |
             Apk file and changelog: 
-            ${{ readFile('./changelog.txt') }}
+            $(cat changelog.txt)
   
