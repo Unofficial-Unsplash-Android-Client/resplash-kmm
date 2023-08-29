@@ -46,8 +46,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            Latest Commits:
-            ${{ needs.CHANGELOG.outputs.CHANGELOG }}
+            Latest Commits: ${{ needs.CHANGELOG.outputs.CHANGELOG }}
 
 
   setupJDK:
