@@ -31,24 +31,23 @@ jobs:
 
   sendChangelogToTelegram:
     runs-on: ubuntu-latest
-    env:
-      ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-    steps:
-      - uses: actions/checkout@v3
-      - name: Write git log to file
-        id: CHANGELOG
-        run: |
-          git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit >> output.txt
-          echo "::set-output name=CHANGELOG::$(cat output.txt)"
-      - name: Send git changelog to Telegram
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          message: |
-            Latest Commits:
-            ${{ steps.CHANGELOG.outputs.CHANGELOG }}
-
+  env:
+    ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+    CHANGELOG: ''
+  steps:
+    - uses: actions/checkout@v3
+    - name: Write git log to variable
+      run: |
+        changelog=$(git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit)
+        echo "::set-env name=CHANGELOG::$changelog"
+    - name: Send git changelog to Telegram
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          Latest Commits:
+          ${{ env.CHANGELOG }}
 
 
   setupJDK:
