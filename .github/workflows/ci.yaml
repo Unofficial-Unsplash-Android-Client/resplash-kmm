@@ -24,7 +24,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           format: |
-            ###  Author: ${{ github.actor }}
+            ## Author: ${{ github.actor }}
             pushed new commit - ${{ github.event.commits[0].message }}
             to repository: ${{ github.repository }}
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
