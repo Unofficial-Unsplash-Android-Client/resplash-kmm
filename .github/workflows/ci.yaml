@@ -68,7 +68,7 @@ jobs:
  ##         path: androidApp/build/outputs/apk/debug/
 
   sendChangelogToTelegram:
-  ##  needs: buildApkFile
+    needs: setupJDK
     runs-on: ubuntu-latest
     steps:
       - name: Generate changelog
