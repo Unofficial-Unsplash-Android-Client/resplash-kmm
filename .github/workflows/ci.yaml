@@ -74,17 +74,13 @@ jobs:
       - name: Generate changelog
         id: changelog
         run: |
-          echo "Last changes:" > changelog.txt
           git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit >> changelog.txt
-          echo "Changelog:"
-          cat changelog.txt >> changelog_output.txt
-
       - name: Send Telegram notification on push
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            $(cat changelog_output.txt)
+            $(<changelog_output.txt)
 
 
