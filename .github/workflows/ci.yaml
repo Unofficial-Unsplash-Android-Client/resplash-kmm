@@ -59,7 +59,7 @@ jobs:
       - name: Generate changelog
         id: changelog
         run: |
-          echo 'Last changes:' > changelog.txt && gh pr list --limit 5 --json number,title,author | jq -r '.[] | "\(.author.login) \(.number) \(.title)"' >> changelog.txt
+          gh pr list --limit 5 --json number,title,author | jq -r '.[] | "\(.author.login) \(.number) \(.title)"' > changelog.txt
       - name: Save APK file
         uses: actions/upload-artifact@v2
         with:
