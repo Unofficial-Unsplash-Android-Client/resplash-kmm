@@ -33,32 +33,34 @@ jobs:
       - name: Run KtLint format
         run: ./gradlew ktlintFormat
 
-  buildApkFile:
-    needs: ktlintFormat
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
-      - name: Setup Node.js 16.x
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16.x'
-      - name: Build Android APK file
-        run: ./gradlew androidApp:assembleDebug
-      - name: Save APK file
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-debug.apk
-          path: androidApp/build/outputs/apk/debug/
+
+ ## buildApkFile:
+ ##   needs: ktlintFormat
+ ##   runs-on: ubuntu-latest
+ ##   steps:
+ ##     - name: Checkout source code
+ ##       uses: actions/checkout@v3
+ ##     - name: Setup Node.js 16.x
+ ##       uses: actions/setup-node@v2
+ ##       with:
+ ##         node-version: '16.x'
+ ##     - name: Build Android APK file
+ ##       run: ./gradlew androidApp:assembleDebug
+ ##     - name: Save APK file
+ ##       uses: actions/upload-artifact@v2
+ ##       with:
+ ##         name: app-debug.apk
+ ##         path: androidApp/build/outputs/apk/debug/
 
   sendChangelogToTelegram:
-    needs: buildApkFile
+  ##  needs: buildApkFile
     runs-on: ubuntu-latest
     steps:
       - name: Generate changelog
         id: changelog
         run: |
-          git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit >> changelog.txt
+          echo 'Last changes:' > changelog.txt
+          gh pr list --limit 5 --json number,title,author | jq -r '.[] | "\(.author.login) \(.number) \(.title)"' >> changelog.txt
       - name: Save APK file
         uses: actions/upload-artifact@v2
         with:
