@@ -30,7 +30,7 @@ jobs:
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
   setupJDK:
-    needs: [ sendCommitNotificationOnPush, sendChangelogToTelegram ]
+    needs: [ sendCommitNotificationOnPush ]
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 17
