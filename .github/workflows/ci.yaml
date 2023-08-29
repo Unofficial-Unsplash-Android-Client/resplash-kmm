@@ -33,8 +33,23 @@ jobs:
       - name: Run KtLint format
         run: ./gradlew ktlintFormat
 
+  sendCommitNotification:
+    needs: setupJDK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram notification on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message:
+            ${{ github.actor }} created commit:
+              Commit message: ${{ github.event.commits[0].message }}
+              Repository: ${{ github.repository }}
+              See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
- ## buildApkFile:
+
+  ## buildApkFile:
  ##   needs: ktlintFormat
  ##   runs-on: ubuntu-latest
  ##   steps:
@@ -59,7 +74,7 @@ jobs:
       - name: Generate changelog
         id: changelog
         run: |
-          gh pr list --limit 5 --json number,title,author | jq -r '.[] | "\(.author.login) \(.number) \(.title)"' > changelog.txt
+          echo 'Last changes:' > changelog.txt && gh pr list --limit 5 --json number,title,author | jq -r '.[] | "\(.author.login) \(.number) \(.title)"' >> changelog.txt
       - name: Save APK file
         uses: actions/upload-artifact@v2
         with:
