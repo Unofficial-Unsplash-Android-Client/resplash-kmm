@@ -15,7 +15,22 @@ on:
         - 'fix/**'
 
 jobs:
+  sendCommitNotificationOnPush:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram notification on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            Author: ${{ github.actor }}
+            pushed new commit ${{ github.event.commits[0].message }}
+            to repository: ${{ github.repository }}
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+
   setupJDK:
+    needs: sendCommitNotificationOnPush
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 17
@@ -33,20 +48,6 @@ jobs:
       - name: Run KtLint format
         run: ./gradlew ktlintFormat
 
-  sendCommitNotification:
-    needs: setupJDK
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send Telegram notification on push
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          message: |
-            Author: ${{ github.actor }}
-            pushed new commit ${{ github.event.commits[0].message }}
-            to repository: ${{ github.repository }}
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
 
   
