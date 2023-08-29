@@ -77,26 +77,26 @@ jobs:
             $(cat changelog.txt)
   
 
-  pushAPKtoTelegram:
-    needs: buildApkFile
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
-      - name: Generate changelog
-        id: changelog
-        run: |
-          echo 'Last changes:' > changelog.txt
-          git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit >> changelog.txt
-      - name: Send APK and Changelog to Telegram
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          document: androidApp/build/outputs/apk/debug/app-debug.apk
-          caption: |
-            Apk file and changelog: 
-            $(cat changelog.txt)
+ ## pushAPKtoTelegram:
+ ##   needs: buildApkFile
+ ##   runs-on: ubuntu-latest
+ ##   steps:
+ ##     - name: Checkout source code
+ ##       uses: actions/checkout@v3
+ ##     - name: Generate changelog
+ ##       id: changelog
+ ##       run: |
+ ##         echo 'Last changes:' > changelog.txt
+ ##         git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit >> changelog.txt
+ ##     - name: Send APK and Changelog to Telegram
+ ##       uses: appleboy/telegram-action@master
+ ##       with:
+ ##         to: ${{ secrets.TELEGRAM_CHAT_ID }}
+ ##         token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+ ##         document: androidApp/build/outputs/apk/debug/app-debug.apk
+ ##         caption: |
+ ##           Apk file and changelog:
+ ##           $(cat changelog.txt)
   
   
   
