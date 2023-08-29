@@ -1,4 +1,4 @@
-name: ReSplash-CI
+name: ReSplash KMM CI/CD
 
 on:
   push:
