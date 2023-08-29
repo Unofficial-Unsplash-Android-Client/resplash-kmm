@@ -32,10 +32,10 @@ jobs:
   sendChangelogToTelegram:
     runs-on: ubuntu-latest
     steps:
-      - name: Run git log
       - uses: actions/checkout@v3
-      - run: |
-          git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit >> output.txt        
+      - name: Run git log
+        run: |
+          git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit >> output.txt
       - name: Send git changelog to Telegram
         uses: appleboy/telegram-action@master
         with:
