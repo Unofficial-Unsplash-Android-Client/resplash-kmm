@@ -45,11 +45,11 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-             ${{ github.event_name }} - ${{ github.sha }}
-             Author: ${{ github.actor }}
-             Changelog: ${{ steps.CHANGELOG.outputs.CHANGELOG }}
-          env:
-          CHANGELOG: ${{ steps.CHANGELOG.outputs.CHANGELOG }}
+            ${{ github.event_name }} - ${{ github.sha }}
+            Author: ${{ github.actor }}
+            Changelog: ${{ steps.CHANGELOG.outputs.CHANGELOG }}
+        env:
+         CHANGELOG: ${{ steps.CHANGELOG.outputs.CHANGELOG }}
 
 
   setupJDK:
