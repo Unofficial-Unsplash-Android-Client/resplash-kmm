@@ -61,7 +61,7 @@ jobs:
       - name: Run KtLint format
         run: ./gradlew ktlintFormat
 
-  buildApkFile:
+  buildApkAndPushTelegram:
     needs: ktlintFormat
     runs-on: ubuntu-latest
     steps:
