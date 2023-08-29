@@ -91,4 +91,4 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          document: app-debug.apk
+          document: androidApp/build/outputs/apk/debug/app-debug.apk
