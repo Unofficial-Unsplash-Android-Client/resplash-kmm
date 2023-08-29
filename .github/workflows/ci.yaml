@@ -42,7 +42,6 @@ jobs:
         message: |
           $(cat output.txt)
 
-
   setupJDK:
     needs: [ sendCommitNotificationOnPush, sendChangelogToTelegram ]
     runs-on: ubuntu-latest
