@@ -36,13 +36,14 @@ jobs:
       - name: Run git log
         run: |
           git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit >> output.txt
+          echo "::set-env name=CHANGELOG::$(cat output.txt)"
       - name: Send git changelog to Telegram
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            $(cat output.txt)
+            ${{ env.CHANGELOG }}
 
   setupJDK:
     needs: [ sendCommitNotificationOnPush, sendChangelogToTelegram ]
