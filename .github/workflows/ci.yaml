@@ -30,8 +30,8 @@ jobs:
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
   sendChangelogToTelegram:
-  runs-on: ubuntu-latest
-  env:
+    runs-on: ubuntu-latest
+    env:
     ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     CHANGELOG: ''
     steps:
