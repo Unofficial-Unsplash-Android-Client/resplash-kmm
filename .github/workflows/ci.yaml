@@ -78,4 +78,9 @@ jobs:
         with:
           name: app-debug.apk
           path: androidApp/build/outputs/apk/debug/
-
+      - name: Send Android APK file to Telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          document: app-debug.apk
