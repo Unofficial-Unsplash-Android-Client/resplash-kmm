@@ -47,7 +47,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             Latest Commits:
-           ${{ steps.CHANGELOG.outputs.CHANGELOG }}
+            ${{ steps.CHANGELOG.outputs.CHANGELOG }}
 
 
 
