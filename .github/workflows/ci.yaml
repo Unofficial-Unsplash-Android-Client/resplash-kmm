@@ -31,6 +31,8 @@ jobs:
 
   sendChangelogToTelegram:
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     steps:
       - uses: actions/checkout@v3
       - name: Write git log to file
