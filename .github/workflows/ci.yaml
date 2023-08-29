@@ -37,10 +37,10 @@ jobs:
       - name: Send git changelog to Telegram
         uses: appleboy/telegram-action@master
         with:
-        to: ${{ secrets.TELEGRAM_CHAT_ID }}
-        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        message: |
-          $(cat output.txt)
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            $(cat output.txt)
 
   setupJDK:
     needs: [ sendCommitNotificationOnPush, sendChangelogToTelegram ]
