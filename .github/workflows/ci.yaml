@@ -34,7 +34,7 @@ jobs:
     steps:
       - run: |
           git log --pretty=format:'%an %h %s' -n 5 --abbrev-commit >> output.txt        
-          - name: Send git changelog to Telegram
+      - name: Send git changelog to Telegram
         uses: appleboy/telegram-action@master
         with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
