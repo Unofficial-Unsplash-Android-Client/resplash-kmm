@@ -1,4 +1,4 @@
-name: ReSplash-CI
+name: resplash-kmm-ci
 
 on:
   push:
