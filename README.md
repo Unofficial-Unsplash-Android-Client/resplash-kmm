@@ -9,7 +9,10 @@ ReSplash is a simple Android and IOS client for Unsplash.com.
   <img src="https://github.com/ifv93/resplash-kmm/blob/master/screenshot4.png" width=200 height=420/>
 </div>
 
-
+## For contributors
+For feature requests create branch with prefix ``` feature/my-feature```
+<br>
+For fix request create branch with prefix ```fix/my-fix```
 
 ## Libraries
  - Jetpack Compose
@@ -21,11 +24,6 @@ ReSplash is a simple Android and IOS client for Unsplash.com.
 
 ## CI/CD
 - Ktlint
-
-For feature requests create branch with prefix feature/my-feature
-For fix request create branch with prefix fix/my-fix
-
-
 
  ### To format code before commit use: 
 ```
