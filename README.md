@@ -14,6 +14,8 @@ For feature requests create branch with prefix ``` feature/my-feature```
 <br>
 For fix request create branch with prefix ```fix/my-fix```
 
+CI will run ktlint check and build apk file for current branch 
+
 ## Libraries
  - Jetpack Compose
  - Ktor Http Client
