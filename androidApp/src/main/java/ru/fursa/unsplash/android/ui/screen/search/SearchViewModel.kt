@@ -19,7 +19,9 @@ class SearchViewModel(
     private val _photoModelResults = MutableStateFlow<PagingData<PhotoModel>>(PagingData.empty())
     val photoResults = _photoModelResults
 
-    private val _collectionsResults = MutableStateFlow<PagingData<CollectionModel>>(PagingData.empty())
+    private val _collectionsResults = MutableStateFlow<PagingData<CollectionModel>>(
+        PagingData.empty()
+    )
     val collectionsResults = _collectionsResults
 
     private val _userModelResults = MutableStateFlow<PagingData<UserModel>>(PagingData.empty())
