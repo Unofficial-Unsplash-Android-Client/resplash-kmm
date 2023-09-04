@@ -15,7 +15,8 @@ fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel()
 ) {
     val navController = rememberNavController()
-    val photosPagingItems: LazyPagingItems<PhotoModel> = viewModel.screenState.collectAsLazyPagingItems()
+    val photosPagingItems: LazyPagingItems<PhotoModel> = viewModel.screenState
+        .collectAsLazyPagingItems()
 
     NavGraph(navController = navController)
     BuildHomeList(

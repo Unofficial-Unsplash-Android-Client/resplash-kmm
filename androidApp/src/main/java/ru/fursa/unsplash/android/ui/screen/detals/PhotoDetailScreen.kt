@@ -121,7 +121,10 @@ fun PhotoDetailScreen(navController: NavController) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = stringResource(id = R.string.downloads), fontWeight = FontWeight.Medium)
+                    Text(
+                        text = stringResource(id = R.string.downloads),
+                        fontWeight = FontWeight.Medium
+                    )
                     Text(text = "2k")
                 }
 
@@ -153,10 +156,16 @@ fun PhotoDetailScreen(navController: NavController) {
                 Column(
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = stringResource(id = R.string.camera), fontWeight = FontWeight.Medium)
+                    Text(
+                        text = stringResource(id = R.string.camera),
+                        fontWeight = FontWeight.Medium
+                    )
                     Text(text = "Canon EOS 500D")
                     Spacer(modifier = Modifier.size(8.dp))
-                    Text(text = stringResource(id = R.string.exposition), fontWeight = FontWeight.Medium)
+                    Text(
+                        text = stringResource(id = R.string.exposition),
+                        fontWeight = FontWeight.Medium
+                    )
                     Text(text = "1/400s")
                 }
 
@@ -173,10 +182,16 @@ fun PhotoDetailScreen(navController: NavController) {
                 Column(
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = stringResource(id = R.string.apertura), fontWeight = FontWeight.Medium)
+                    Text(
+                        text = stringResource(id = R.string.apertura),
+                        fontWeight = FontWeight.Medium
+                    )
                     Text(text = "f/3.2")
                     Spacer(modifier = Modifier.size(8.dp))
-                    Text(text = stringResource(id = R.string.resolution), fontWeight = FontWeight.Medium)
+                    Text(
+                        text = stringResource(id = R.string.resolution),
+                        fontWeight = FontWeight.Medium
+                    )
                     Text(text = "2000х3000")
                 }
             }
@@ -215,7 +230,12 @@ fun PhotoDetailScreen(navController: NavController) {
                 ExtendedFloatingActionButton(
                     modifier = Modifier.padding(16.dp),
                     backgroundColor = Color.Black,
-                    text = { Text(text = stringResource(id = R.string.set_wallpaper), color = Color.White) },
+                    text = {
+                        Text(
+                            text = stringResource(id = R.string.set_wallpaper),
+                            color = Color.White
+                        )
+                    },
                     onClick = { /*TODO*/ }
                 )
             }
