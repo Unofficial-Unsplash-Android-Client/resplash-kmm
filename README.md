@@ -22,6 +22,10 @@ ReSplash is a simple Android and IOS client for Unsplash.com.
 ## CI/CD
 - Ktlint
 
+For feature requests create branch with prefix feature/my-feature
+For fix request create branch with prefix fix/my-fix
+
+
 
  ### To format code before commit use: 
 ```
