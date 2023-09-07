@@ -18,4 +18,5 @@ interface UnsplashRepository {
     suspend fun getUserPhotos(username: String): Flow<PagingData<PhotoModel>>
     suspend fun getUserLikes(username: String): Flow<PagingData<PhotoModel>>
     suspend fun getUserCollections(username: String): Flow<PagingData<CollectionModel>>
+    suspend fun getCollectionPhotos(id: String): Flow<PagingData<PhotoModel>>
 }

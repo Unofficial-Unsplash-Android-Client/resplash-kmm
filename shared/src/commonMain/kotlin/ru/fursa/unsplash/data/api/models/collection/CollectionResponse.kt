@@ -3,6 +3,7 @@ package ru.fursa.unsplash.data.api.models.collection
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import ru.fursa.unsplash.data.api.models.base.CoverPhoto
+import ru.fursa.unsplash.data.api.models.base.User
 
 @Serializable
 data class CollectionResponse(
@@ -16,4 +17,6 @@ data class CollectionResponse(
     val coverPhoto: CoverPhoto,
     @SerialName("total_photos")
     val totalPhotos: Int,
+    @SerialName("user")
+    val user: User?
 )

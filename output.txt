@@ -1,0 +1,5 @@
+ilya.fursa e6b558e Set ACTIONS_ALLOW_UNSECURE_COMMANDS
+ilya.fursa 54d42de Try use env variable
+ilya.fursa f308f39 Try use env variable
+ilya.fursa 400d8ca fix git log
+ilya.fursa 4a1352f fix git log

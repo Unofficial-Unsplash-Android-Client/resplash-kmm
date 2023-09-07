@@ -43,9 +43,11 @@ fun List<CollectionResponse>.toUiCollections(): List<CollectionModel> {
     val collectionModelList = mutableListOf<CollectionModel>()
     this.forEach { response ->
         val collectionModel = CollectionModel(
+            collectionId = response.id.orEmpty(),
             coverPhotoUrl = response.coverPhoto.urls.rawUrl,
             title = response.title.orEmpty(),
-            totalPhotos = response.totalPhotos
+            totalPhotos = response.totalPhotos,
+            authorName = response.user?.name.orEmpty()
         )
         collectionModelList.add(collectionModel)
     }

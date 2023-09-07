@@ -3,6 +3,7 @@ package ru.fursa.unsplash.routing
 sealed class Routes(val name: String) {
     object Home : Routes(name = "home")
     object Collections : Routes(name = "collections")
+    object Collection : Routes(name = "collection")
     object Start : Routes(name = "start")
     object Profile : Routes(name = "profile")
     object Authorization : Routes(name = "authorization")
