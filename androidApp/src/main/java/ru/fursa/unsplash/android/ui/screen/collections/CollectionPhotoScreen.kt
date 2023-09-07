@@ -11,6 +11,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.ui.kit.list.BuildCollectionList
 import ru.fursa.unsplash.android.ui.screen.routing.NavGraph
+import ru.fursa.unsplash.routing.Routes
 
 @Composable
 fun CollectionPhotoScreen(
@@ -28,7 +29,9 @@ fun CollectionPhotoScreen(
 
         BuildCollectionList(
             collections = collections,
-            navController = navController
+            onCollectionClicked = { id ->
+                navController.navigate("${Routes.Collection.name}/$id")
+            }
         )
         NavGraph(navController = navController)
     }

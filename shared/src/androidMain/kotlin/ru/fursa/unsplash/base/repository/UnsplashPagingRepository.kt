@@ -73,6 +73,11 @@ class UnsplashPagingRepository(
             apiService.getUserCollections(username = username, pageIndex = index).toUiCollections()
         }.flow
 
+    override suspend fun getCollectionPhotos(id: String): Flow<PagingData<PhotoModel>> =
+        finitePager { index ->
+            apiService.getCollection(id, pageIndex = index).toUiPhotos()
+        }.flow
+
     override suspend fun getUser(username: String) = withContext(ioDispatcher) {
         val user = apiService.getUser(username).toCurrentUser()
         _userFlow.emit(user)

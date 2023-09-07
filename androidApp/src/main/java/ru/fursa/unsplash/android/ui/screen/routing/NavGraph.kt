@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import ru.fursa.unsplash.android.base.screen.EmptyScreen
 import ru.fursa.unsplash.android.base.screen.ErrorScreen
 import ru.fursa.unsplash.android.ui.screen.authorization.AuthorizationScreen
+import ru.fursa.unsplash.android.ui.screen.collection.CollectionScreen
 import ru.fursa.unsplash.android.ui.screen.collections.CollectionPhotoScreen
 import ru.fursa.unsplash.android.ui.screen.detals.PhotoDetailScreen
 import ru.fursa.unsplash.android.ui.screen.home.HomeScreen
@@ -62,6 +63,20 @@ fun NavGraph(navController: NavHostController) {
 
         composable(route = Routes.PhotoDetail.name) {
             PhotoDetailScreen(navController = navController)
+        }
+
+        composable(
+            route = "${Routes.Collection.name}/{id}",
+            arguments = listOf(
+                navArgument("id") {
+                    type = NavType.StringType
+                }
+            )
+        ) { navBackStackEntry ->
+            CollectionScreen(
+                navController = navController,
+                id = navBackStackEntry.arguments?.getString("id") ?: return@composable
+            )
         }
 
         composable(route = Routes.Search.name) {

@@ -133,4 +133,19 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
             }
         }.body()
     }
+
+    override suspend fun getCollection(
+        id: String,
+        pageIndex: Int,
+        perPage: Int
+    ): List<PhotoResponse> {
+        return httpClient.get {
+            url {
+                appendPathSegments("collections/$id/photos")
+                method = HttpMethod.Get
+                parameters.append("page", pageIndex.toString())
+                parameters.append("per_page", perPage.toString())
+            }
+        }.body()
+    }
 }

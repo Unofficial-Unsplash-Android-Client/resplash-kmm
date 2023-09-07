@@ -9,6 +9,8 @@ import ru.fursa.unsplash.data.api.models.search.UserSearchResponse
 
 interface UnsplashApiService {
     suspend fun getCollections(pageIndex: Int = 1, perPage: Int = 30): List<CollectionResponse>
+
+    suspend fun getCollection(id: String, pageIndex: Int = 1, perPage: Int = 30): List<PhotoResponse>
     suspend fun getPhotos(pageIndex: Int = 1, perPage: Int = 30): List<PhotoResponse>
     suspend fun searchPhotos(query: String, pageIndex: Int = 1, perPage: Int = 30): SearchPhotoResponse
     suspend fun searchCollections(query: String, pageIndex: Int = 1, perPage: Int = 30): SearchCollectionResponse
