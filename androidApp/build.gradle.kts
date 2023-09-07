@@ -3,6 +3,7 @@ import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("kotlin-parcelize")
     kotlin("plugin.serialization") version("1.5.20")
     id("org.jlleitschuh.gradle.ktlint") version ("11.0.0")
 }
@@ -73,4 +74,6 @@ dependencies {
 
     implementation("androidx.paging:paging-compose:3.2.0")
     implementation("androidx.paging:paging-runtime:3.2.0")
+
+    implementation("com.google.code.gson:gson:2.10.1")
 }
