@@ -10,17 +10,14 @@ on:
 
 jobs:
   KTLint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: KtLint run checkout action
-        uses: actions/checkout@v3
-      - name: KTLint run codestyle check
-        uses: ./.github/workflows/ktlint.yaml
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Check codestyle
+      uses: ./.github/workflows/ktlint.yaml
 
   buildDebugApk:
-    needs: [ KTLint ]
-    runs-on: ubuntu-latest
+    needs: [KTLint]
     steps:
       - name: Build Debug Apk
         uses: ./.github/workflows/build_debug_apk.yaml
-
