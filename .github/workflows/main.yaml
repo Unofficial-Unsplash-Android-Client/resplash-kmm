@@ -58,6 +58,8 @@ jobs:
     needs: [ BuildDebugApk ]
     runs-on: ubuntu-latest
     steps:
+      - name: Display Content of Working Directory
+        run: ls -R
       - name: Send Telegram Message with File
         uses: appleboy/telegram-action@master
         with:
