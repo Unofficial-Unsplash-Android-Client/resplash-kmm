@@ -10,11 +10,12 @@ on:
 
 jobs:
   ktlintCheck:
-  steps:
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: zulu
-    - name: Run KtLint check
-      run: ./gradlew ktlintCheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: zulu
+      - name: Run KtLint check
+        run: ./gradlew ktlintCheck
