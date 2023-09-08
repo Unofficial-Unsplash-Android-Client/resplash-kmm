@@ -1,4 +1,4 @@
-name: build debug apk
+name: Build Debug APK
 
 jobs:
   assembleAndroidDebugApp:
@@ -17,4 +17,3 @@ jobs:
         with:
           name: app-debug.apk
           path: androidApp/build/outputs/apk/debug/
-

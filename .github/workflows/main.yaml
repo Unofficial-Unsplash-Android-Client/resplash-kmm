@@ -11,13 +11,9 @@ on:
 jobs:
   KTLint:
     runs-on: ubuntu-latest
-    steps:
-      - name: Check codestyle
-        extends: ./ktlint.yaml
+    extends: ./ktlint.yaml
 
   buildDebugApk:
     needs: [KTLint]
     runs-on: ubuntu-latest
-    steps:
-      - name: Build Debug Apk
-        extends: ./build_debug_apk.yaml
+    extends: ./build_debug_apk.yaml
