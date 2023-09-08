@@ -55,7 +55,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: app-debug.apk
-          path: androidApp/build/outputs/apk/debug/
+          path: androidApp/build/outputs/apk
       - name: Display Content of Working Directory
         run: ls -R
       - name: Send Telegram Message with File
