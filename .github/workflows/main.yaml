@@ -12,7 +12,9 @@ jobs:
   KTLint:
     runs-on: ubuntu-latest
     steps:
-      - name: Check codestyle
+      - name: KtLint run checkout action
+        uses: actions/checkout@v3
+      - name: KTLint run codestyle check
         uses: ./.github/workflows/ktlint.yaml
 
   buildDebugApk:

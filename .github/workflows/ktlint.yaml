@@ -2,8 +2,6 @@ name: ktlint
 
 ktlintCheck:
   steps:
-    - name: KtLint check code format
-      uses: actions/checkout@v3
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
