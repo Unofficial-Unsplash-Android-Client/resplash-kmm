@@ -39,7 +39,7 @@ jobs:
       - name: Run KtLint check
         run: ./gradlew ktlintCheck
 
-  BuildDebugApk:
+  SendAPKToTelegram:
     needs: [ KTLintCheck ]
     runs-on: ubuntu-latest
     steps:
@@ -56,11 +56,6 @@ jobs:
         with:
           name: app-debug.apk
           path: androidApp/build/outputs/apk/debug/
-
-  SendAPKToTelegram:
-    needs: [ BuildDebugApk ]
-    runs-on: ubuntu-latest
-    steps:
       - name: Display Content of Working Directory
         run: ls -R
       - name: Send Telegram Message with File
