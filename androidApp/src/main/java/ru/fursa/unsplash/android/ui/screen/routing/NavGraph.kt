@@ -17,6 +17,7 @@ import ru.fursa.unsplash.android.ui.screen.profile.ProfileScreen
 import ru.fursa.unsplash.android.ui.screen.registration.RegistrationScreen
 import ru.fursa.unsplash.android.ui.screen.reset.ResetPasswordScreen
 import ru.fursa.unsplash.android.ui.screen.search.SearchScreen
+import ru.fursa.unsplash.android.ui.screen.viewer.ViewScreen
 import ru.fursa.unsplash.routing.Routes
 
 @Composable
@@ -37,6 +38,16 @@ fun NavGraph(navController: NavHostController) {
         ) {
             ProfileScreen(
                 username = it.arguments?.getString("username").orEmpty(),
+                navController = navController
+            )
+        }
+
+        composable(
+            route = "${Routes.View.name}/{url}",
+            arguments = listOf(navArgument("url") { type = NavType.StringType })
+        ) {
+            ViewScreen(
+                url = it.arguments?.getString("url").orEmpty(),
                 navController = navController
             )
         }

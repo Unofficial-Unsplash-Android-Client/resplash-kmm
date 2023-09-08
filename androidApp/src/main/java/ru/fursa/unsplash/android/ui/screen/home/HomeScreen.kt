@@ -9,6 +9,8 @@ import ru.fursa.unsplash.android.ui.kit.list.BuildHomeList
 import ru.fursa.unsplash.android.ui.screen.routing.NavGraph
 import ru.fursa.unsplash.data.ui.models.PhotoModel
 import ru.fursa.unsplash.routing.Routes
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun HomeScreen(
@@ -20,8 +22,13 @@ fun HomeScreen(
 
     NavGraph(navController = navController)
     BuildHomeList(
-        photos = photosPagingItems
-    ) { username ->
-        navController.navigate("${Routes.Profile.name}/$username")
-    }
+        photos = photosPagingItems,
+        onNavigateClick = { username ->
+            navController.navigate("${Routes.Profile.name}/$username")
+        },
+        onViewPhoto = { url ->
+            val encodedUrl = URLEncoder.encode(url, StandardCharsets.UTF_8.toString())
+            navController.navigate("${Routes.View.name}/$encodedUrl")
+        }
+    )
 }

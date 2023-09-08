@@ -34,7 +34,8 @@ fun PhotosSearchScreen(
                     fullName = item.fullName,
                     width = item.width,
                     height = item.height,
-                    onUserClick = {}
+                    onUserClick = {},
+                    onViewPhoto = {},
                 )
             }
         })

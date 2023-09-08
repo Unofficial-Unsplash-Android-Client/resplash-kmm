@@ -12,7 +12,7 @@ fun UserLikesScreen(username: String, viewModel: ProfileViewModel = koinViewMode
     Screen {
         val photos = viewModel.userLikedPhotos.collectAsLazyPagingItems()
 
-        BuildHomeList(photos = photos, onNavigateClick = {})
+        BuildHomeList(photos = photos, onNavigateClick = {}, onViewPhoto = {})
 
         LaunchedEffect(key1 = username, block = {
             viewModel.getUserLikedPhotos(username)

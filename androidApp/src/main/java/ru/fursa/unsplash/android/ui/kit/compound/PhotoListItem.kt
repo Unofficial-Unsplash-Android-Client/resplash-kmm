@@ -1,5 +1,6 @@
 package ru.fursa.unsplash.android.ui.kit.compound
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -16,9 +17,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import kotlin.math.min
 import ru.fursa.unsplash.android.base.screen.toPx
 import ru.fursa.unsplash.android.ui.kit.text.UserHeaderItem
+import kotlin.math.min
 
 @Composable
 fun PhotoListItem(
@@ -28,7 +29,8 @@ fun PhotoListItem(
     username: String,
     fullName: String,
     avatarUrl: String,
-    onUserClick: (String) -> Unit
+    onUserClick: (String) -> Unit,
+    onViewPhoto: (String) -> Unit,
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         val context = LocalContext.current
@@ -60,6 +62,7 @@ fun PhotoListItem(
                 .width(resultWidth.dp)
                 .height(resultHeight.dp)
                 .clip(RoundedCornerShape(6.dp))
+                .clickable { onViewPhoto(url) }
         )
     }
 }
