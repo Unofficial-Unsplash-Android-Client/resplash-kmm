@@ -19,7 +19,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             User ${{ github.actor }} 
-            made ${{ github.event_name }} 
+            made ${{ github.event_name }} on ${{ github.ref }}
             ${{ github.sha }} ${{ github.event.commits[0].message }}
 
   KTLintCheck:
