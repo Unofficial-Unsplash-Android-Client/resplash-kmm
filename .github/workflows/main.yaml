@@ -1,0 +1,21 @@
+name: resplash kmm ci
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - 'feature/**'
+      - 'fix/**'
+
+jobs:
+  KTLint:
+    - name: Check codestyle
+      uses: ./.github/workflows/ktlint.yaml
+
+  buildDebugApk:
+    needs: [ KTLint ]
+    steps:
+      - name: Build Debug Apk
+        uses: ./.github/workflows/build_debug_apk.yaml
+
