@@ -10,12 +10,14 @@ on:
 
 jobs:
   KTLint:
+    runs-on: ubuntu-latest
     steps:
       - name: Check codestyle
         uses: ./.github/workflows/ktlint.yaml
 
   buildDebugApk:
     needs: [ KTLint ]
+    runs-on: ubuntu-latest
     steps:
       - name: Build Debug Apk
         uses: ./.github/workflows/build_debug_apk.yaml

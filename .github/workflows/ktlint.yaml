@@ -1,7 +1,6 @@
 name: ktlint
 
 ktlintCheck:
-  runs-on: ubuntu-latest
   steps:
     - name: KtLint check code format
       uses: actions/checkout@v3
