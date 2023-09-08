@@ -23,7 +23,7 @@ jobs:
         run: ./gradlew ktlintCheck
 
   BuildDebugApk:
-    needs: [ KTLint ]
+    needs: [ KTLintCheck ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
