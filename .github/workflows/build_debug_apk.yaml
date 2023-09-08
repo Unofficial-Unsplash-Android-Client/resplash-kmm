@@ -10,17 +10,18 @@ on:
 
 jobs:
   assembleAndroidDebugApp:
-  steps:
-    - name: Checkout source code
-      uses: actions/checkout@v3
-    - name: Setup Node.js 16.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16.x'
-    - name: Build Android APK file
-      run: ./gradlew androidApp:assembleDebug
-    - name: Save APK file
-      uses: actions/upload-artifact@v2
-      with:
-        name: app-debug.apk
-        path: androidApp/build/outputs/apk/debug/
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - name: Build Android APK file
+        run: ./gradlew androidApp:assembleDebug
+      - name: Save APK file
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-debug.apk
+          path: androidApp/build/outputs/apk/debug/
+
