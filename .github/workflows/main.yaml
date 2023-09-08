@@ -11,9 +11,9 @@ on:
 jobs:
   KTLint:
     runs-on: ubuntu-latest
-    extends: ./ktlint.yaml
+    extends: ./.github/workflows/ktlint.yaml
 
   buildDebugApk:
     needs: [KTLint]
     runs-on: ubuntu-latest
-    extends: ./build_debug_apk.yaml
+    extends: ./.github/workflows/build_debug_apk.yaml
