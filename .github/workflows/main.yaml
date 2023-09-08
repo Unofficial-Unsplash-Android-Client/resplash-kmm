@@ -10,8 +10,9 @@ on:
 
 jobs:
   KTLint:
-    - name: Check codestyle
-      uses: ./.github/workflows/ktlint.yaml
+    steps:
+      - name: Check codestyle
+        uses: ./.github/workflows/ktlint.yaml
 
   buildDebugApk:
     needs: [ KTLint ]
