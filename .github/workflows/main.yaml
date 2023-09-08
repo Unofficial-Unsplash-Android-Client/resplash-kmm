@@ -9,19 +9,15 @@ on:
       - 'fix/**'
 
 jobs:
-  buildDebugApk:
-    runs-on: ubuntu-latest
-    needs: KTLint
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Build Debug Apk
-        uses: ./.github/workflows/build_debug_apk.yaml
-
   KTLint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
       - name: Check codestyle
-        uses: ./.github/workflows/ktlint.yaml
+        extends: ./ktlint.yaml
+
+  buildDebugApk:
+    needs: [KTLint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Debug Apk
+        extends: ./build_debug_apk.yaml
