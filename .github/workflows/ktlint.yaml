@@ -1,5 +1,13 @@
 name: ktlint
 
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - 'feature/**'
+      - 'fix/**'
+
 ktlintCheck:
   steps:
     - name: Set up JDK

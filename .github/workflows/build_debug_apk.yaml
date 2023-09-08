@@ -1,5 +1,13 @@
 name: build debug apk
 
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - 'feature/**'
+      - 'fix/**'
+
 assembleAndroidDebugApp:
   steps:
     - name: Checkout source code
