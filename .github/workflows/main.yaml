@@ -21,7 +21,7 @@ jobs:
             [+] User ${{ github.actor }} 
             --------------------------------------------------------
             Did ${{ github.event_name }} on ${{ github.ref }}
-            ${{ github.sha }} ${{ github.event.commits[0].message }}
+            [+] ${{ github.sha }} - ${{ github.event.commits[0].message }}
             --------------------------------------------------------
             [!] See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
