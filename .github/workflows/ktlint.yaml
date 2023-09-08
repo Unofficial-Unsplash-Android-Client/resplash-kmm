@@ -1,13 +1,5 @@
 name: ktlint
 
-on:
-  push:
-    branches:
-      - master
-      - develop
-      - 'feature/**'
-      - 'fix/**'
-
 jobs:
   ktlintCheck:
     runs-on: ubuntu-latest

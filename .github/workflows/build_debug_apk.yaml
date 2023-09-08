@@ -1,13 +1,5 @@
 name: build debug apk
 
-on:
-  push:
-    branches:
-      - master
-      - develop
-      - 'feature/**'
-      - 'fix/**'
-
 jobs:
   assembleAndroidDebugApp:
     runs-on: ubuntu-latest
