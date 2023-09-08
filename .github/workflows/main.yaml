@@ -9,6 +9,19 @@ on:
       - 'fix/**'
 
 jobs:
+  NotifyTelegramOnPush:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram Message
+        uses: appleboy/telegram-action@v0.2.0
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            ${{ github.event_name }} - ${{ github.sha }}
+          Author: ${{ github.actor }}
+
+
   KTLintCheck:
     runs-on: ubuntu-latest
     steps:
