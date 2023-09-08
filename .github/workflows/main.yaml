@@ -18,9 +18,12 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            User ${{ github.actor }} 
-            made ${{ github.event_name }} on ${{ github.ref }}
+            [+] User ${{ github.actor }} 
+            --------------------------------------------------------
+            Did ${{ github.event_name }} on ${{ github.ref }}
             ${{ github.sha }} ${{ github.event.commits[0].message }}
+            --------------------------------------------------------
+            [!] See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
   KTLintCheck:
     needs: [ NotifyTelegramOnPush ]
