@@ -9,7 +9,7 @@ on:
       - 'fix/**'
 
 jobs:
-  KTLint:
+  KTLint Check:
     runs-on: ubuntu-latest
     steps:
       - name: Check codestyle
@@ -22,7 +22,7 @@ jobs:
       - name: Run KtLint check
         run: ./gradlew ktlintCheck
 
-  BuildDebugApk:
+  Build Debug Apk:
     needs: [ KTLint ]
     runs-on: ubuntu-latest
     steps:
