@@ -66,3 +66,4 @@ jobs:
             message: |
               See latest apk build:
             document: androidApp/build/outputs/apk/debug/app-debug.apk
+
