@@ -10,7 +10,6 @@ on:
 
 jobs:
   NotifyTelegramOnPush:
-    needs: [ KTLintCheck ]
     runs-on: ubuntu-latest
     steps:
       - name: Send Telegram Message
@@ -24,6 +23,7 @@ jobs:
 
 
   KTLintCheck:
+    needs: [ NotifyTelegramOnPush ]
     runs-on: ubuntu-latest
     steps:
       - name: Check codestyle
