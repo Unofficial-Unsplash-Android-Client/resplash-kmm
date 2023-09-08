@@ -10,10 +10,11 @@ on:
 
 jobs:
   NotifyTelegramOnPush:
+    needs: [ KTLintCheck ]
     runs-on: ubuntu-latest
     steps:
       - name: Send Telegram Message
-        uses: appleboy/telegram-action@v0.2.0
+        uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
