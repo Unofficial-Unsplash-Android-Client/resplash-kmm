@@ -8,7 +8,8 @@ on:
       - 'feature/**'
       - 'fix/**'
 
-ktlintCheck:
+jobs:
+  ktlintCheck:
   steps:
     - name: Set up JDK
       uses: actions/setup-java@v3
