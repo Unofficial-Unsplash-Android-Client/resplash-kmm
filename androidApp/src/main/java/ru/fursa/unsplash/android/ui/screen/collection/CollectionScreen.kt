@@ -27,6 +27,7 @@ import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.ui.kit.compound.Description
 import ru.fursa.unsplash.android.ui.kit.compound.DialogWindow
 import ru.fursa.unsplash.android.ui.kit.list.BuildHomeList
+import ru.fursa.unsplash.routing.Routes
 
 @Composable
 fun CollectionScreen(
@@ -65,8 +66,10 @@ fun CollectionScreen(
                     Icon(
                         painter = painterResource(id = R.drawable.ic_world),
                         contentDescription = "",
-                        modifier = Modifier.padding(end = 16.dp).clickable {
-                        }
+                        modifier = Modifier
+                            .padding(end = 16.dp)
+                            .clickable {
+                            }
                     )
                 }
             }
@@ -77,6 +80,8 @@ fun CollectionScreen(
             )
 
             BuildHomeList(photos = viewState, onNavigateClick = {
+            }, onViewPhoto = { url ->
+                navController.navigate("${Routes.View.name}/$url")
             })
         }
     }) {

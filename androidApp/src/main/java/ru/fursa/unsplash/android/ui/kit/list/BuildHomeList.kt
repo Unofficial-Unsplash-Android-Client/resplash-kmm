@@ -10,6 +10,7 @@ import ru.fursa.unsplash.data.ui.models.PhotoModel
 fun BuildHomeList(
     photos: LazyPagingItems<PhotoModel>,
     onNavigateClick: (String) -> Unit,
+    onViewPhoto: (String) -> Unit,
 ) {
     LazyColumn {
         items(photos.itemCount) { index ->
@@ -21,6 +22,9 @@ fun BuildHomeList(
                 avatarUrl = item.profileImage,
                 onUserClick = { username ->
                     onNavigateClick.invoke(username)
+                },
+                onViewPhoto = { url ->
+                    onViewPhoto.invoke(url)
                 }
             )
         }

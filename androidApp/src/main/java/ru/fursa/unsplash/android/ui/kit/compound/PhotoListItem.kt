@@ -1,5 +1,6 @@
 package ru.fursa.unsplash.android.ui.kit.compound
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -28,7 +29,8 @@ fun PhotoListItem(
     username: String,
     fullName: String,
     avatarUrl: String,
-    onUserClick: (String) -> Unit
+    onUserClick: (String) -> Unit,
+    onViewPhoto: (String) -> Unit,
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         val context = LocalContext.current
@@ -60,6 +62,7 @@ fun PhotoListItem(
                 .width(resultWidth.dp)
                 .height(resultHeight.dp)
                 .clip(RoundedCornerShape(6.dp))
+                .clickable { onViewPhoto(url) }
         )
     }
 }

@@ -15,7 +15,7 @@ fun UserPhotosScreen(
     Screen {
         val photos = viewModel.userPhotos.collectAsLazyPagingItems()
 
-        BuildHomeList(photos = photos, onNavigateClick = {})
+        BuildHomeList(photos = photos, onNavigateClick = {}, onViewPhoto = {})
 
         LaunchedEffect(key1 = username) {
             viewModel.getUserPhotos(username)
