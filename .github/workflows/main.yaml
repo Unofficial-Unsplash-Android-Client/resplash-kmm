@@ -20,8 +20,7 @@ jobs:
           message: |
             User ${{ github.actor }} 
             made ${{ github.event_name }} 
-            - ${{ github.sha }}
-            ${{ github.event.commits[0].message }}
+            ${{ github.sha }} ${{ github.event.commits[0].message }}
 
   KTLintCheck:
     needs: [ NotifyTelegramOnPush ]
