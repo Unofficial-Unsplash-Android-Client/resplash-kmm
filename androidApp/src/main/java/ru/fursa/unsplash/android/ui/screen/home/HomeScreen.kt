@@ -4,9 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 import org.koin.androidx.compose.koinViewModel
+import ru.fursa.unsplash.android.base.encodeUrl
 import ru.fursa.unsplash.android.ui.kit.list.BuildHomeList
 import ru.fursa.unsplash.android.ui.screen.routing.NavGraph
 import ru.fursa.unsplash.data.ui.models.PhotoModel
@@ -27,8 +26,7 @@ fun HomeScreen(
             navController.navigate("${Routes.Profile.name}/$username")
         },
         onViewPhoto = { url ->
-            val encodedUrl = URLEncoder.encode(url, StandardCharsets.UTF_8.toString())
-            navController.navigate("${Routes.View.name}/$encodedUrl")
+            navController.navigate("${Routes.View.name}/${url.encodeUrl()}")
         }
     )
 }

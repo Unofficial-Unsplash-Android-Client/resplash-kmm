@@ -81,7 +81,7 @@ fun SearchScreen(
             }
             TabScreen(tabs = tabs, backgroundColor = Color.White) { pos ->
                 when (pos) {
-                    0 -> PhotosSearchScreen()
+                    0 -> PhotosSearchScreen(navController = navController)
                     1 -> CollectionSearchScreen(navController = navController)
                     2 -> UsersSearchScreen()
                 }
