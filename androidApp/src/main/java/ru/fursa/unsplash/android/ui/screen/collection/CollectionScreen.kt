@@ -24,6 +24,7 @@ import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.R
+import ru.fursa.unsplash.android.base.encodeUrl
 import ru.fursa.unsplash.android.ui.kit.compound.Description
 import ru.fursa.unsplash.android.ui.kit.compound.DialogWindow
 import ru.fursa.unsplash.android.ui.kit.list.BuildHomeList
@@ -79,10 +80,14 @@ fun CollectionScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            BuildHomeList(photos = viewState, onNavigateClick = {
-            }, onViewPhoto = { url ->
-                navController.navigate("${Routes.View.name}/$url")
-            })
+            BuildHomeList(
+                photos = viewState,
+                onNavigateClick = { username ->
+                    navController.navigate("${Routes.Profile.name}/$username")
+                }, onViewPhoto = { url ->
+                navController.navigate("${Routes.View.name}/${url.encodeUrl()}")
+            }
+            )
         }
     }) {
         navController.navigateUp()

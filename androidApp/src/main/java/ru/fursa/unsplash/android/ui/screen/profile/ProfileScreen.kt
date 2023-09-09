@@ -115,8 +115,8 @@ fun ProfileScreen(
 
             TabScreen(tabs = tabs, backgroundColor = Color.White) { pos ->
                 when (pos) {
-                    0 -> UserPhotosScreen(username = username)
-                    1 -> UserLikesScreen(username = username)
+                    0 -> UserPhotosScreen(username = username, navController = navController)
+                    1 -> UserLikesScreen(username = username, navController = navController)
                     2 -> UserCollectionsScreen(username = username)
                 }
             }

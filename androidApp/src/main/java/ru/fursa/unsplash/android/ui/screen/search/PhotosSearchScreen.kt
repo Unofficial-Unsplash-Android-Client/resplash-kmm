@@ -7,13 +7,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import org.koin.androidx.compose.koinViewModel
+import ru.fursa.unsplash.android.base.encodeUrl
 import ru.fursa.unsplash.android.ui.kit.compound.PhotoListItem
+import ru.fursa.unsplash.routing.Routes
 
 @Composable
 fun PhotosSearchScreen(
-    viewModel: SearchViewModel = koinViewModel()
+    viewModel: SearchViewModel = koinViewModel(),
+    navController: NavController
 ) {
 
     val searchResults = viewModel.photoResults.collectAsLazyPagingItems()
@@ -34,8 +38,12 @@ fun PhotosSearchScreen(
                     fullName = item.fullName,
                     width = item.width,
                     height = item.height,
-                    onUserClick = {},
-                    onViewPhoto = {},
+                    onUserClick = { username ->
+                        navController.navigate("${Routes.Profile.name}/$username")
+                    },
+                    onViewPhoto = { url ->
+                        navController.navigate("${Routes.View.name}/${url.encodeUrl()}")
+                    },
                 )
             }
         })
