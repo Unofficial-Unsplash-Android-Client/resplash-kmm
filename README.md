@@ -27,6 +27,8 @@ CI will run ktlint check and build apk file for current branch
 ## CI/CD
 - Ktlint
 - Build APK File
+- Send APK File to Telegram
+- Send user actions to Telegram
 - See Github updates on Telegram [Unsplash Notifier](https://t.me/unsplash_notifier)
 
  ### To format code before commit use: 
