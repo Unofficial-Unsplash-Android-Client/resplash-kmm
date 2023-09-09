@@ -44,21 +44,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    NotifyTelegramOnTopCommits:
-      needs: [ TopCommits ]
-      runs-on: ubuntu-latest
-
-      steps:
-        - name: Send Telegram Message
-          uses: appleboy/telegram-action@master
-          with:
-            to: ${{ secrets.TELEGRAM_CHAT_ID }}
-            token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-            message: |
-              Top 5 commits in branch ${{ needs.TopCommits.outputs.branch }}:
-              ${{ join(needs.TopCommits.outputs.top_commits, '\n') }}
-  
-
   NotifyTelegramOnTopCommits:
     needs: [ TopCommits ]
     runs-on: ubuntu-latest
@@ -71,7 +56,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
             Top 5 commits in branch ${{ needs.TopCommits.outputs.branch }}:
-            ${{ needs.TopCommits.outputs.top_commits }}
+            ${{ join(needs.TopCommits.outputs.top_commits, '\n') }}
 
   KTLintCheck:
     needs: [ NotifyTelegramOnPush, NotifyTelegramOnTopCommits ]
