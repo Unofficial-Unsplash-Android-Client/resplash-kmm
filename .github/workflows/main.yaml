@@ -25,6 +25,39 @@ jobs:
             --------------------------------------------------------
             [!] See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
+  TopCommits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Get the branch name
+        id: branch_name
+        run: echo "::set-output name=branch::$(git rev-parse --abbrev-ref HEAD)"
+
+      - name: Get the top 5 commits
+        id: top_commits
+        run: |
+          git fetch origin ${{ steps.branch_name.outputs.branch }}
+          git log --format="- %h %s (%an)" -n 5 ${{ steps.branch_name.outputs.branch }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  NotifyTelegramOnTopCommits:
+    needs: [ TopCommits ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Telegram Message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            Top 5 commits in branch ${{ needs.TopCommits.outputs.branch }}:
+            ${{ needs.TopCommits.outputs.top_commits }}
+
   KTLintCheck:
     needs: [ NotifyTelegramOnPush ]
     runs-on: ubuntu-latest
