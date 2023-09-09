@@ -1,0 +1,67 @@
+name: resplash kmm ci
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - 'feature/**'
+      - 'fix/**'
+
+jobs:
+  NotifyTelegramOnPush:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram Message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            [+] User ${{ github.actor }} 
+            --------------------------------------------------------
+            *Did* *${{ github.event_name }}* *on* ${{ github.ref }}
+            [+] ${{ github.sha }} - ${{ github.event.commits[0].message }}
+            --------------------------------------------------------
+            [!] See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+
+  KTLintCheck:
+    needs: [ NotifyTelegramOnPush ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check codestyle
+        uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: zulu
+      - name: Run KtLint check
+        run: ./gradlew ktlintCheck
+
+  SendAPKToTelegram:
+    needs: [ KTLintCheck ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - name: Build Android APK file
+        run: ./gradlew androidApp:assembleDebug
+      - name: Save APK file
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-debug.apk
+          path: androidApp/build/outputs/apk/debug
+      - name: Display Content of Working Directory
+        run: ls -R
+      - name: Send Telegram Message with File
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          document: androidApp/build/outputs/apk/debug/androidApp-debug.apk
+
