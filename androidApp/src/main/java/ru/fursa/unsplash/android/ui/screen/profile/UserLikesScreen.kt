@@ -24,8 +24,8 @@ fun UserLikesScreen(
             onNavigateClick = { username ->
                 navController.navigate("${Routes.Profile.name}/$username")
             }, onViewPhoto = { url ->
-                navController.navigate("${Routes.View.name}/${url.encodeUrl()}")
-            }
+            navController.navigate("${Routes.View.name}/${url.encodeUrl()}")
+        }
         )
 
         LaunchedEffect(key1 = username, block = {
