@@ -31,11 +31,11 @@ CI will run ktlint check and build apk file for current branch
 - Send user actions to Telegram
 - See Github updates on Telegram [Unsplash Notifier](https://t.me/unsplash_notifier)
 
- ### To format code before commit use: 
+ ##### To format code before commit use: 
 ```
  ./gradlew ktlintFormat
 ```
- ### To check formatting before commit use:
+ ##### To check formatting before commit use:
 
 ```
  ./gradlew ktlintCheck
