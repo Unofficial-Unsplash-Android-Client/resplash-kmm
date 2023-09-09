@@ -20,7 +20,7 @@ jobs:
           message: |
             [+] User ${{ github.actor }} 
             --------------------------------------------------------
-            Did ${{ github.event_name }} on ${{ github.ref }}
+            *Did* *${{ github.event_name }}* *on* ${{ github.ref }}
             [+] ${{ github.sha }} - ${{ github.event.commits[0].message }}
             --------------------------------------------------------
             [!] See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
@@ -55,7 +55,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: app-debug.apk
-          path: androidApp/build/outputs/apk
+          path: androidApp/build/outputs/apk/debug
       - name: Display Content of Working Directory
         run: ls -R
       - name: Send Telegram Message with File
@@ -63,7 +63,5 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          message: |
-            See latest apk build:
-          document: app-debug.apk
+          document: androidApp/build/outputs/apk/debug/androidApp-debug.apk
 
