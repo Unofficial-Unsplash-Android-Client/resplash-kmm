@@ -39,7 +39,7 @@ jobs:
       - name: Run KtLint check
         run: ./gradlew ktlintCheck
 
-  SendAPKToTelegram:
+  UploadAPKToTelegram:
     needs: [ KTLintCheck ]
     runs-on: ubuntu-latest
     steps:
