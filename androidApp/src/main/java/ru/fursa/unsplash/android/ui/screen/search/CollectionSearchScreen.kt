@@ -17,7 +17,7 @@ fun CollectionSearchScreen(
     Screen {
         BuildCollectionList(
             collections = collectionItems,
-            onCollectionClicked = { }
+            onCollectionClicked = { id, count -> }
         )
     }
 }
