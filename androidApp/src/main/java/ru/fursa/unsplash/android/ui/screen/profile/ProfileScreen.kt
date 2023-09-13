@@ -117,7 +117,7 @@ fun ProfileScreen(
                 when (pos) {
                     0 -> UserPhotosScreen(username = username, navController = navController)
                     1 -> UserLikesScreen(username = username, navController = navController)
-                    2 -> UserCollectionsScreen(username = username)
+                    2 -> UserCollectionsScreen(username = username, navController = navController)
                 }
             }
         }
