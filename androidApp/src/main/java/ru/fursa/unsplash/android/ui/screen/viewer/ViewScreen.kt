@@ -34,7 +34,6 @@ fun ViewScreen(
 
     LaunchedEffect(key1 = url, block = {
         viewModel.sideEffect.collectLatest { sideEffect ->
-
         }
     })
 
@@ -49,14 +48,15 @@ fun ViewScreen(
                             onStart = {
                                 viewModel.obtainEvent(ViewerViewModel.ViewerEvent.Loading)
                             }, onSuccess = { _, _ ->
-                                viewModel.obtainEvent(ViewerViewModel.ViewerEvent.OnSuccess)
-                            }, onError = { _, err ->
-                                viewModel.obtainEvent(
-                                    ViewerViewModel.ViewerEvent.OnError(
-                                        err.throwable.message.toString()
-                                    )
+                            viewModel.obtainEvent(ViewerViewModel.ViewerEvent.OnSuccess)
+                        }, onError = { _, err ->
+                            viewModel.obtainEvent(
+                                ViewerViewModel.ViewerEvent.OnError(
+                                    err.throwable.message.toString()
                                 )
-                            })
+                            )
+                        }
+                        )
                         .build(),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,

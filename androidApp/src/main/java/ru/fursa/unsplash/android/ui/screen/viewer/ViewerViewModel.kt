@@ -34,7 +34,6 @@ class ViewerViewModel(
     private fun setWallpaper(url: String) {
         viewModelScope.launch {
             imageDownloader.setWallpaper(url)
-
         }
     }
 
@@ -53,8 +52,8 @@ class ViewerViewModel(
         open class SideEffect : ViewerEvent() {
             object OnSuccessSetWallpaper : SideEffect()
             object OnErrorLoading : SideEffect()
-            object OnStartLoading: SideEffect()
-            object OnFinishLoading: SideEffect()
+            object OnStartLoading : SideEffect()
+            object OnFinishLoading : SideEffect()
         }
     }
 }
