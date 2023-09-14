@@ -9,7 +9,7 @@ import ru.fursa.unsplash.data.ui.models.CollectionModel
 @Composable
 fun BuildCollectionList(
     collections: LazyPagingItems<CollectionModel>,
-    onCollectionClicked: (String) -> Unit
+    onCollectionClicked: (String, Int) -> Unit
 ) {
     LazyColumn {
         items(count = collections.itemCount) { index ->
@@ -19,7 +19,7 @@ fun BuildCollectionList(
                 item.title,
                 item.totalPhotos,
                 onNavigateClick = {
-                    onCollectionClicked(item.collectionId)
+                    onCollectionClicked(item.collectionId, item.totalPhotos)
                 }
             )
         }

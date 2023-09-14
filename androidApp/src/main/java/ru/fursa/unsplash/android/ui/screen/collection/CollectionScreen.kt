@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -35,6 +36,8 @@ fun CollectionScreen(
     viewModel: CollectionPhotosViewModel = koinViewModel(),
     navController: NavController,
     id: String,
+    authorName: String,
+    photoCount: Int,
 ) {
     val viewState = viewModel.collectionState.collectAsLazyPagingItems()
 
@@ -75,8 +78,8 @@ fun CollectionScreen(
                 }
             }
             Description(
-                count = "64 photos",
-                author = "Kelly Lewis",
+                count = pluralStringResource(id = R.plurals.photos, photoCount, photoCount),
+                author = authorName,
                 modifier = Modifier.fillMaxWidth()
             )
 

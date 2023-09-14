@@ -29,7 +29,7 @@ fun NavGraph(navController: NavHostController) {
         }
 
         composable(Routes.Collections.name) {
-            CollectionPhotoScreen()
+            CollectionPhotoScreen(username = "")
         }
 
         composable(
@@ -77,16 +77,24 @@ fun NavGraph(navController: NavHostController) {
         }
 
         composable(
-            route = "${Routes.Collection.name}/{id}",
+            route = "${Routes.Collection.name}/{id}/{author_name}/{photo_count}",
             arguments = listOf(
                 navArgument("id") {
                     type = NavType.StringType
+                },
+                navArgument("author_name") {
+                    type = NavType.StringType
+                },
+                navArgument("photo_count") {
+                    type = NavType.IntType
                 }
             )
         ) { navBackStackEntry ->
             CollectionScreen(
                 navController = navController,
-                id = navBackStackEntry.arguments?.getString("id") ?: return@composable
+                id = navBackStackEntry.arguments?.getString("id").orEmpty(),
+                authorName = navBackStackEntry.arguments?.getString("author_name").orEmpty(),
+                photoCount = navBackStackEntry.arguments?.getInt("photo_count") ?: 0
             )
         }
 

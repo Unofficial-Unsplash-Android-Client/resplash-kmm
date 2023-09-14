@@ -37,9 +37,9 @@
     <string name="user_tab_collection">Collections</string>
 
     <plurals name="photos">
-        <item quantity="one">%1$d фотография</item>
-        <item quantity="many">%1$d фотографий</item>
-        <item quantity="other">%1$d фотографий</item>
+        <item quantity="one">%1$d photo</item>
+        <item quantity="many">%1$d photos</item>
+        <item quantity="other">%1$d photos</item>
     </plurals>
 
 
