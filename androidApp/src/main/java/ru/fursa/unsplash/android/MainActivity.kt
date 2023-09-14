@@ -84,7 +84,7 @@ fun InitialScreen(navController: NavController) {
         TabScreen(tabs, Color.White) { pageIndex ->
             when (pageIndex) {
                 0 -> HomeScreen()
-                1 -> CollectionPhotoScreen()
+                1 -> CollectionPhotoScreen(username = "")
             }
         }
     }

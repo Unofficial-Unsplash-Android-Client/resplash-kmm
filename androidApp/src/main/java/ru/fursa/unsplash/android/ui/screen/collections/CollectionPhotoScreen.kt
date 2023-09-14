@@ -16,6 +16,7 @@ import ru.fursa.unsplash.routing.Routes
 @Composable
 fun CollectionPhotoScreen(
     viewModel: CollectionViewModel = koinViewModel(),
+    username: String,
 ) {
     val navController = rememberNavController()
     val collections = viewModel.collectionPager.collectAsLazyPagingItems()
@@ -29,8 +30,8 @@ fun CollectionPhotoScreen(
 
         BuildCollectionList(
             collections = collections,
-            onCollectionClicked = { id ->
-                navController.navigate("${Routes.Collection.name}/$id")
+            onCollectionClicked = { id, count ->
+                navController.navigate("${Routes.Collection.name}/$id/$username/$count")
             }
         )
         NavGraph(navController = navController)
