@@ -1,5 +1,6 @@
 package ru.fursa.unsplash.android.di
 
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.fursa.unsplash.android.ui.screen.collection.CollectionPhotosViewModel
@@ -7,6 +8,7 @@ import ru.fursa.unsplash.android.ui.screen.collections.CollectionViewModel
 import ru.fursa.unsplash.android.ui.screen.home.HomeViewModel
 import ru.fursa.unsplash.android.ui.screen.profile.ProfileViewModel
 import ru.fursa.unsplash.android.ui.screen.search.SearchViewModel
+import ru.fursa.unsplash.android.ui.screen.viewer.ViewerViewModel
 
 val viewModelsModule = module {
     viewModel { CollectionViewModel(get(), get()) }
@@ -14,4 +16,5 @@ val viewModelsModule = module {
     viewModel { SearchViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
     viewModel { CollectionPhotosViewModel(get()) }
+    viewModel { ViewerViewModel(androidContext()) }
 }
