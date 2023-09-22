@@ -30,8 +30,8 @@ fun CollectionPhotoScreen(
 
         BuildCollectionList(
             collections = collections,
-            onCollectionClicked = { id, count ->
-                navController.navigate("${Routes.Collection.name}/$id/$username/$count")
+            onCollectionClicked = { id, authorName, count ->
+                navController.navigate("${Routes.Collection.name}/$id/$authorName/$count")
             }
         )
         NavGraph(navController = navController)
