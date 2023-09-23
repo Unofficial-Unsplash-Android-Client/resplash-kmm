@@ -1,6 +1,7 @@
 package ru.fursa.unsplash.android.ui.screen.viewer
 
-import android.content.Context
+import android.app.WallpaperManager
+import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import coil.ImageLoader
@@ -10,7 +11,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class ViewerViewModel(private val context: Context) : ViewModel() {
+class ViewerViewModel(
+    private val imageRequest: ImageRequest.Builder,
+    private val wallpaperManager: WallpaperManager,
+) : ViewModel() {
     sealed class ImageLoadState {
         object Idle : ImageLoadState()
         object Loading : ImageLoadState()
@@ -24,8 +28,7 @@ class ViewerViewModel(private val context: Context) : ViewModel() {
 
     fun loadImage(url: String, loader: ImageLoader) {
         viewModelScope.launch {
-
-            val request = ImageRequest.Builder(context = context)
+            val request = imageRequest
                 .data(url)
                 .listener(
                     onStart = {
@@ -41,6 +44,14 @@ class ViewerViewModel(private val context: Context) : ViewModel() {
                 )
                 .build()
             loader.execute(request)
+        }
+    }
+
+    fun setupWallpaper(url: String, loader: ImageLoader) {
+        viewModelScope.launch {
+            val request = imageRequest.data(url).build()
+            val bitmap = loader.execute(request).drawable?.toBitmap()
+            wallpaperManager.setBitmap(bitmap)
         }
     }
 }
