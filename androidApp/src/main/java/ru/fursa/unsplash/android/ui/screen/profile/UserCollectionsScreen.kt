@@ -18,7 +18,7 @@ fun UserCollectionsScreen(
     Screen {
         val collections = viewModel.userCollections.collectAsLazyPagingItems()
 
-        BuildCollectionList(collections = collections, onCollectionClicked = { id, count ->
+        BuildCollectionList(collections = collections, onCollectionClicked = { id, author, count ->
             navController.navigate("${Routes.Collection.name}/$id/$username/$count")
         })
 
