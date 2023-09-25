@@ -115,7 +115,6 @@ fun ProfileScreen(
                 location = currentUser.value.location,
                 bio = currentUser.value.bio
             )
-
             TabScreen(tabs = tabs, backgroundColor = Color.White) { pos ->
                 when (pos) {
                     0 -> UserPhotosScreen(username = username, navController = navController)
