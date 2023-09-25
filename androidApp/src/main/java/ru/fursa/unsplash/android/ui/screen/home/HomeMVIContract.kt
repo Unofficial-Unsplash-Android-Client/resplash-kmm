@@ -20,6 +20,7 @@ class HomeMVIContract {
     data class State(
         val isLoading: Boolean = false,
         val isError: Boolean = false,
+        val errorMessage: String = "",
         val isSuccess: Boolean = false,
         val data: PagingData<PhotoModel>
     ) : UiState
