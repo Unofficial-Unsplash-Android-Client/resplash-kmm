@@ -1,5 +1,6 @@
 package ru.fursa.unsplash.android.ui.screen.viewer
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -48,7 +49,7 @@ fun ViewScreen(
     DialogWindow(
         content = {
             Box(modifier = Modifier.fillMaxSize()) {
-                when (viewState.value) {
+                when (val state = viewState.value) {
                     ViewerViewModel.ImageLoadState.Loading -> {
                         DialogWindow(content = {
                             Box(
@@ -69,20 +70,15 @@ fun ViewScreen(
                     }
 
                     is ViewerViewModel.ImageLoadState.ErrorLoading -> {
-                        val message =
-                            (viewState.value as? ViewerViewModel.ImageLoadState.ErrorLoading)
-                                ?.message.orEmpty()
+                        val message = state.message
                         ErrorScreen(message)
                     }
 
                     is ViewerViewModel.ImageLoadState.Success -> {
                         AsyncImage(
                             model = ImageRequest.Builder(context)
-                                .data(
-                                    (viewState.value as ViewerViewModel.ImageLoadState.Success)
-                                        .result.drawable
-                                )
-                                .crossfade(durationMillis = 1000)
+                                .data(state.result.drawable)
+                                .crossfade(enable = false)
                                 .build(),
                             contentDescription = null,
                             contentScale = ContentScale.Crop,
@@ -95,23 +91,25 @@ fun ViewScreen(
                     else -> Unit
                 }
 
-                ExtendedFloatingActionButton(
-                    modifier = Modifier
-                        .align(Alignment.BottomEnd)
-                        .padding(bottom = 20.dp, start = 16.dp),
-                    backgroundColor = Color.White,
-                    icon = {
-                        Icon(
-                            imageVector = Icons.Rounded.Done,
-                            contentDescription = "",
-                            tint = Color.DarkGray
-                        )
-                    },
-                    text = { Text(text = stringResource(id = R.string.set_wallpaper)) },
-                    onClick = {
-                        viewModel.setupWallpaper(url, loader)
-                    }
-                )
+                AnimatedVisibility(visible = true) {
+                    ExtendedFloatingActionButton(
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(bottom = 20.dp, start = 16.dp),
+                        backgroundColor = Color.White,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Rounded.Done,
+                                contentDescription = "",
+                                tint = Color.DarkGray
+                            )
+                        },
+                        text = { Text(text = stringResource(id = R.string.set_wallpaper)) },
+                        onClick = {
+                            viewModel.setupWallpaper(url, loader)
+                        }
+                    )
+                }
             }
         },
         onDismiss = {
