@@ -13,7 +13,7 @@ class HomeMVIContract {
         object Loading : Event()
         data class Error(val message: String) : Event()
         data class Loaded(val data: Flow<PagingData<PhotoModel>>) : Event()
-        data class OnViewPhoto(val url: String) : Event()
+        data class OnViewPhotoClick(val url: String) : Event()
         data class OnUserClick(val username: String) : Event()
     }
 
