@@ -35,6 +35,7 @@
     <string name="user_tab_photo">Photo</string>
     <string name="user_tab_likes">Likes</string>
     <string name="user_tab_collection">Collections</string>
+    <string name="set_wallpaper_message">New wallpaper set successfuly</string>
 
     <plurals name="photos">
         <item quantity="one">%1$d photo</item>

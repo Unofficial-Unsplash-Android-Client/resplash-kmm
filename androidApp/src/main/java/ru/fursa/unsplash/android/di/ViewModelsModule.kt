@@ -15,5 +15,5 @@ val viewModelsModule = module {
     viewModel { SearchViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
     viewModel { CollectionPhotosViewModel(get()) }
-    viewModel { ViewerViewModel(get(), get()) }
+    viewModel { ViewerViewModel(get(), get(), get()) }
 }

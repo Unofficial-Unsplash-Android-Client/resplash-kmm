@@ -1,11 +1,10 @@
 package ru.fursa.unsplash.android.ui.screen.viewer
 
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.Icon
@@ -23,8 +22,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.ImageLoader
 import coil.compose.AsyncImage
-import coil.compose.LocalImageLoader
 import coil.request.ImageRequest
 import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.R
@@ -38,19 +37,50 @@ fun ViewScreen(
     navController: NavController,
     viewModel: ViewerViewModel = koinViewModel()
 ) {
-    val loader = LocalImageLoader.current
     val context = LocalContext.current
-    val viewState = viewModel.viewState.collectAsState()
+    val viewState = viewModel.uiState.collectAsState()
 
     LaunchedEffect(key1 = url, block = {
-        viewModel.loadImage(url, loader)
+        val request = ImageRequest.Builder(context)
+            .data(url)
+            .listener(
+                onStart = {
+                    viewModel.handleEvent(ViewerMVIContract.Event.Loading)
+                },
+                onSuccess = { _, result ->
+                    viewModel.handleEvent(ViewerMVIContract.Event.Success(result))
+                },
+                onError = { _, error ->
+                    val message = error.throwable.message.orEmpty()
+                    viewModel.handleEvent(ViewerMVIContract.Event.Error(message))
+                }
+            )
+            .build()
+        val loader = ImageLoader(context)
+        loader.execute(request)
+
+        viewModel.effect.collect { effect ->
+            when (effect) {
+                is ViewerMVIContract.Effect.ShowToastMessage -> {
+                    Toast.makeText(context, effect.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     })
 
     DialogWindow(
         content = {
-            Box(modifier = Modifier.fillMaxSize()) {
-                when (val state = viewState.value) {
-                    ViewerViewModel.ImageLoadState.Loading -> {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.White)
+            ) {
+                when {
+                    viewState.value.isError -> {
+                        ErrorScreen(message = viewState.value.errorMessage)
+                    }
+
+                    viewState.value.isLoading -> {
                         DialogWindow(content = {
                             Box(
                                 modifier = Modifier
@@ -69,33 +99,27 @@ fun ViewScreen(
                         }
                     }
 
-                    is ViewerViewModel.ImageLoadState.ErrorLoading -> {
-                        val message = state.message
-                        ErrorScreen(message)
-                    }
-
-                    is ViewerViewModel.ImageLoadState.Success -> {
+                    viewState.value.isSuccess -> {
                         AsyncImage(
                             model = ImageRequest.Builder(context)
-                                .data(state.result.drawable)
+                                .data(viewState.value.pictureDrawable)
                                 .crossfade(enable = false)
                                 .build(),
                             contentDescription = null,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .fillMaxHeight()
+                                .fillMaxSize()
                         )
                     }
-
-                    else -> Unit
                 }
 
-                AnimatedVisibility(visible = true) {
+                AnimatedVisibility(
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(bottom = 20.dp, start = 16.dp),
+                    visible = viewState.value.isSetWallpaperButtonVisible
+                ) {
                     ExtendedFloatingActionButton(
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .padding(bottom = 20.dp, start = 16.dp),
                         backgroundColor = Color.White,
                         icon = {
                             Icon(
@@ -106,7 +130,7 @@ fun ViewScreen(
                         },
                         text = { Text(text = stringResource(id = R.string.set_wallpaper)) },
                         onClick = {
-                            viewModel.setupWallpaper(url, loader)
+                            viewModel.handleEvent(ViewerMVIContract.Event.OnClickSetWallpaper(url))
                         }
                     )
                 }

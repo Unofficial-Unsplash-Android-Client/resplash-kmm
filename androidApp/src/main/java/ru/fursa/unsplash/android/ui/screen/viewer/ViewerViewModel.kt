@@ -2,55 +2,85 @@ package ru.fursa.unsplash.android.ui.screen.viewer
 
 import android.app.WallpaperManager
 import androidx.core.graphics.drawable.toBitmap
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import coil.ImageLoader
 import coil.request.ImageRequest
-import coil.request.SuccessResult
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.fursa.unsplash.android.R
+import ru.fursa.unsplash.android.base.mvi.MVIBaseViewModel
 
 class ViewerViewModel(
     private val imageRequest: ImageRequest.Builder,
+    private val loader: ImageLoader.Builder,
     private val wallpaperManager: WallpaperManager,
-) : ViewModel() {
-    sealed class ImageLoadState {
-        object Idle : ImageLoadState()
-        object Loading : ImageLoadState()
-
-        data class ErrorLoading(val message: String) : ImageLoadState()
-        data class Success(val result: SuccessResult) : ImageLoadState()
+) : MVIBaseViewModel<ViewerMVIContract.Event, ViewerMVIContract.State, ViewerMVIContract.Effect>() {
+    override fun createInitialState(): ViewerMVIContract.State {
+        return ViewerMVIContract.State(
+            isSetWallpaperButtonVisible = false,
+            isError = false,
+            isLoading = true,
+            errorMessage = "",
+            pictureDrawable = null,
+            isSetWallpaperClicked = false,
+        )
     }
 
-    private val _viewState = MutableStateFlow<ImageLoadState>(ImageLoadState.Idle)
-    val viewState = _viewState.asStateFlow()
-
-    fun loadImage(url: String, loader: ImageLoader) {
-        viewModelScope.launch {
-            val request = imageRequest
-                .data(url)
-                .listener(
-                    onStart = {
-                        _viewState.value = ImageLoadState.Loading
-                    },
-                    onSuccess = { _, res ->
-                        _viewState.value = ImageLoadState.Success(res)
-                    }, onError = { _, res ->
-                    _viewState.value = ImageLoadState.ErrorLoading(
-                        res.throwable.message.toString()
+    override fun handleEvent(event: ViewerMVIContract.Event) {
+        when (event) {
+            ViewerMVIContract.Event.Loading -> {
+                setState {
+                    copy(
+                        isSetWallpaperButtonVisible = false,
+                        isLoading = true,
+                        errorMessage = "",
+                        isError = false,
                     )
                 }
-                )
-                .build()
-            loader.execute(request)
+            }
+
+            is ViewerMVIContract.Event.Success -> {
+                setState {
+                    copy(
+                        isSetWallpaperButtonVisible = true,
+                        isLoading = false,
+                        errorMessage = "",
+                        isError = false,
+                        isSuccess = true,
+                        pictureDrawable = event.data.drawable
+                    )
+                }
+            }
+
+            is ViewerMVIContract.Event.Error -> {
+                setState {
+                    copy(
+                        isSetWallpaperButtonVisible = false,
+                        isLoading = false,
+                        errorMessage = event.message,
+                        isError = true,
+                    )
+                }
+            }
+
+            is ViewerMVIContract.Event.OnClickSetWallpaper -> {
+                setState {
+                    copy(isSetWallpaperClicked = true, wallpaperUrl = event.url)
+                }
+                setupWallpaper(event.url)
+                setEffect {
+                    ViewerMVIContract.Effect.ShowToastMessage(R.string.set_wallpaper_message)
+                }
+            }
+
+            else -> Unit
         }
     }
 
-    fun setupWallpaper(url: String, loader: ImageLoader) {
-        viewModelScope.launch {
+    private fun setupWallpaper(url: String) {
+        viewModelScope.launch(Dispatchers.Default) {
             val request = imageRequest.data(url).build()
-            val bitmap = loader.execute(request).drawable?.toBitmap()
+            val bitmap = loader.build().execute(request).drawable?.toBitmap()
             wallpaperManager.setBitmap(bitmap)
         }
     }
