@@ -56,8 +56,8 @@ fun ProfileScreen(
     Dialog(properties = DialogProperties(usePlatformDefaultWidth = false), onDismissRequest = { }) {
 
         Screen(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.Start
         ) {
             TopAppBar(
                 modifier = Modifier.wrapContentSize(),
