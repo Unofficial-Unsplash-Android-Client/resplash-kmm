@@ -17,7 +17,7 @@
     <string name="dont_have_account">Don\'t have an account yet?</string>
     <string name="join">Join</string>
     <string name="search_hint">Search ...</string>
-    <string name="set_wallpaper">Установить заставкой</string>
+    <string name="set_wallpaper">Set wallpaper</string>
     <string name="resolution">Разрешение</string>
     <string name="apertura">Апертура</string>
     <string name="iso">ISO</string>
@@ -35,6 +35,7 @@
     <string name="user_tab_photo">Photo</string>
     <string name="user_tab_likes">Likes</string>
     <string name="user_tab_collection">Collections</string>
+    <string name="set_wallpaper_message">New wallpaper set successfuly</string>
 
     <plurals name="photos">
         <item quantity="one">%1$d photo</item>

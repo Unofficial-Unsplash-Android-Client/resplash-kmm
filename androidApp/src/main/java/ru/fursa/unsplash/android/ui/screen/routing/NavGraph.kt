@@ -57,7 +57,7 @@ fun NavGraph(navController: NavHostController) {
         }
 
         composable(route = Routes.Error.name) {
-            ErrorScreen()
+            ErrorScreen(message = "")
         }
 
         composable(route = Routes.Authorization.name) {

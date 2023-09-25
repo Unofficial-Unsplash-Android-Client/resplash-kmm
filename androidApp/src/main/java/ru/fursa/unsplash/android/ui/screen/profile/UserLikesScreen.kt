@@ -1,7 +1,9 @@
 package ru.fursa.unsplash.android.ui.screen.profile
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import org.koin.androidx.compose.koinViewModel
@@ -16,7 +18,10 @@ fun UserLikesScreen(
     viewModel: ProfileViewModel = koinViewModel(),
     navController: NavController
 ) {
-    Screen {
+    Screen(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         val photos = viewModel.userLikedPhotos.collectAsLazyPagingItems()
 
         BuildHomeList(

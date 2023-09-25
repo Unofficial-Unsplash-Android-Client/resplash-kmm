@@ -7,6 +7,7 @@ import ru.fursa.unsplash.android.ui.screen.collections.CollectionViewModel
 import ru.fursa.unsplash.android.ui.screen.home.HomeViewModel
 import ru.fursa.unsplash.android.ui.screen.profile.ProfileViewModel
 import ru.fursa.unsplash.android.ui.screen.search.SearchViewModel
+import ru.fursa.unsplash.android.ui.screen.viewer.ViewerViewModel
 
 val viewModelsModule = module {
     viewModel { CollectionViewModel(get(), get()) }
@@ -14,4 +15,5 @@ val viewModelsModule = module {
     viewModel { SearchViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
     viewModel { CollectionPhotosViewModel(get()) }
+    viewModel { ViewerViewModel(get(), get(), get()) }
 }
