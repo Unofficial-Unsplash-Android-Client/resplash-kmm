@@ -76,4 +76,6 @@ dependencies {
     implementation("androidx.paging:paging-runtime:3.2.0")
 
     implementation("com.google.code.gson:gson:2.10.1")
+
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.12")
 }
