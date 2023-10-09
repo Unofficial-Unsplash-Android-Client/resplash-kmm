@@ -1,6 +1,7 @@
 package ru.fursa.unsplash.android.ui.kit.list
 
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import ru.fursa.unsplash.android.ui.kit.compound.PhotoListItem
 import ru.fursa.unsplash.data.ui.models.PhotoModel
@@ -12,7 +13,11 @@ fun HomeList(
     onViewPhoto: (String) -> Unit,
     onLoadNextItems: (Boolean) -> Unit
 ) {
-    LazyColumn {
+    val scrollState = rememberLazyListState()
+
+    LazyColumn(
+        state = scrollState
+    ) {
         items(photos.count()) { index ->
             val item = photos[index]
             PhotoListItem(

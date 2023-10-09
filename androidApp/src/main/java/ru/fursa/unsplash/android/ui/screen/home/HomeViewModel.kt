@@ -22,7 +22,7 @@ class HomeViewModel(
         if (page == 1) setState { copy(loading = true) }
 
         viewModelScope.launch {
-            setState { copy(loading = true) }
+            setState { copy(refresh = true) }
 
             try {
                 Log.d("HomeViewModel", "Load page index $page")
