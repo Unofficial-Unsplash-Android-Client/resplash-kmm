@@ -15,10 +15,11 @@ import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.ui.kit.compound.Screen
 
 @Composable
-fun ErrorScreen(message: String) {
+fun ErrorScreen(modifier: Modifier = Modifier, message: String) {
     Screen(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier
     ) {
         Text(text = message, textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.size(40.dp))

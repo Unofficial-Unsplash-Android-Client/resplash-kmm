@@ -17,9 +17,10 @@ class HomeMVIContract {
         val loading: Boolean = false,
         val success: Boolean = false,
         val error: Boolean = false,
+        val refresh: Boolean = false,
         val message: String = "",
         val data: List<PhotoModel> = emptyList()
-    ): UiState
+    ) : UiState
 
     sealed class Effect : UiEffect {
         data class ShowToastMessage(@StringRes val message: Int) : Effect()

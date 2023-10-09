@@ -1,7 +1,10 @@
 package ru.fursa.unsplash.android.ui.screen.home
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
@@ -18,22 +21,27 @@ fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel()
 ) {
     val navController = rememberNavController()
-    val uiState = viewModel.uiState
+    val uiState = viewModel.uiState.collectAsState()
 
     LaunchedEffect(key1 = Unit, block = {
         viewModel.loadItems()
     })
 
     when {
-        uiState.loading -> DotsPreloader(
+        uiState.value.loading -> DotsPreloader(
             circleColor = Color.LightGray,
             circleSize = 12.dp,
             spaceBetween = 15.dp
         )
-        uiState.errorMessage != null -> ErrorScreen(message = "Oops something went wrong!!!")
-        uiState.items.isNotEmpty() -> {
+
+        uiState.value.error -> ErrorScreen(
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp),
+            message = uiState.value.message
+        )
+
+        uiState.value.success -> {
             HomeList(
-                photos = uiState.items,
+                photos = uiState.value.data,
                 onNavigateClick = { username ->
                     navController.navigate("${Routes.Profile.name}/$username")
                 },
