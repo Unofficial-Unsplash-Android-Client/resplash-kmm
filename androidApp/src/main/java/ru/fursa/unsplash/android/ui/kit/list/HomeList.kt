@@ -10,10 +10,11 @@ fun HomeList(
     photos: List<PhotoModel>,
     onNavigateClick: (String) -> Unit,
     onViewPhoto: (String) -> Unit,
+    onLoadNextItems: (Boolean) -> Unit
 ) {
     LazyColumn {
         items(photos.count()) { index ->
-            val item = photos[index] ?: return@items
+            val item = photos[index]
             PhotoListItem(
                 url = item.photoUrl,
                 username = item.username,
@@ -26,6 +27,10 @@ fun HomeList(
                     onViewPhoto.invoke(url)
                 }
             )
+
+            if (index >= photos.size - 1) {
+                onLoadNextItems(false)
+            }
         }
     }
 }

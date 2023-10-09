@@ -9,7 +9,7 @@ class PhotoDataSource(
     private val dispatcher: CoroutineDispatcher
 ) {
 
-    suspend fun getPhotos(pageIndex: Int = 1) = withContext(dispatcher) {
+    suspend fun getPhotos(pageIndex: Int) = withContext(dispatcher) {
         apiService.getPhotos(pageIndex = pageIndex)
     }
 }

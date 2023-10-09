@@ -41,7 +41,6 @@ class UnsplashPagingRepository(
     override suspend fun getPhotos(pageIndex: Int): List<PhotoModel> =
         photoDataSource.getPhotos(pageIndex = pageIndex).map { it.toUiPhoto() }
 
-
     override fun searchPhotos(query: String): Flow<PagingData<PhotoModel>> =
         infinitePager { index ->
             apiService.searchPhotos(query = query, pageIndex = index).results.toUiPhotos()
