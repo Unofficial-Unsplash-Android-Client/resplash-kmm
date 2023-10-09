@@ -9,7 +9,8 @@ val repositoryModule = module {
         UnsplashPagingRepository(
             apiService = get(),
             ioDispatcher = get(),
-            resourceProvider = get()
+            resourceProvider = get(),
+            photoDataSource = get()
         )
     }
 }
