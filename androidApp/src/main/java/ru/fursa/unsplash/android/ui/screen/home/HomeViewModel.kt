@@ -16,17 +16,29 @@ class HomeViewModel(
 
     override fun handleEvent(event: HomeMVIContract.Event) = Unit
 
-    fun loadItems() {
+    fun loadItems(forceReload: Boolean = false) {
+        if (forceReload) {
+            page = 1
+            setState { copy(refresh = true) }
+        }
         setState { copy(loading = true) }
         viewModelScope.launch {
             try {
                 val resultItems = repository.getPhotos(pageIndex = page)
                 val items = if (page == 1) resultItems else uiState.value.data + resultItems
                 page += 1
-                setState { copy(loading = false, success = items.isNotEmpty(), data = items) }
+                setState {
+                    copy(
+                        refresh = false,
+                        loading = false,
+                        success = items.isNotEmpty(),
+                        data = items
+                    )
+                }
             } catch (e: Exception) {
                 setState {
                     copy(
+                        refresh = false,
                         loading = false,
                         error = true,
                         message = "Could not load items: ${e.localizedMessage}"

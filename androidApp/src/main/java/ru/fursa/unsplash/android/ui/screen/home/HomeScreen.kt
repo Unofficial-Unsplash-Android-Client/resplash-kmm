@@ -4,6 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -19,12 +23,18 @@ import ru.fursa.unsplash.android.ui.kit.compound.DotsPreloader
 import ru.fursa.unsplash.android.ui.kit.list.HomeList
 import ru.fursa.unsplash.routing.Routes
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel(),
     navController: NavController
 ) {
     val uiState = viewModel.uiState.collectAsState()
+
+    val pullToRefreshState = rememberPullRefreshState(
+        refreshing = uiState.value.refresh,
+        onRefresh = { viewModel.loadItems(forceReload = true) }
+    )
 
     LaunchedEffect(key1 = Unit, block = {
         viewModel.loadItems()
@@ -33,9 +43,16 @@ fun HomeScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(Color.White)
+            .pullRefresh(pullToRefreshState),
         contentAlignment = Alignment.Center
     ) {
+        PullRefreshIndicator(
+            refreshing = uiState.value.refresh,
+            state = pullToRefreshState,
+            modifier = Modifier.align(Alignment.TopCenter)
+        )
+
         when {
             uiState.value.loading -> DotsPreloader(
                 circleColor = Color.LightGray,
