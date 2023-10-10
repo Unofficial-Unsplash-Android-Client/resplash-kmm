@@ -14,9 +14,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
+import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.base.encodeUrl
 import ru.fursa.unsplash.android.base.screen.ErrorScreen
 import ru.fursa.unsplash.android.ui.kit.compound.DotsPreloader
@@ -61,7 +63,7 @@ fun HomeScreen(
             )
 
             uiState.value.error -> ErrorScreen(
-                message = uiState.value.message,
+                message = stringResource(id = R.string.sww_message),
                 modifier = Modifier.padding(start = 8.dp, end = 8.dp)
             )
 

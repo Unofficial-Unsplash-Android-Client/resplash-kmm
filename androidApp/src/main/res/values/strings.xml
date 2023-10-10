@@ -44,5 +44,6 @@
     </plurals>
 
     <string name="leak_canary_test_class_name">assertk.Assert</string>
+    <string name="sww_message">Oops! Something went wrong ...</string>
 
 </resources>
