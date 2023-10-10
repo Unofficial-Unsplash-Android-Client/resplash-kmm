@@ -1,14 +1,69 @@
 package ru.fursa.unsplash.android.ui.screen.home
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.cachedIn
+import kotlinx.coroutines.launch
+import ru.fursa.unsplash.android.base.mvi.MVIBaseViewModel
 import ru.fursa.unsplash.base.repository.UnsplashRepository
 
 class HomeViewModel(
     private val repository: UnsplashRepository
-) : ViewModel() {
+) : MVIBaseViewModel<HomeMVIContract.Event, HomeMVIContract.State, HomeMVIContract.Effect>() {
 
-    val screenState = repository.getPhotos()
-        .cachedIn(viewModelScope)
+    private var page = 1
+    override fun createInitialState(): HomeMVIContract.State {
+        return HomeMVIContract.State()
+    }
+
+    override fun handleEvent(event: HomeMVIContract.Event) = Unit
+
+    fun loadItems(forceReload: Boolean = false) {
+        if (forceReload) {
+            page = 1
+            setState { copy(refresh = true) }
+        }
+        setState { copy(loading = true) }
+        viewModelScope.launch {
+            try {
+                val resultItems = repository.getPhotos(pageIndex = page)
+                val items = if (page == 1) resultItems else uiState.value.data + resultItems
+                page += 1
+                setState {
+                    copy(
+                        refresh = false,
+                        loading = false,
+                        success = items.isNotEmpty(),
+                        data = items
+                    )
+                }
+            } catch (e: Exception) {
+                setState {
+                    copy(
+                        refresh = false,
+                        loading = false,
+                        error = true,
+                        message = "Could not load items: ${e.localizedMessage}"
+                    )
+                }
+            }
+        }
+    }
+
+    fun loadNextItems() {
+        viewModelScope.launch {
+            try {
+                val resultItems = repository.getPhotos(pageIndex = page)
+                val items = uiState.value.data + resultItems
+                page += 1
+                setState { copy(success = items.isNotEmpty(), data = items) }
+            } catch (e: Exception) {
+                setState {
+                    copy(
+                        loading = false,
+                        error = true,
+                        message = "Could not load items: ${e.localizedMessage}"
+                    )
+                }
+            }
+        }
+    }
 }

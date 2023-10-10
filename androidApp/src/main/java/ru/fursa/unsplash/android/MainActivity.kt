@@ -22,12 +22,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.base.eventbus.LoadEventBus
 import ru.fursa.unsplash.android.ui.kit.compound.SearchBar
 import ru.fursa.unsplash.android.ui.kit.image.DefaultUserAvatar
 import ru.fursa.unsplash.android.ui.kit.tabs.TabScreen
 import ru.fursa.unsplash.android.ui.screen.collections.CollectionPhotoScreen
 import ru.fursa.unsplash.android.ui.screen.home.HomeScreen
+import ru.fursa.unsplash.android.ui.screen.home.HomeViewModel
 import ru.fursa.unsplash.android.ui.screen.routing.NavGraph
 import ru.fursa.unsplash.android.ui.theme.UnsplashApplicationTheme
 import ru.fursa.unsplash.routing.Routes
@@ -39,11 +41,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             UnsplashApplicationTheme {
                 val navController = rememberNavController()
+                val homeViewModel: HomeViewModel = koinViewModel()
                 Surface(
                     modifier = Modifier.wrapContentSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    InitialScreen(navController)
+                    InitialScreen(navController, homeViewModel)
                     NavGraph(navController = navController)
                 }
             }
@@ -52,7 +55,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun InitialScreen(navController: NavController) {
+fun InitialScreen(
+    navController: NavController,
+    homeViewModel: HomeViewModel,
+) {
     val tabs = listOf(
         stringResource(id = R.string.tab_item_home),
         stringResource(id = R.string.tab_item_collections),
@@ -83,7 +89,10 @@ fun InitialScreen(navController: NavController) {
         }
         TabScreen(tabs, Color.White) { pageIndex ->
             when (pageIndex) {
-                0 -> HomeScreen()
+                0 -> {
+                    HomeScreen(navController = navController)
+                }
+
                 1 -> CollectionPhotoScreen(username = "")
             }
         }

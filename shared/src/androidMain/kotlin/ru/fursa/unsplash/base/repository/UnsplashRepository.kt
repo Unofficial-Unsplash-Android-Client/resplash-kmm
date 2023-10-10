@@ -10,7 +10,7 @@ import ru.fursa.unsplash.data.ui.models.UserModel
 interface UnsplashRepository {
     val userFlow: StateFlow<CurrentUser>
     fun getCollections(): Flow<PagingData<CollectionModel>>
-    fun getPhotos(): Flow<PagingData<PhotoModel>>
+    suspend fun getPhotos(pageIndex: Int = 1): List<PhotoModel>
     fun searchPhotos(query: String): Flow<PagingData<PhotoModel>>
     fun searchCollection(query: String): Flow<PagingData<CollectionModel>>
     fun searchUsers(query: String): Flow<PagingData<UserModel>>

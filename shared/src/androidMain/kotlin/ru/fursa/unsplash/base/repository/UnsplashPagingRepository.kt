@@ -14,6 +14,7 @@ import ru.fursa.unsplash.base.mappers.toUiPhotos
 import ru.fursa.unsplash.base.mappers.toUiUsers
 import ru.fursa.unsplash.base.paging.finitePager
 import ru.fursa.unsplash.base.paging.infinitePager
+import ru.fursa.unsplash.data.api.PhotoDataSource
 import ru.fursa.unsplash.data.ui.models.CollectionModel
 import ru.fursa.unsplash.data.ui.models.PhotoModel
 import ru.fursa.unsplash.data.ui.models.UserModel
@@ -23,7 +24,8 @@ import ru.fursa.unsplash.utils.ResourceProvider
 class UnsplashPagingRepository(
     private val apiService: UnsplashApiService,
     private val ioDispatcher: CoroutineDispatcher,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val photoDataSource: PhotoDataSource,
 ) : UnsplashRepository {
 
     private val _userFlow = MutableStateFlow(
@@ -36,9 +38,8 @@ class UnsplashPagingRepository(
         apiService.getCollections(index).toUiCollections()
     }.flow
 
-    override fun getPhotos(): Flow<PagingData<PhotoModel>> = infinitePager { index ->
-        apiService.getPhotos(index).map { response -> response.toUiPhoto() }
-    }.flow
+    override suspend fun getPhotos(pageIndex: Int): List<PhotoModel> =
+        photoDataSource.getPhotos(pageIndex = pageIndex).map { it.toUiPhoto() }
 
     override fun searchPhotos(query: String): Flow<PagingData<PhotoModel>> =
         infinitePager { index ->
