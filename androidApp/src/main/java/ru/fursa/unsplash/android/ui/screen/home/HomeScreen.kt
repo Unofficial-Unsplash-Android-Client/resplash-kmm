@@ -1,51 +1,63 @@
 package ru.fursa.unsplash.android.ui.screen.home
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavController
+import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.base.encodeUrl
 import ru.fursa.unsplash.android.base.screen.ErrorScreen
 import ru.fursa.unsplash.android.ui.kit.compound.DotsPreloader
 import ru.fursa.unsplash.android.ui.kit.list.HomeList
-import ru.fursa.unsplash.android.ui.screen.routing.NavGraph
 import ru.fursa.unsplash.routing.Routes
 
 @Composable
 fun HomeScreen(
-    screenState: State<HomeMVIContract.State>,
-    loadNextItems: (Boolean) -> Unit?
+    viewModel: HomeViewModel = koinViewModel(),
+    navController: NavController
 ) {
-    val navController = rememberNavController()
+    val uiState = viewModel.uiState.collectAsState()
 
-    when {
-        screenState.value.loading -> DotsPreloader(
-            circleColor = Color.LightGray,
-            circleSize = 12.dp,
-            spaceBetween = 15.dp
-        )
+    LaunchedEffect(key1 = Unit, block = {
+        viewModel.loadItems()
+    })
 
-        screenState.value.error -> ErrorScreen(
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp),
-            message = screenState.value.message
-        )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        contentAlignment = Alignment.Center
+    ) {
+        when {
+            uiState.value.loading -> DotsPreloader(
+                circleColor = Color.LightGray,
+                circleSize = 12.dp,
+                spaceBetween = 15.dp
+            )
 
-        screenState.value.success -> {
-            HomeList(
-                photos = screenState.value.data,
+            uiState.value.error -> ErrorScreen(
+                message = uiState.value.message,
+                modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+            )
+
+            uiState.value.success -> HomeList(
+                photos = uiState.value.data,
                 onNavigateClick = { username ->
                     navController.navigate("${Routes.Profile.name}/$username")
                 },
                 onViewPhoto = { url ->
                     navController.navigate("${Routes.View.name}/${url.encodeUrl()}")
                 },
-                onLoadNextItems = { it -> loadNextItems(it) }
+                onLoadNextItems = { viewModel.loadNextItems() }
             )
         }
     }
-
-    NavGraph(navController = navController)
 }

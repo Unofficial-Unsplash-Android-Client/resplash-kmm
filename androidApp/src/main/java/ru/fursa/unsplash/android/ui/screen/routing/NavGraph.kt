@@ -1,22 +1,18 @@
 package ru.fursa.unsplash.android.ui.screen.routing
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import org.koin.androidx.compose.koinViewModel
 import ru.fursa.unsplash.android.base.screen.EmptyScreen
 import ru.fursa.unsplash.android.base.screen.ErrorScreen
 import ru.fursa.unsplash.android.ui.screen.authorization.AuthorizationScreen
 import ru.fursa.unsplash.android.ui.screen.collection.CollectionScreen
 import ru.fursa.unsplash.android.ui.screen.collections.CollectionPhotoScreen
 import ru.fursa.unsplash.android.ui.screen.detals.PhotoDetailScreen
-import ru.fursa.unsplash.android.ui.screen.home.HomeMVIContract
 import ru.fursa.unsplash.android.ui.screen.home.HomeScreen
-import ru.fursa.unsplash.android.ui.screen.home.HomeViewModel
 import ru.fursa.unsplash.android.ui.screen.profile.ProfileScreen
 import ru.fursa.unsplash.android.ui.screen.registration.RegistrationScreen
 import ru.fursa.unsplash.android.ui.screen.reset.ResetPasswordScreen
@@ -29,13 +25,7 @@ fun NavGraph(navController: NavHostController) {
 
     NavHost(navController = navController, startDestination = Routes.Start.name) {
         composable(Routes.Home.name) {
-            val viewModel: HomeViewModel = koinViewModel()
-            HomeScreen(
-                screenState = viewModel.uiState.collectAsState(initial = HomeMVIContract.State()),
-                loadNextItems = {
-                    viewModel.loadItems(it)
-                }
-            )
+            HomeScreen(navController = navController)
         }
 
         composable(Routes.Collections.name) {

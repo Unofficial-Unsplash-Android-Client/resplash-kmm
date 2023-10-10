@@ -11,7 +11,7 @@ fun HomeList(
     photos: List<PhotoModel>,
     onNavigateClick: (String) -> Unit,
     onViewPhoto: (String) -> Unit,
-    onLoadNextItems: (Boolean) -> Unit
+    onLoadNextItems: () -> Unit,
 ) {
     val scrollState = rememberLazyListState()
 
@@ -34,7 +34,7 @@ fun HomeList(
             )
 
             if (index >= photos.size - 1) {
-                onLoadNextItems(false)
+                onLoadNextItems()
             }
         }
     }

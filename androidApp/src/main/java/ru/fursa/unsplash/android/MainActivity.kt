@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -57,7 +55,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun InitialScreen(navController: NavController, homeViewModel: HomeViewModel) {
+fun InitialScreen(
+    navController: NavController,
+    homeViewModel: HomeViewModel,
+) {
     val tabs = listOf(
         stringResource(id = R.string.tab_item_home),
         stringResource(id = R.string.tab_item_collections),
@@ -89,14 +90,9 @@ fun InitialScreen(navController: NavController, homeViewModel: HomeViewModel) {
         TabScreen(tabs, Color.White) { pageIndex ->
             when (pageIndex) {
                 0 -> {
-                    LaunchedEffect(key1 = Unit, block = {
-                        homeViewModel.loadItems()
-                    })
-                    HomeScreen(
-                        screenState = homeViewModel.uiState.collectAsState(),
-                        loadNextItems = { it -> homeViewModel.loadItems(it) }
-                    )
+                    HomeScreen(navController = navController)
                 }
+
                 1 -> CollectionPhotoScreen(username = "")
             }
         }
