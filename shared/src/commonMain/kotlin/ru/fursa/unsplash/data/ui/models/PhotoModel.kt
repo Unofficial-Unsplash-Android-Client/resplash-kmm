@@ -7,4 +7,7 @@ data class PhotoModel(
     val profileImage: String,
     val width: Int,
     val height: Int,
+    val likesCount: Long,
+    val watchCount: Long,
+    val downloadCount: Long,
 )

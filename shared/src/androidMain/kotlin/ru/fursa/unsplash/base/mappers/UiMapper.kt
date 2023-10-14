@@ -18,7 +18,10 @@ fun PhotoResponse.toUiPhoto(): PhotoModel {
         fullName = this.user?.username.orEmpty(),
         profileImage = this.user?.profileImage?.medium.orEmpty(),
         width = this.width ?: DEFAULT_WIDTH,
-        height = this.height ?: DEFAULT_HEIGHT
+        height = this.height ?: DEFAULT_HEIGHT,
+        watchCount = 0,
+        likesCount = this.likes ?: 0,
+        downloadCount = this.downloads ?: 0,
     )
 }
 
@@ -31,7 +34,10 @@ fun List<PhotoResponse>.toUiPhotos(): List<PhotoModel> {
             username = response.user?.name.orEmpty(),
             fullName = response.user?.username.orEmpty(),
             width = response.width ?: DEFAULT_WIDTH,
-            height = response.height ?: DEFAULT_HEIGHT
+            height = response.height ?: DEFAULT_HEIGHT,
+            watchCount = 0,
+            likesCount = response.likes ?: 0,
+            downloadCount = response.downloads ?: 0
         )
         photosList.add(photoModel)
     }
