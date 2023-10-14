@@ -3,6 +3,7 @@ package ru.fursa.unsplash.android.ui.screen.viewer
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,13 +21,13 @@ import androidx.compose.material.BottomSheetState
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.Text
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -55,7 +56,6 @@ fun ViewScreen(
 ) {
     val context = LocalContext.current
     val viewState = viewModel.uiState.collectAsState()
-    val coroutineScope = rememberCoroutineScope()
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
     )
@@ -131,10 +131,20 @@ fun BottomSheet(
                     color = Color.LightGray,
                     thickness = 6.dp
                 )
+                ProfileInfoHeader(
+                    modifier = Modifier.padding(top = 8.dp, start = 16.dp),
+                    onDownloadClick = { url -> },
+                    onLikeClick = { }
+                )
+                Divider(
+                    modifier = Modifier.padding(top = 80.dp),
+                    thickness = 1.dp,
+                    color = Color.LightGray.copy(alpha = 0.7f)
+                )
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 30.dp),
+                        .padding(top = 90.dp),
                     horizontalArrangement = Arrangement.SpaceAround,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -172,6 +182,22 @@ fun BottomSheet(
                         Text(text = "1K")
                     }
                 }
+
+                ExtendedFloatingActionButton(
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .padding(all = 16.dp)
+                        .align(Alignment.BottomEnd)
+                        .clickable { onClickSetWallpaper(url) },
+                    backgroundColor = Color.Black,
+                    text = {
+                        Text(
+                            color = Color.White,
+                            text = stringResource(id = R.string.set_wallpaper)
+                        )
+                    },
+                    onClick = { }
+                )
             }
         },
         sheetPeekHeight = 30.dp,
