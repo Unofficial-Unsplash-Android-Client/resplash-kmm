@@ -14,6 +14,7 @@ class ViewerMVIContract {
         data class Error(val message: String) : Event()
         data class Success(val data: SuccessResult) : Event()
         data class OnClickSetWallpaper(val url: String) : Event()
+        data class OnInfoClick(val id: String) : Event()
     }
 
     data class State(
@@ -21,6 +22,7 @@ class ViewerMVIContract {
         val isError: Boolean = false,
         val isLoading: Boolean = false,
         val isSuccess: Boolean = false,
+        val isShowInfoDialog: Boolean = false,
         val isSetWallpaperClicked: Boolean = false,
         val wallpaperUrl: String = "",
         val errorMessage: String = "",

@@ -24,8 +24,8 @@
     <string name="focus">Фокус</string>
     <string name="camera">Камера</string>
     <string name="exposition">Экспозиция</string>
-    <string name="likes">Лайков</string>
-    <string name="downloads">Скачиваний</string>
+    <string name="likes">Likes</string>
+    <string name="downloads">Downloads</string>
     <string name="views">Просмотров</string>
     <string name="user_name">Daenerys Targarien</string>
     <string name="photos">Фото</string>
@@ -45,5 +45,6 @@
 
     <string name="leak_canary_test_class_name">assertk.Assert</string>
     <string name="sww_message">Oops! Something went wrong ...</string>
+    <string name="watched">Watched</string>
 
 </resources>

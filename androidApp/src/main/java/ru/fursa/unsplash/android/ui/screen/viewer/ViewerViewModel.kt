@@ -23,6 +23,7 @@ class ViewerViewModel(
             errorMessage = "",
             pictureDrawable = null,
             isSetWallpaperClicked = false,
+            isShowInfoDialog = false,
         )
     }
 
@@ -35,8 +36,13 @@ class ViewerViewModel(
                         isLoading = true,
                         errorMessage = "",
                         isError = false,
+                        isShowInfoDialog = false,
                     )
                 }
+            }
+
+            is ViewerMVIContract.Event.OnInfoClick -> {
+                setState { copy(isShowInfoDialog = true) }
             }
 
             is ViewerMVIContract.Event.Success -> {
@@ -47,7 +53,8 @@ class ViewerViewModel(
                         errorMessage = "",
                         isError = false,
                         isSuccess = true,
-                        pictureDrawable = event.data.drawable
+                        pictureDrawable = event.data.drawable,
+                        isShowInfoDialog = false
                     )
                 }
             }
@@ -59,6 +66,7 @@ class ViewerViewModel(
                         isLoading = false,
                         errorMessage = event.message,
                         isError = true,
+                        isShowInfoDialog = false
                     )
                 }
             }
@@ -72,8 +80,6 @@ class ViewerViewModel(
                     ViewerMVIContract.Effect.ShowToastMessage(R.string.set_wallpaper_message)
                 }
             }
-
-            else -> Unit
         }
     }
 
