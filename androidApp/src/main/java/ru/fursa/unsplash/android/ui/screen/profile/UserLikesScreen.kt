@@ -31,7 +31,7 @@ fun UserLikesScreen(
             }, onViewPhoto = { url, username, avatarUrl ->
             navController.navigate(
                 "${Routes.View.name}/${url.encodeUrl()}" +
-                    "/$username/$avatarUrl"
+                    "/$username/${avatarUrl.encodeUrl()}"
             )
         }
         )
