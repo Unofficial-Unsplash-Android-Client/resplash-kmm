@@ -10,7 +10,7 @@ import ru.fursa.unsplash.data.ui.models.PhotoModel
 fun HomeList(
     photos: List<PhotoModel>,
     onNavigateClick: (String) -> Unit,
-    onViewPhoto: (String) -> Unit,
+    onViewPhoto: (String, String, String) -> Unit,
     onLoadNextItems: () -> Unit,
 ) {
     val scrollState = rememberLazyListState()
@@ -29,7 +29,7 @@ fun HomeList(
                     onNavigateClick.invoke(username)
                 },
                 onViewPhoto = { url ->
-                    onViewPhoto.invoke(url)
+                    onViewPhoto.invoke(url, item.username, item.profileImage)
                 }
             )
 

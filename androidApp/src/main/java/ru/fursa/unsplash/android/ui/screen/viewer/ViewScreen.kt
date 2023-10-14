@@ -3,7 +3,6 @@ package ru.fursa.unsplash.android.ui.screen.viewer
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -51,6 +50,8 @@ import ru.fursa.unsplash.android.ui.kit.compound.DotsPreloader
 @Composable
 fun ViewScreen(
     url: String,
+    username: String,
+    avatarUrl: String,
     navController: NavController,
     viewModel: ViewerViewModel = koinViewModel()
 ) {
@@ -92,8 +93,9 @@ fun ViewScreen(
         viewState = viewState,
         state = bottomSheetScaffoldState,
         url = url,
+        avatarUrl = avatarUrl,
+        username = username,
         navController = navController,
-        viewModel = viewModel,
         context = context,
         onClickSetWallpaper = { url ->
             viewModel.handleEvent(ViewerMVIContract.Event.OnClickSetWallpaper(url))
@@ -106,8 +108,9 @@ fun ViewScreen(
 fun BottomSheet(
     viewState: State<ViewerMVIContract.State>,
     state: BottomSheetScaffoldState,
-    viewModel: ViewerViewModel,
     url: String,
+    avatarUrl: String,
+    username: String,
     navController: NavController,
     context: Context,
     onClickSetWallpaper: (String) -> Unit,
@@ -133,6 +136,8 @@ fun BottomSheet(
                 )
                 ProfileInfoHeader(
                     modifier = Modifier.padding(top = 8.dp, start = 16.dp),
+                    username = username,
+                    avatarUrl = avatarUrl,
                     onDownloadClick = { url -> },
                     onLikeClick = { }
                 )
@@ -157,7 +162,7 @@ fun BottomSheet(
                             text = stringResource(id = R.string.watched),
                             fontWeight = FontWeight.Medium
                         )
-                        Text(text = "3.2K")
+                        Text(text = "${viewState.value.watchCount}")
                     }
 
                     Column(
@@ -168,7 +173,7 @@ fun BottomSheet(
                             text = stringResource(id = R.string.downloads),
                             fontWeight = FontWeight.Medium
                         )
-                        Text(text = "1.2K")
+                        Text(text = "${viewState.value.downloadsCount}")
                     }
 
                     Column(
@@ -179,7 +184,7 @@ fun BottomSheet(
                             text = stringResource(id = R.string.likes),
                             fontWeight = FontWeight.Medium
                         )
-                        Text(text = "1K")
+                        Text(text = "${viewState.value.likesCount}")
                     }
                 }
 
@@ -187,8 +192,7 @@ fun BottomSheet(
                     modifier = Modifier
                         .wrapContentSize()
                         .padding(all = 16.dp)
-                        .align(Alignment.BottomEnd)
-                        .clickable { onClickSetWallpaper(url) },
+                        .align(Alignment.BottomEnd),
                     backgroundColor = Color.Black,
                     text = {
                         Text(
@@ -196,7 +200,9 @@ fun BottomSheet(
                             text = stringResource(id = R.string.set_wallpaper)
                         )
                     },
-                    onClick = { }
+                    onClick = {
+                        onClickSetWallpaper(url)
+                    }
                 )
             }
         },

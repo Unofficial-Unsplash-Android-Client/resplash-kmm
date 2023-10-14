@@ -42,7 +42,10 @@ fun PhotosSearchScreen(
                         navController.navigate("${Routes.Profile.name}/$username")
                     },
                     onViewPhoto = { url ->
-                        navController.navigate("${Routes.View.name}/${url.encodeUrl()}")
+                        navController.navigate(
+                            "${Routes.View.name}/${url.encodeUrl()}" +
+                                "/${item.username}/${item.profileImage}"
+                        )
                     },
                 )
             }

@@ -21,21 +21,23 @@ import ru.fursa.unsplash.android.ui.kit.image.UserAvatarItem
 @Composable
 fun ProfileInfoHeader(
     modifier: Modifier = Modifier,
+    username: String,
+    avatarUrl: String,
     onDownloadClick: (String) -> Unit,
     onLikeClick: () -> Unit,
 ) {
     Row(
         modifier = modifier
-            .padding(all = 20.dp)
+            .padding(start = 8.dp, end = 8.dp, top = 20.dp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         UserAvatarItem(
             modifier = Modifier.size(size = 40.dp),
-            avatarUrl = "https://break.cas.sk/wp-content/uploads/2021/05/Screenshodsdst2.png"
+            avatarUrl = avatarUrl
         )
-        Text(text = "Elena Salome", modifier = Modifier.padding(start = 8.dp, end = 16.dp))
+        Text(text = username, modifier = Modifier.padding(start = 8.dp, end = 16.dp))
         Icon(
             modifier = Modifier
                 .padding(start = 50.dp)

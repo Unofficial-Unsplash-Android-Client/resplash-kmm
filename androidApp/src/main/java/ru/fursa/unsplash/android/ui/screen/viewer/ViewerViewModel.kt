@@ -9,11 +9,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.base.mvi.MVIBaseViewModel
+import ru.fursa.unsplash.base.repository.UnsplashRepository
 
 class ViewerViewModel(
     private val imageRequest: ImageRequest.Builder,
     private val loader: ImageLoader.Builder,
     private val wallpaperManager: WallpaperManager,
+    private val repository: UnsplashRepository,
 ) : MVIBaseViewModel<ViewerMVIContract.Event, ViewerMVIContract.State, ViewerMVIContract.Effect>() {
     override fun createInitialState(): ViewerMVIContract.State {
         return ViewerMVIContract.State(
@@ -53,6 +55,9 @@ class ViewerViewModel(
                         errorMessage = "",
                         isError = false,
                         isSuccess = true,
+                        likesCount = 10,
+                        watchCount = 400,
+                        downloadsCount = 300,
                         pictureDrawable = event.data.drawable,
                         isShowInfoDialog = false
                     )
