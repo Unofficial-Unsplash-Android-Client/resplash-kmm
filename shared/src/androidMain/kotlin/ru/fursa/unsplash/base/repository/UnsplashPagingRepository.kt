@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
 import ru.fursa.unsplash.base.mappers.toCurrentUser
+import ru.fursa.unsplash.base.mappers.toUi
 import ru.fursa.unsplash.base.mappers.toUiCollections
 import ru.fursa.unsplash.base.mappers.toUiPhoto
 import ru.fursa.unsplash.base.mappers.toUiPhotos
@@ -16,6 +17,7 @@ import ru.fursa.unsplash.base.paging.finitePager
 import ru.fursa.unsplash.base.paging.infinitePager
 import ru.fursa.unsplash.data.api.PhotoDataSource
 import ru.fursa.unsplash.data.ui.models.CollectionModel
+import ru.fursa.unsplash.data.ui.models.PhotoInfoModel
 import ru.fursa.unsplash.data.ui.models.PhotoModel
 import ru.fursa.unsplash.data.ui.models.UserModel
 import ru.fursa.unsplash.domain.base.UnsplashApiService
@@ -37,6 +39,10 @@ class UnsplashPagingRepository(
     override fun getCollections(): Flow<PagingData<CollectionModel>> = infinitePager { index ->
         apiService.getCollections(index).toUiCollections()
     }.flow
+
+    override suspend fun getPhotoStat(photoId: String): PhotoInfoModel {
+        return apiService.getPhotoStatistic(photoId = photoId).toUi()
+    }
 
     override suspend fun getPhotos(pageIndex: Int): List<PhotoModel> =
         photoDataSource.getPhotos(pageIndex = pageIndex).map { it.toUiPhoto() }

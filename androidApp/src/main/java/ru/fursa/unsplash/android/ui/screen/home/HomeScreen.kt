@@ -31,6 +31,7 @@ fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel(),
     navController: NavController
 ) {
+
     val uiState = viewModel.uiState.collectAsState()
 
     val pullToRefreshState = rememberPullRefreshState(
@@ -72,8 +73,13 @@ fun HomeScreen(
                 onNavigateClick = { username ->
                     navController.navigate("${Routes.Profile.name}/$username")
                 },
-                onViewPhoto = { url ->
-                    navController.navigate("${Routes.View.name}/${url.encodeUrl()}")
+                onViewPhoto = { photoModel ->
+                    navController.navigate(
+                        "${Routes.View.name}/${photoModel.id}/" +
+                            "${photoModel.photoUrl.encodeUrl()}/" +
+                            "${photoModel.username}/" +
+                            "${photoModel.profileImage.encodeUrl()}"
+                    )
                 },
                 onLoadNextItems = { viewModel.loadNextItems() }
             )

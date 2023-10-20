@@ -16,4 +16,9 @@ data class PhotoResponse(
     val width: Int?,
     @SerialName("height")
     val height: Int?,
+    @SerialName("likes")
+    val likes: Long?,
+    @SerialName("downloads")
+    val downloads: Long?,
+
 )

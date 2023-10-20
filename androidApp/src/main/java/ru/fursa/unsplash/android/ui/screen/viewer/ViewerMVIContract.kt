@@ -6,6 +6,7 @@ import coil.request.SuccessResult
 import ru.fursa.unsplash.android.base.mvi.UiEffect
 import ru.fursa.unsplash.android.base.mvi.UiEvent
 import ru.fursa.unsplash.android.base.mvi.UiState
+import ru.fursa.unsplash.data.ui.models.PhotoInfoModel
 
 class ViewerMVIContract {
 
@@ -14,6 +15,8 @@ class ViewerMVIContract {
         data class Error(val message: String) : Event()
         data class Success(val data: SuccessResult) : Event()
         data class OnClickSetWallpaper(val url: String) : Event()
+        data class OnInfoClick(val id: String) : Event()
+        data class OnLoadPhotoInfo(val photoId: String) : Event()
     }
 
     data class State(
@@ -21,10 +24,12 @@ class ViewerMVIContract {
         val isError: Boolean = false,
         val isLoading: Boolean = false,
         val isSuccess: Boolean = false,
+        val isShowInfoDialog: Boolean = false,
         val isSetWallpaperClicked: Boolean = false,
         val wallpaperUrl: String = "",
         val errorMessage: String = "",
         val pictureDrawable: Drawable? = null,
+        val photoInfoModel: PhotoInfoModel? = null,
     ) : UiState
 
     sealed class Effect : UiEffect {

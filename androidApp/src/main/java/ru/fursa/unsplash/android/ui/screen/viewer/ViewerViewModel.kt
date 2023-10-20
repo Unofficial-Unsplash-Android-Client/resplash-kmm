@@ -9,12 +9,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.fursa.unsplash.android.R
 import ru.fursa.unsplash.android.base.mvi.MVIBaseViewModel
+import ru.fursa.unsplash.base.repository.UnsplashRepository
 
 class ViewerViewModel(
     private val imageRequest: ImageRequest.Builder,
     private val loader: ImageLoader.Builder,
     private val wallpaperManager: WallpaperManager,
+    private val repository: UnsplashRepository,
 ) : MVIBaseViewModel<ViewerMVIContract.Event, ViewerMVIContract.State, ViewerMVIContract.Effect>() {
+
     override fun createInitialState(): ViewerMVIContract.State {
         return ViewerMVIContract.State(
             isSetWallpaperButtonVisible = false,
@@ -23,6 +26,8 @@ class ViewerViewModel(
             errorMessage = "",
             pictureDrawable = null,
             isSetWallpaperClicked = false,
+            isShowInfoDialog = false,
+            photoInfoModel = null,
         )
     }
 
@@ -35,8 +40,13 @@ class ViewerViewModel(
                         isLoading = true,
                         errorMessage = "",
                         isError = false,
+                        isShowInfoDialog = false,
                     )
                 }
+            }
+
+            is ViewerMVIContract.Event.OnInfoClick -> {
+                setState { copy(isShowInfoDialog = true) }
             }
 
             is ViewerMVIContract.Event.Success -> {
@@ -47,7 +57,8 @@ class ViewerViewModel(
                         errorMessage = "",
                         isError = false,
                         isSuccess = true,
-                        pictureDrawable = event.data.drawable
+                        pictureDrawable = event.data.drawable,
+                        isShowInfoDialog = false
                     )
                 }
             }
@@ -59,6 +70,7 @@ class ViewerViewModel(
                         isLoading = false,
                         errorMessage = event.message,
                         isError = true,
+                        isShowInfoDialog = false
                     )
                 }
             }
@@ -73,10 +85,19 @@ class ViewerViewModel(
                 }
             }
 
-            else -> Unit
+            is ViewerMVIContract.Event.OnLoadPhotoInfo -> {
+                loadPhotoStat(event.photoId)
+            }
         }
     }
 
+    private fun loadPhotoStat(photoId: String) {
+        viewModelScope.launch {
+            repository.getPhotoStat(photoId = photoId).apply {
+                setState { copy(photoInfoModel = this@apply) }
+            }
+        }
+    }
     private fun setupWallpaper(url: String) {
         viewModelScope.launch(Dispatchers.Default) {
             val request = imageRequest.data(url).build()

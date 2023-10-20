@@ -20,40 +20,36 @@ import coil.request.ImageRequest
 import kotlin.math.min
 import ru.fursa.unsplash.android.base.screen.toPx
 import ru.fursa.unsplash.android.ui.kit.text.UserHeaderItem
+import ru.fursa.unsplash.data.ui.models.PhotoModel
 
 @Composable
 fun PhotoListItem(
-    url: String,
-    width: Int = 300,
-    height: Int = 300,
-    username: String,
-    fullName: String,
-    avatarUrl: String,
+    photoModel: PhotoModel,
     onUserClick: (String) -> Unit,
-    onViewPhoto: (String) -> Unit,
+    onViewPhoto: (PhotoModel) -> Unit,
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         val context = LocalContext.current
         val screenWidth = with(LocalConfiguration.current) { screenWidthDp.dp.value.toPx() }
         val screenHeight = with(LocalConfiguration.current) { screenHeightDp.dp.value.toPx() }
 
-        val scale = min(screenWidth / width, screenHeight / height)
+        val scale = min(screenWidth / photoModel.width, screenHeight / photoModel.height)
 
-        val resultWidth = (width * scale) / 2
-        val resultHeight = (height * scale) / 2
+        val resultWidth = (photoModel.width * scale) / 2
+        val resultHeight = (photoModel.height * scale) / 2
 
         Spacer(modifier = Modifier.size(16.dp))
 
         UserHeaderItem(
-            username = username,
-            avatarUrl = avatarUrl,
-            fullName = fullName,
+            username = photoModel.username,
+            avatarUrl = photoModel.profileImage,
+            fullName = photoModel.fullName,
             onUserClick = { username -> onUserClick(username) }
         )
 
         AsyncImage(
             model = ImageRequest.Builder(context)
-                .data(url)
+                .data(photoModel.photoUrl)
                 .crossfade(durationMillis = 1000)
                 .build(),
             contentDescription = null,
@@ -62,7 +58,7 @@ fun PhotoListItem(
                 .width(resultWidth.dp)
                 .height(resultHeight.dp)
                 .clip(RoundedCornerShape(6.dp))
-                .clickable { onViewPhoto(url) }
+                .clickable { onViewPhoto(photoModel) }
         )
     }
 }

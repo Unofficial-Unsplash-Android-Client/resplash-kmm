@@ -32,17 +32,15 @@ fun PhotosSearchScreen(
             items(searchResults.itemCount) { index ->
                 val item = searchResults[index] ?: return@items
                 PhotoListItem(
-                    url = item.photoUrl,
-                    username = item.username,
-                    avatarUrl = item.profileImage,
-                    fullName = item.fullName,
-                    width = item.width,
-                    height = item.height,
+                    photoModel = item,
                     onUserClick = { username ->
                         navController.navigate("${Routes.Profile.name}/$username")
                     },
-                    onViewPhoto = { url ->
-                        navController.navigate("${Routes.View.name}/${url.encodeUrl()}")
+                    onViewPhoto = { _ ->
+                        navController.navigate(
+                            "${Routes.View.name}/${item.id}/${item.photoUrl.encodeUrl()}" +
+                                "/${item.username}/${item.profileImage.encodeUrl()}"
+                        )
                     },
                 )
             }

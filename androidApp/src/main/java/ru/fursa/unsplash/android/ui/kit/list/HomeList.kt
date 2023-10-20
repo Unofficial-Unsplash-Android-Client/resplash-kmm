@@ -10,7 +10,7 @@ import ru.fursa.unsplash.data.ui.models.PhotoModel
 fun HomeList(
     photos: List<PhotoModel>,
     onNavigateClick: (String) -> Unit,
-    onViewPhoto: (String) -> Unit,
+    onViewPhoto: (PhotoModel) -> Unit,
     onLoadNextItems: () -> Unit,
 ) {
     val scrollState = rememberLazyListState()
@@ -21,16 +21,11 @@ fun HomeList(
         items(photos.count()) { index ->
             val item = photos[index]
             PhotoListItem(
-                url = item.photoUrl,
-                username = item.username,
-                fullName = item.fullName,
-                avatarUrl = item.profileImage,
+                photoModel = item,
                 onUserClick = { username ->
                     onNavigateClick.invoke(username)
                 },
-                onViewPhoto = { url ->
-                    onViewPhoto.invoke(url)
-                }
+                onViewPhoto = { photoModel -> onViewPhoto.invoke(photoModel) }
             )
 
             if (index >= photos.size - 1) {

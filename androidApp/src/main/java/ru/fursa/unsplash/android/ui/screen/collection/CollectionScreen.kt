@@ -87,8 +87,11 @@ fun CollectionScreen(
                 photos = viewState,
                 onNavigateClick = { username ->
                     navController.navigate("${Routes.Profile.name}/$username")
-                }, onViewPhoto = { url ->
-                navController.navigate("${Routes.View.name}/${url.encodeUrl()}")
+                }, onViewPhoto = { photoModel ->
+                navController.navigate(
+                    "${Routes.View.name}/${photoModel.photoUrl.encodeUrl()}" +
+                        "/${photoModel.username}/${photoModel.profileImage.encodeUrl()}"
+                )
             }
             )
         }

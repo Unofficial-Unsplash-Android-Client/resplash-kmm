@@ -10,10 +10,17 @@ import ru.fursa.unsplash.android.ui.screen.search.SearchViewModel
 import ru.fursa.unsplash.android.ui.screen.viewer.ViewerViewModel
 
 val viewModelsModule = module {
-    viewModel { CollectionViewModel(get(), get()) }
-    viewModel { HomeViewModel(get()) }
-    viewModel { SearchViewModel(get()) }
-    viewModel { ProfileViewModel(get()) }
-    viewModel { CollectionPhotosViewModel(get()) }
-    viewModel { ViewerViewModel(get(), get(), get()) }
+    viewModel { CollectionViewModel(repository = get(), searchEventBus = get()) }
+    viewModel { HomeViewModel(repository = get()) }
+    viewModel { SearchViewModel(repository = get()) }
+    viewModel { ProfileViewModel(repository = get()) }
+    viewModel { CollectionPhotosViewModel(repository = get()) }
+    viewModel {
+        ViewerViewModel(
+            imageRequest = get(),
+            loader = get(),
+            wallpaperManager = get(),
+            repository = get()
+        )
+    }
 }
