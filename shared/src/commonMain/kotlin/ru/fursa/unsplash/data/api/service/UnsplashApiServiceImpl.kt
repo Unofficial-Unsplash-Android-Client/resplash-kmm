@@ -5,6 +5,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.http.HttpMethod
 import io.ktor.http.appendPathSegments
+import ru.fursa.unsplash.data.api.models.StatResponse
 import ru.fursa.unsplash.data.api.models.base.User
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
@@ -26,6 +27,13 @@ internal class UnsplashApiServiceImpl constructor(private val httpClient: HttpCl
         }.body()
     }
 
+    override suspend fun getPhotoStatistic(photoId: String): StatResponse {
+        return httpClient.get {
+            url {
+                appendPathSegments("/photos/$photoId/statistics")
+            }
+        }.body()
+    }
     override suspend fun getPhotos(pageIndex: Int, perPage: Int): List<PhotoResponse> {
         return httpClient.get {
             url {

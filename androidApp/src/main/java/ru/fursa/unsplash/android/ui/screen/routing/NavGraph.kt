@@ -43,14 +43,16 @@ fun NavGraph(navController: NavHostController) {
         }
 
         composable(
-            route = "${Routes.View.name}/{url}/{username}/{avatarUrl}",
+            route = "${Routes.View.name}/{photoId}/{url}/{username}/{avatarUrl}",
             arguments = listOf(
+                navArgument("photoId") { type = NavType.StringType },
                 navArgument("url") { type = NavType.StringType },
                 navArgument("avatarUrl") { type = NavType.StringType },
                 navArgument("username") { type = NavType.StringType }
             )
         ) {
             ViewScreen(
+                photoId = it.arguments?.getString("photoId").orEmpty(),
                 url = it.arguments?.getString("url").orEmpty(),
                 avatarUrl = it.arguments?.getString("avatarUrl").orEmpty(),
                 username = it.arguments?.getString("username").orEmpty(),

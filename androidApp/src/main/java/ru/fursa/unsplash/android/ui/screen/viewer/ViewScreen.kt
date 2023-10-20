@@ -49,6 +49,7 @@ import ru.fursa.unsplash.android.ui.kit.compound.DotsPreloader
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ViewScreen(
+    photoId: String,
     url: String,
     username: String,
     avatarUrl: String,
@@ -61,7 +62,7 @@ fun ViewScreen(
         bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
     )
 
-    LaunchedEffect(key1 = url, block = {
+    LaunchedEffect(key1 = photoId, block = {
         val request = ImageRequest.Builder(context)
             .data(url)
             .listener(
@@ -79,6 +80,8 @@ fun ViewScreen(
             .build()
         val loader = ImageLoader(context)
         loader.execute(request)
+
+        viewModel.handleEvent(ViewerMVIContract.Event.OnLoadPhotoInfo(photoId = photoId))
 
         viewModel.effect.collect { effect ->
             when (effect) {
@@ -162,7 +165,7 @@ fun BottomSheet(
                             text = stringResource(id = R.string.watched),
                             fontWeight = FontWeight.Medium
                         )
-                        Text(text = "${viewState.value.watchCount}")
+                        Text(text = "${viewState.value.photoInfoModel?.viewCount}")
                     }
 
                     Column(
@@ -173,7 +176,7 @@ fun BottomSheet(
                             text = stringResource(id = R.string.downloads),
                             fontWeight = FontWeight.Medium
                         )
-                        Text(text = "${viewState.value.downloadsCount}")
+                        Text(text = "${viewState.value.photoInfoModel?.downloadsCount}")
                     }
 
                     Column(
@@ -184,7 +187,7 @@ fun BottomSheet(
                             text = stringResource(id = R.string.likes),
                             fontWeight = FontWeight.Medium
                         )
-                        Text(text = "${viewState.value.likesCount}")
+                        Text(text = "${viewState.value.photoInfoModel?.likesCount}")
                     }
                 }
 

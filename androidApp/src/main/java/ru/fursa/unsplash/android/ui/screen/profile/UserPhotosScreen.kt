@@ -29,10 +29,10 @@ fun UserPhotosScreen(
             onNavigateClick = { username ->
                 navController.navigate("${Routes.Profile.name}/$username")
             },
-            onViewPhoto = { url, username, avatarUrl ->
+            onViewPhoto = { photoModel ->
                 navController.navigate(
-                    "${Routes.View.name}/${url.encodeUrl()}" +
-                        "/$username/$avatarUrl"
+                    "${Routes.View.name}/${photoModel.photoUrl.encodeUrl()}" +
+                        "/$username/${photoModel.profileImage.encodeUrl()}"
                 )
             }
         )

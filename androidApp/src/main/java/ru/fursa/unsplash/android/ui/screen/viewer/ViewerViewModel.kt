@@ -17,6 +17,7 @@ class ViewerViewModel(
     private val wallpaperManager: WallpaperManager,
     private val repository: UnsplashRepository,
 ) : MVIBaseViewModel<ViewerMVIContract.Event, ViewerMVIContract.State, ViewerMVIContract.Effect>() {
+
     override fun createInitialState(): ViewerMVIContract.State {
         return ViewerMVIContract.State(
             isSetWallpaperButtonVisible = false,
@@ -26,6 +27,7 @@ class ViewerViewModel(
             pictureDrawable = null,
             isSetWallpaperClicked = false,
             isShowInfoDialog = false,
+            photoInfoModel = null,
         )
     }
 
@@ -55,9 +57,6 @@ class ViewerViewModel(
                         errorMessage = "",
                         isError = false,
                         isSuccess = true,
-                        likesCount = 10,
-                        watchCount = 400,
-                        downloadsCount = 300,
                         pictureDrawable = event.data.drawable,
                         isShowInfoDialog = false
                     )
@@ -85,9 +84,20 @@ class ViewerViewModel(
                     ViewerMVIContract.Effect.ShowToastMessage(R.string.set_wallpaper_message)
                 }
             }
+
+            is ViewerMVIContract.Event.OnLoadPhotoInfo -> {
+                loadPhotoStat(event.photoId)
+            }
         }
     }
 
+    private fun loadPhotoStat(photoId: String) {
+        viewModelScope.launch {
+            repository.getPhotoStat(photoId = photoId).apply {
+                setState { copy(photoInfoModel = this@apply) }
+            }
+        }
+    }
     private fun setupWallpaper(url: String) {
         viewModelScope.launch(Dispatchers.Default) {
             val request = imageRequest.data(url).build()

@@ -73,10 +73,12 @@ fun HomeScreen(
                 onNavigateClick = { username ->
                     navController.navigate("${Routes.Profile.name}/$username")
                 },
-                onViewPhoto = { url, username, avatarUrl ->
+                onViewPhoto = { photoModel ->
                     navController.navigate(
-                        "${Routes.View.name}/" +
-                            "${url.encodeUrl()}/$username/${avatarUrl.encodeUrl()}"
+                        "${Routes.View.name}/${photoModel.id}/" +
+                            "${photoModel.photoUrl.encodeUrl()}/" +
+                            "${photoModel.username}/" +
+                            "${photoModel.profileImage.encodeUrl()}"
                     )
                 },
                 onLoadNextItems = { viewModel.loadNextItems() }

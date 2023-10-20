@@ -1,10 +1,12 @@
 package ru.fursa.unsplash.base.mappers
 
 import ru.fursa.unsplash.base.repository.CurrentUser
+import ru.fursa.unsplash.data.api.models.StatResponse
 import ru.fursa.unsplash.data.api.models.base.User
 import ru.fursa.unsplash.data.api.models.collection.CollectionResponse
 import ru.fursa.unsplash.data.api.models.photo.PhotoResponse
 import ru.fursa.unsplash.data.ui.models.CollectionModel
+import ru.fursa.unsplash.data.ui.models.PhotoInfoModel
 import ru.fursa.unsplash.data.ui.models.PhotoModel
 import ru.fursa.unsplash.data.ui.models.UserModel
 
@@ -13,15 +15,13 @@ private const val DEFAULT_HEIGHT = 200
 
 fun PhotoResponse.toUiPhoto(): PhotoModel {
     return PhotoModel(
+        id = this.id,
         photoUrl = this.urls.rawUrl,
         username = this.user?.name.orEmpty(),
         fullName = this.user?.username.orEmpty(),
         profileImage = this.user?.profileImage?.medium.orEmpty(),
         width = this.width ?: DEFAULT_WIDTH,
         height = this.height ?: DEFAULT_HEIGHT,
-        watchCount = 0,
-        likesCount = this.likes ?: 0,
-        downloadCount = this.downloads ?: 0,
     )
 }
 
@@ -29,15 +29,13 @@ fun List<PhotoResponse>.toUiPhotos(): List<PhotoModel> {
     val photosList = mutableListOf<PhotoModel>()
     this.forEach { response ->
         val photoModel = PhotoModel(
+            id = response.id,
             photoUrl = response.urls.rawUrl,
             profileImage = response.user?.profileImage?.medium.orEmpty(),
             username = response.user?.name.orEmpty(),
             fullName = response.user?.username.orEmpty(),
             width = response.width ?: DEFAULT_WIDTH,
             height = response.height ?: DEFAULT_HEIGHT,
-            watchCount = 0,
-            likesCount = response.likes ?: 0,
-            downloadCount = response.downloads ?: 0
         )
         photosList.add(photoModel)
     }
@@ -73,6 +71,14 @@ fun List<User>.toUiUsers(): List<UserModel> {
     }
 
     return usersList
+}
+
+fun StatResponse.toUi(): PhotoInfoModel {
+    return PhotoInfoModel(
+        viewCount = views.total,
+        downloadsCount = downloads.total,
+        likesCount = likes.total
+    )
 }
 
 fun User.toCurrentUser(): CurrentUser {
